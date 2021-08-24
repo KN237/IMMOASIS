@@ -26,6 +26,7 @@ class Utilisateur extends Model
         'mdpU',
         'telephoneU',
         'idPackage',
+        'api_token'
     ];
 
     /**
@@ -39,6 +40,8 @@ class Utilisateur extends Model
     ];
 
     public $timestamps=FALSE;
+
+    public $primaryKey='idU';
 
     public $table='utilisateur';
 }

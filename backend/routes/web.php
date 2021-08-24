@@ -18,3 +18,4 @@ Route::get('/', function () {
    dd($test=Utilisateur::all());
     return view('welcome',compact('test'));
 });
+
