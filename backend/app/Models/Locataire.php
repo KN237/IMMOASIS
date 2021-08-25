@@ -23,5 +23,6 @@ class Locataire extends Model
         'signatureLoc',
         'professionLoc',
         'revenuMensuelLoc',
+        'signatureLocataire',
     ];
 }

@@ -15,7 +15,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-   dd($test=Utilisateur::all());
-    return view('welcome',compact('test'));
+    return view('welcome');
 });
+
+Route::Resource('utilisateur','App\Http\Controllers\UtilisateurController');
+
+Route::Resource('etat_des_lieux','App\Http\Controllers\EtatLieuxController');
+
+Route::get('etat_des_lieux/pdf/{id}','App\Http\Controllers\EtatLieuxController@print');
+
+Route::post('/utilisateur/recheche','App\Http\Controllers\UtilisateurController@search');
+
+Route::post('/etat_des_lieux/recheche','App\Http\Controllers\EtatLieuxController@search');
+
+Route::post('/locataire/sign','App\Http\Controllers\SignLocataireController@store');
+
+Route::post('/bailleur/sign','App\Http\Controllers\SignBailleurController@store');
+
 

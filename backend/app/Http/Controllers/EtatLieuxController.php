@@ -143,17 +143,23 @@ class EtatLieuxController extends Controller
 
     }
 
-    public function sign(Request $request)
+    public function print(EtatLieux $etatLieux)
     {
         
-        
+        $pdf = app('dompdf.wrapper');
+
+        $pdf->loadView('pdf/etatlieux',['etatLieux'=>$etatLieux]);
+
+        return $pdf->download('EtatLieux'.$etatLieux->idBien.now().'pdf');
 
     }
 
 
-    public function print(Request $request)
+    public function sign(EtatLieux $etatLieux)
     {
         
-        
+                                                                                     
+
     }
+
 }

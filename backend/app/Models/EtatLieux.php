@@ -11,6 +11,8 @@ class EtatLieux extends Model
 
     public $table='etat_des_lieux';
 
+    public $primaryKey='idEtatLieu';
+
     protected $fillable = [
         'idBien',
         'descriptionEtatLieu',

@@ -26,8 +26,8 @@ class SignLocataireController extends Controller
 
         $fichier='signature'.$test[1];
 
-        Locataire::where('idBailleur',$id)->update([
-            'signatureBailleur'=>$fichier
+        Locataire::where('idLocataire',$id)->update([
+            'signatureLocataire'=>$fichier
         ]);
 
         $test2 = file_put_contents($file, $image_base64);
