@@ -203,6 +203,7 @@
                 <td></td>
 
                 <td>Total: FCFA </td>
+                
             </tr>
         </table>
     </div>
