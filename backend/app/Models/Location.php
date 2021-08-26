@@ -18,12 +18,7 @@ class Location extends Model
         'idBien',
         'dateDebutLocation',
         'dureeLocation',
-        'dateLimitePaiement',
-        'dateFacturation',
         'montantLocation',
-        'tauxChargeLocation',
-        'montantCaution',
-        'tauxRetard',
-        'MinimumAPayer'
+        'montantCaution'
     ];
 }

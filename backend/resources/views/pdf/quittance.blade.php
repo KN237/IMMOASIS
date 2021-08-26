@@ -13,7 +13,7 @@
     <!-- Invoice styling -->
     <style>
         @page {
-            size: 600pt 600pt;
+            size: 650pt 650pt;
         }
 
         body {
@@ -132,12 +132,13 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="camtel.png" alt="Company logo" style="width: 100px;" />
+                                <img src="internis.png" alt="Company logo" style="width: 100px;" />
                             </td>
 
                             <td>
-                                Quittance #:<br />
-                                Délivrée le : <br />
+                                Quittance Num:#00Q{{$quittance->idquittance}} <br />
+                                Délivrée le : {{$quittance->idquittance}} <br />
+                               Relative à la facture Num :#00F{{$facture->idfacture}} <br />
                             </td>
                         </tr>
                     </table>
@@ -148,17 +149,20 @@
                 <td colspan="2">
                     <table>
                         <tr>
-                            <td>
-                                Sparksuite, Inc.<br />
-                                12345 Sunny Road<br />
-                                Sunnyville, TX 12345
+                        <td>
+                                A<br/>
+                                {{$loc->nomcompletu}}<br />
+                                {{$locataire->quartierloc}},{{$locataire->villeloc}} {{$locataire->paysloc}}<br />
+                                {{$locataire->telephonesecloc}}, {{$locataire->numcniloc}}
                             </td>
 
                             <td>
-                                Acme Corp.<br />
-                                John Doe<br />
-                                john@example.com
+                            De<br/>
+                            {{$ba->nomu}}<br />
+                            {{$ba->nomcompletu}}<br />
+                                {{$ba->telephoneu}}
                             </td>
+                        </tr>
                         </tr>
                     </table>
                 </td>
@@ -166,14 +170,14 @@
 
             <tr class="heading">
                 <td>Methode de paiement</td>
-                <td>Methode de paiement</td>
+                <td>#</td>
 
             </tr>
 
             <tr class="details">
-                <td>Methode de paiement</td>
+                <td>XXX</td>
 
-                <td>Methode de paiement</td>
+                <td>#</td>
             </tr>
 
             <tr class="heading">
@@ -183,36 +187,27 @@
             </tr>
 
             <tr class="item">
-                <td>Website design</td>
+            <td>Paiement de loyer pour la période du {{$facture->datedebutfacture}} au {{$facture->datefinfacture}} </td>
 
-                <td>300.00 FCFA</td>
-            </tr>
+            <td>{{$location->montantLocation}} FCFA</td>
 
-            <tr class="item">
-                <td>Hosting (3 months)</td>
-
-                <td>75.00 FCFA</td>
-            </tr>
-
-            <tr class="item last">
-                <td>Domain name (1 year)</td>
-
-                <td>10.00 FCFA</td>
             </tr>
 
             <tr class="total">
                 <td></td>
 
-                <td>Total: FCFA </td>
+                <td>Total: {{$location->montantLocation}} FCFA </td>
 
             </tr>
         </table>
-
-        <div class="bailleur">
+<div class="note" style="text-align:center;">
+    <p> Cette quittance annule toutes les factures qui auraient pu etre transmise en cas de paiement de le présente échéance</p>
+</div>
+        <div class="bailleur" style="text-align:center;">
 
             <h3 style="z-index: 2;"> Bailleur </h3>
 
-            <img src="{{ public_path('storage/signatures/signature61250dfe39fc1.png') }}" alt="image" width="150">
+            <img src="internis.png" alt="image" width="150">
 
 
         </div>

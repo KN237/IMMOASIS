@@ -11,6 +11,8 @@ class Bien extends Model
 
     public $table='bien';
 
+    public $primaryKey='idbien';
+
     protected $fillable = [
         'nomBien',
         'idTypeBien',

@@ -18,15 +18,39 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return view('pdf.quittance');
+});
+
 Route::Resource('utilisateur','App\Http\Controllers\UtilisateurController');
+
+                           // etat des lieux  //
 
 Route::Resource('etat_des_lieux','App\Http\Controllers\EtatLieuxController');
 
-Route::get('etat_des_lieux/pdf/{id}','App\Http\Controllers\EtatLieuxController@print');
+Route::get('etat_des_lieux/pdf/{etatLieux}','App\Http\Controllers\EtatLieuxController@print');
 
-Route::post('/utilisateur/recheche','App\Http\Controllers\UtilisateurController@search');
+                            // facture //
 
-Route::post('/etat_des_lieux/recheche','App\Http\Controllers\EtatLieuxController@search');
+Route::get('facture/{facture}/pdf','App\Http\Controllers\FactureController@print');
+
+Route::get('facture/{facture}/quittance/pdf','App\Http\Controllers\FactureController@printQuittance');
+
+Route::get('facture/{facture}/quittance/generer','App\Http\Controllers\FactureController@generateQuittance');
+
+Route::get('facture/{facture}/quittance/{id}/consulter','App\Http\Controllers\FactureController@consultQuittance');
+
+Route::Resource('facture','App\Http\Controllers\FactureController');
+
+                            
+
+                            // bien //
+Route::Resource('bien','App\Http\Controllers\BienController');
+
+
+
+                    // signature //
+
 
 Route::post('/locataire/sign','App\Http\Controllers\SignLocataireController@store');
 

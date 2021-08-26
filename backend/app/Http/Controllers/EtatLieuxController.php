@@ -131,18 +131,6 @@ class EtatLieuxController extends Controller
          }
     }
 
-    public function search(Request $request)
-    {
-        
-        $result =EtatLieux::where('idBien',$request->key)->get();
-
-        if($result){
-
-            return $result;
-        }
-
-    }
-
     public function print(EtatLieux $etatLieux)
     {
         
@@ -150,7 +138,7 @@ class EtatLieuxController extends Controller
 
         $pdf->loadView('pdf/etatlieux',['etatLieux'=>$etatLieux]);
 
-        return $pdf->download('EtatLieux'.$etatLieux->idBien.now().'pdf');
+        return $pdf->stream('EtatLieux'.$etatLieux->idBien.now().'pdf');
 
     }
 

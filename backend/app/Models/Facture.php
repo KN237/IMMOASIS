@@ -10,10 +10,15 @@ class Facture extends Model
     use HasFactory;
 
     public $table='facture';
+
+    public $primaryKey='idfacture';
+
     protected $fillable = [
         'idLocation',
         'dateFacture',
-        'montantFacture',
+        'datedebutFacture',
+        'datefinFacture',
+        'datelimiteFacture',
         'etatFacture'
       
     ];

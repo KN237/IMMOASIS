@@ -42,12 +42,11 @@ class UtilisateurController extends Controller
             
            [ 
 
-        'api_token'=>Str::random(100),
-        'nomU'=>$request->nomU,
-        'nomCompletU'=>$request->nomCompletU,
-        'emailU'=>$request->emailU,
-        'mdpU'=>bcrypt($request->mdpU),
-        'telephoneU'=>$request->telephoneU,
+        'nomU'=>$request->nomu,
+        'nomCompletU'=>$request->nomcompletu,
+        'emailU'=>$request->emailu,
+        'mdpU'=>bcrypt($request->mdpu),
+        'telephoneU'=>$request->telephoneu,
         'idPackage'=>$request->idPackage
 
         ]
@@ -100,12 +99,12 @@ class UtilisateurController extends Controller
             
             [ 
  
-         'nomU'=>$request->nomU,
-         'nomCompletU'=>$request->nomCompletU,
-         'emailU'=>$request->emailU,
-         'mdpU'=>bcrypt($request->mdpU),
-         'telephoneU'=>$request->telephoneU,
-         'idPackage'=>$request->idPackage
+         'nomU'=>$request->nomu,
+         'nomCompletU'=>$request->nomcompletu,
+         'emailU'=>$request->emailu,
+         'mdpU'=>bcrypt($request->mdpu),
+         'telephoneU'=>$request->telephoneu,
+         'idPackage'=>$request->idpackage
  
          ]
          
@@ -143,15 +142,4 @@ class UtilisateurController extends Controller
         }
     }
 
-    public function search(Request $request)
-    {
-        
-        $result = Utilisateur::where('nomcompletU','LIKE','%'.$request->key.'%')->get();
-
-        if($result){
-
-            return $result;
-        }
-
-    }
 }

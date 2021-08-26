@@ -12,7 +12,7 @@
 
     <!-- Invoice styling -->
     <style>
-        @page { size: 600pt 600pt; }
+        @page { size: 530pt 530pt; }
 
         body {
             font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
@@ -130,13 +130,13 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="camtel.png" alt="Company logo" style="width: 100px;" />
+                                <img src="internis.png" alt="Company logo" style="width: 100px;" />
                             </td>
 
                             <td>
-                                Facture #:<br />
-                                Délivré le : <br />
-                                A payer avant:
+                                Facture Num: #000{{$facture->idfacture}}<br />
+                                Délivré le: {{$facture->datefacture}} <br />
+                               <span style="color:red;"> A payer avant le: {{$facture->datelimitefacture}} </span> 
                             </td>
                         </tr>
                     </table>
@@ -148,15 +148,17 @@
                     <table>
                         <tr>
                             <td>
-                                Sparksuite, Inc.<br />
-                                12345 Sunny Road<br />
-                                Sunnyville, TX 12345
+                                A<br/>
+                                {{$loc->nomcompletu}}<br />
+                                {{$locataire->quartierloc}},{{$locataire->villeloc}} {{$locataire->paysloc}}<br />
+                                {{$locataire->telephonesecloc}}, {{$locataire->numcniloc}}
                             </td>
 
                             <td>
-                                Acme Corp.<br />
-                                John Doe<br />
-                                john@example.com
+                            De<br/>
+                            {{$ba->nomu}}<br />
+                            {{$ba->nomcompletu}}<br />
+                                {{$ba->telephoneu}}
                             </td>
                         </tr>
                     </table>
@@ -165,14 +167,14 @@
 
             <tr class="heading">
                 <td>Methode de paiement</td>
-                <td>Methode de paiement</td>
+                <td>#</td>
 
             </tr>
 
             <tr class="details">
-                <td>Methode de paiement</td>
+                <td>XXXX</td>
 
-                <td>Methode de paiement</td>
+                <td>#</td>
             </tr>
 
             <tr class="heading">
@@ -182,27 +184,15 @@
             </tr>
 
             <tr class="item">
-                <td>Website design</td>
+                <td>Paiement de loyer pour la période du {{$facture->datedebutfacture}} au {{$facture->datefinfacture}} </td>
 
-                <td>300.00 FCFA</td>
-            </tr>
-
-            <tr class="item">
-                <td>Hosting (3 months)</td>
-
-                <td>75.00 FCFA</td>
-            </tr>
-
-            <tr class="item last">
-                <td>Domain name (1 year)</td>
-
-                <td>10.00 FCFA</td>
+                <td>{{$location->montantLocation}} FCFA</td>
             </tr>
 
             <tr class="total">
                 <td></td>
 
-                <td>Total: FCFA </td>
+                <td>Total: {{$location->montantLocation}} FCFA </td>
                 
             </tr>
         </table>
