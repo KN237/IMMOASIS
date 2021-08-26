@@ -137,7 +137,7 @@
 
                             <td>
                                 Quittance Num:#00Q{{$quittance->idquittance}} <br />
-                                Délivrée le : {{$quittance->idquittance}} <br />
+                                Délivrée le : {{$quittance->datequittance}} <br />
                                Relative à la facture Num :#00F{{$facture->idfacture}} <br />
                             </td>
                         </tr>

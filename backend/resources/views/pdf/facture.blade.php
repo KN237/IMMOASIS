@@ -134,7 +134,7 @@
                             </td>
 
                             <td>
-                                Facture Num: #000{{$facture->idfacture}}<br />
+                                Facture Num: #00F{{$facture->idfacture}}<br />
                                 Délivré le: {{$facture->datefacture}} <br />
                                <span style="color:red;"> A payer avant le: {{$facture->datelimitefacture}} </span> 
                             </td>
