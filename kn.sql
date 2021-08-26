@@ -9,8 +9,8 @@
 /*==============================================================*/
 create table administrateur
 (
-   idu                  int not NULL PRIMARY KEY AUTO_INCREMENT ,
-   idadmin              int not NULL
+   idu                  int not NULL,
+   idadmin              int not NULL PRIMARY KEY AUTO_INCREMENT
 );
 
 
@@ -60,7 +60,7 @@ create table bailleur
    villebailleur        varchar(254),
    quartierbailleur     varchar(254),
    paysbailleur         varchar(254),
-   datenaissbailleur    datetime,
+   datenaissbailleur    date,
    lieunaissbailleur    varchar(254),
    nomcompletrep        varchar(254),
    numcnirep            int,
@@ -114,7 +114,7 @@ create table etat_des_lieux
    idetatlieu           int not NULL PRIMARY KEY AUTO_INCREMENT ,
    idbien               int not null,
    descriptionetatlieu  varchar(254),
-   dateetatlieu         datetime
+   dateetatlieu         date
 );
 
 
@@ -125,8 +125,10 @@ create table etat_des_lieux
 create table facture
 (
    idfacture            int not null PRIMARY KEY AUTO_INCREMENT,
-   datefacture          datetime,
-   montantfacture       numeric(8,0),
+   datefacture          date,
+   datedebutfacture          date,
+   datefinfacture          date,
+   datelimitefacture          DATE,
    etatfacture          bool
    
    );
@@ -141,7 +143,7 @@ create table inventaire
    idinventaire         int not null PRIMARY KEY AUTO_INCREMENT,
    idbien               int not null,
    descriptioninventaire varchar(254),
-   dateinventaire       datetime
+   dateinventaire       date
 );
 
 
@@ -158,13 +160,14 @@ create table locataire
    villeloc             varchar(254),
    quartierloc          varchar(254),
    paysloc              varchar(254),
-   datenaissloc         datetime,
+   datenaissloc         date,
    sexeloc              varchar(254),
    lieunaissloc         varchar(254),
    professionloc        varchar(254),
    nomemployeurloc      varchar(254),
    telemployeurloc      int,
-   revenumensuelloc     numeric(8,0)
+   revenumensuelloc     numeric(8,0),
+   signatureLocataire varchar(254)
 );
 
 
@@ -200,7 +203,7 @@ create table piece
 create table quittance
 (
    idquittance          int not NULL PRIMARY KEY AUTO_INCREMENT ,
-   datequittance        datetime,
+   datequittance        date,
    montantquittance     numeric(8,0)
 );
 
@@ -293,25 +296,18 @@ create table photo
 /*==============================================================*/
 create table location
 (
-        idLocation int not NULL PRIMARY KEY AUTO_INCREMENT , 
-        utilisation varchar(254)  ,
-        activiteLocation varchar(254) ,
+        idLocation int not null PRIMARY KEY AUTO_INCREMENT, 
+        utilisation  varchar(254),
+        activiteLocation  varchar(254),
         idU int,
         idLocataire int,
         idTl int,
         idBien int,
-        dateDebutLocation date,
         dureeLocation int,
-        dateLimitePaiement date,
-        dateFacturation date,
         montantLocation float,
-        tauxChargeLocation float,
-        montantCaution float,
-        tauxRetard float,
-        MinimumAPayer float,
-        signatureLocataire varchar(254)
+        montantCaution float
 
-        );
+ );
 
 
 
@@ -388,4 +384,5 @@ alter table note add constraint fk_association_18 foreign key (idartisan)
 
 alter table photo add constraint fk_association_10 foreign key (idbien)
       references bien (idbien) on delete cascade on update cascade;
+      
 
