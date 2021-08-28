@@ -141,5 +141,27 @@ class UtilisateurController extends Controller
             ],200);
         }
     }
+    public function package(Utilisateur $utilisateur,$id)
+    {
+        $test=$utilisateur->update(
+            
+            [ 
+         'idPackage'=>$id
+ 
+         ]
+         
+         );
+ 
+         if($test){
+ 
+             return response()->json([
+ 
+                 'succes'=>'usouscription effectuée avec succès'
+ 
+             ],200);
+         }
+ 
+    }
+
 
 }

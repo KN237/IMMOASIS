@@ -26,6 +26,34 @@ class FactureController extends Controller
         return $facture;
     }
 
+    public function indexLocataire()
+    {
+        $locataire=Locataire::where('idu',session('loggedUser')->idu)->first();
+        $locations=Location::where('idlocataire',$locataire->getAttributes('idlocataire'))->get();
+        $locationsArray=[];
+
+        foreach($locations as $location){
+            $locationsArray+=$location->idlocation;
+        }
+        $factures=Facture::where('idlocation',$locationsArray)->get();
+
+        return $factures;
+    }
+
+    public function indexBailleur()
+    {
+        $bailleur=Bailleur::where('idu',session('loggedUser')->idu)->first();
+        $locations=Location::where('idbailleur',$bailleur->getAttributes('idbailleur'))->get();
+        $locationsArray=[];
+
+        foreach($locations as $location){
+            $locationsArray+=$location->idlocation;
+        }
+        $factures=Facture::where('idlocation',$locationsArray)->get();
+
+        return $factures;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -157,9 +185,9 @@ class FactureController extends Controller
     public function print(Facture $facture)
     {
             
-        $locataire=Locataire::where('idlocation',$facture->getAttributes('idlocation'))->first();
-
         $location=Location::where('idlocation',$facture->getAttributes('idlocation'))->first();
+
+        $locataire=Locataire::where('idlocataire',$location->idlocataire)->first();
 
         $bien=Bien::where('idbien',$location->getAttributes('idbien'))->first();
 
@@ -182,9 +210,10 @@ class FactureController extends Controller
     public function printQuittance(Facture $facture)
     {
             
-        $locataire=Locataire::where('idlocation',$facture->getAttributes('idlocation'))->first();
-
+          
         $location=Location::where('idlocation',$facture->getAttributes('idlocation'))->first();
+
+        $locataire=Locataire::where('idlocataire',$location->idlocataire)->first();
 
         $bien=Bien::where('idbien',$location->getAttributes('idbien'))->first();
 
