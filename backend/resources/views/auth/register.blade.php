@@ -20,7 +20,7 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" action="{{ route('auth.save') }}" method="post">
 					<span class="login100-form-title p-b-16">
-						Connexion
+						Inscription
 					</span>
 					<span class="login100-form-title p-b-18">
 						<i class="fa fa-plus-circle" aria-hidden="true" style="color:black;"></i>
@@ -140,14 +140,19 @@
 							Se connecter
 						</a>
 					</div>
+
+					<div class="text-center p-t-15">En vous inscrivant, vous reconnaissez avoir lu et accepté <br> <a href="" class="txt2">les Conditions d'utilisation </a> et <a href="" class="txt2">la Politique de confidentialité</a> .</div>
+
 				</form>
 			</div>
+			
 		</div>
+
+	
 	</div>
 
 
-	<div id="dropDownSelect1"></div>
-
+	
 	<!--===============================================================================================-->
 	<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="/js/main.js"></script>

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bien;
+use App\Models\Bailleur;
 use App\Models\Location;
+use App\Models\Locataire;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -132,7 +135,7 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        $test=$locataire->update(
+        $test=$location->update(
             
             [ 
                     'utilisation'=>$request->utilisation,
@@ -166,7 +169,7 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        $test=$locataire->delete();
+        $test=$location->delete();
 
         if($test){
      

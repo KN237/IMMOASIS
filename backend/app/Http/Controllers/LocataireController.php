@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bien;
+use App\Models\Bailleur;
+use App\Models\Location;
 use App\Models\Locataire;
 use Illuminate\Http\Request;
 
@@ -38,7 +41,7 @@ class LocataireController extends Controller
 
         $locataires=Locataire::where('idlocataire', $idLocationArray)->get();
 
-        return $locataire;
+        return $locataires;
     }
 
     /**
