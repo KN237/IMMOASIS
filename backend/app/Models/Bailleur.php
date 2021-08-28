@@ -10,6 +10,7 @@ class Bailleur extends Model
     use HasFactory;
 
     public $table='bailleur';
+    public $timestamps=FALSE;
 
     protected $fillable = [
         'numCniBailleur',

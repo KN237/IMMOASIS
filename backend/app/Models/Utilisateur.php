@@ -20,11 +20,11 @@ class Utilisateur extends Model
      */
 
     protected $fillable = [
-        'nomU',
-        'nomCompletU',
-        'emailU',
-        'mdpU',
-        'telephoneU',
+        'nomu',
+        'nomCompletu',
+        'emailu',
+        'mdpu',
+        'telephoneu',
         'idPackage',
         'api_token'
     ];
@@ -35,13 +35,13 @@ class Utilisateur extends Model
      * @var array
      */
     protected $hidden = [
-        'mdpU',
+        'mdpu',
         
     ];
 
     public $timestamps=FALSE;
 
-    public $primaryKey='idU';
+    public $primaryKey='idu';
 
     public $table='utilisateur';
 }

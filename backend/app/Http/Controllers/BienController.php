@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\bien;
+use App\Models\Bailleur;
 use Illuminate\Http\Request;
 
 class BienController extends Controller
@@ -14,10 +15,23 @@ class BienController extends Controller
      */
     public function index()
     {
+       
+
+        $bailleur=Bailleur::where('idu',session('loggedUser')->idu)->first();
+
+        $biens=Bien::where('idbailleur',$bailleur->idbailleur)->get();
+
+        return $biens;
+    }
+
+
+    public function all()
+    {
         $bien=Bien::all();
 
         return $bien;
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,6 +51,7 @@ class BienController extends Controller
      */
     public function store(Request $request)
     {
+        $bailleur=Bailleur::where('idu',session('loggedUser')->idu)->first();
 
         if($request->has('imagebien')){
             
@@ -49,8 +64,8 @@ class BienController extends Controller
                 [ 
             'nomBien'=>$request->nombien,
             'idTypeBien'=>$request->idtypebien,
-            'idU'=>$request->idu,
-            'idBailleur'=>$request->idbailleur,
+            'idU'=>$bailleur->idu,
+            'idBailleur'=>$bailleur->idbailleur,
             'numTitreFoncier'=>$request->numtitrefoncier,
             'numPermisConst'=>$request->numpermisconst,
             'descriptionBien'=>$request->descriptionbien,
@@ -76,8 +91,8 @@ class BienController extends Controller
                 [ 
             'nomBien'=>$request->nombien,
             'idTypeBien'=>$request->idtypebien,
-            'idU'=>$request->idu,
-            'idBailleur'=>$request->idbailleur,
+            'idU'=>$bailleur->idu,
+            'idBailleur'=>$bailleur->idbailleur,
             'numTitreFoncier'=>$request->numtitrefoncier,
             'numPermisConst'=>$request->numpermisconst,
             'descriptionBien'=>$request->descriptionbien,
@@ -149,8 +164,6 @@ class BienController extends Controller
                 [ 
             'nomBien'=>$request->nombien,
             'idTypeBien'=>$request->idtypebien,
-            'idU'=>$request->idu,
-            'idBailleur'=>$request->idbailleur,
             'numTitreFoncier'=>$request->numtitrefoncier,
             'numPermisConst'=>$request->numpermisconst,
             'descriptionBien'=>$request->descriptionbien,
@@ -176,8 +189,6 @@ class BienController extends Controller
                 [ 
             'nomBien'=>$request->nombien,
             'idTypeBien'=>$request->idtypebien,
-            'idU'=>$request->idu,
-            'idBailleur'=>$request->idbailleur,
             'numTitreFoncier'=>$request->numtitrefoncier,
             'numPermisConst'=>$request->numpermisconst,
             'descriptionBien'=>$request->descriptionbien,

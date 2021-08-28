@@ -231,7 +231,8 @@ class FactureController extends Controller
 
     public function consultQuittance(Facture $facture,$id){
 
-        $locations=Location::where('idlocataire',$id)->get();
+        $locataire=Utilisateur::where('idu',session('loggedUser')->idu)->first();
+        $locations=Location::where('idlocataire',$locataire->idlocataire)->get();
         $idLocationArray=[];
 
         foreach($locations as $location){
@@ -241,7 +242,7 @@ class FactureController extends Controller
         }
 
 
-        return $quittance=DB::table('quittance')->where('idlocation',$idLocationArray)->first();
+        return $quittance=DB::table('quittance')->where('idlocation',$idLocationArray)->get();
 
     }
 
