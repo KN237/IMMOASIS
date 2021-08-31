@@ -14,18 +14,13 @@ create table administrateur
 );
 
 
-alter table administrateur
-   add unique ak_identifiant_1 (idadmin);
-   
-   
-
 /*==============================================================*/
 /* Table : article                                              */
 /*==============================================================*/
+
 create table article
 (
-   idarticle            int not NULL PRIMARY KEY AUTO_INCREMENT ,
-   idu                  int not null,
+   idarticle            int not NULL PRIMARY KEY AUTO_INCREMENT,
    idbailleur           int not null,
    titrearticle         varchar(254),
    descriptionarticle   varchar(254)
@@ -36,10 +31,10 @@ create table article
 /*==============================================================*/
 /* Table : artisan                                              */
 /*==============================================================*/
+
 create table artisan
 (
    idartisan            int not null PRIMARY KEY AUTO_INCREMENT,
-   idu                  int not null,
    idadmin              int not null,
    nomcompletartisan    varchar(254),
    telephoneartisan     int,
@@ -76,7 +71,6 @@ create table bien
 (
    idbien               int not null PRIMARY KEY AUTO_INCREMENT,
    idtypebien           int not null,
-   idu                  int not null,
    idbailleur           int not null,
    nombien              varchar(254),
    numtitrefoncier      varchar(254),
@@ -125,6 +119,7 @@ create table etat_des_lieux
 create table facture
 (
    idfacture            int not null PRIMARY KEY AUTO_INCREMENT,
+   idLocation int not null,
    datefacture          date,
    datedebutfacture          date,
    datefinfacture          date,
@@ -203,6 +198,7 @@ create table piece
 create table quittance
 (
    idquittance          int not NULL PRIMARY KEY AUTO_INCREMENT ,
+   idLocation int not null,
    datequittance        date,
    montantquittance     numeric(8,0)
 );
@@ -299,7 +295,6 @@ create table location
         idLocation int not null PRIMARY KEY AUTO_INCREMENT, 
         utilisation  varchar(254),
         activiteLocation  varchar(254),
-        idU int,
         idLocataire int,
         idTl int,
         idBien int,
@@ -311,9 +306,12 @@ create table location
 
 
 
+  alter table facture add constraint fk_association_35_1 foreign key (idLocation)
+      references location (idLocation) on delete cascade on update cascade;
 
-   alter table location add constraint fk_association_30_1 foreign key (idu)
-      references utilisateur (idu) on delete cascade on update cascade;
+   alter table quittance add constraint fk_association_35_2 foreign key (idLocation)
+      references location (idLocation) on delete cascade on update cascade;
+
 
       alter table location add constraint fk_association_30_2 foreign key (idLocataire)
       references locataire (idLocataire) on delete cascade on update cascade;
@@ -334,14 +332,8 @@ alter table administrateur add constraint fk_generalisation_3 foreign key (idu)
 alter table article add constraint fk_association_8 foreign key (idbailleur)
       references bailleur (idbailleur) on delete cascade on update cascade;
 
-      alter table article add constraint fk_association_8_2 foreign key (idu)
-      references utilisateur (idu) on delete cascade on update cascade;
-
 alter table artisan add constraint fk_association_1 foreign key (idadmin)
       references administrateur (idadmin) on delete cascade on update cascade;
-
-      alter table artisan add constraint fk_association_1_2 foreign key (idu)
-      references utilisateur (idu) on delete cascade on update cascade;
 
 alter table bailleur add constraint fk_generalisation_1 foreign key (idu)
       references utilisateur (idu) on delete cascade on update cascade;
@@ -352,11 +344,6 @@ alter table bien add constraint fk_association_11 foreign key (idtypebien)
 
 alter table bien add constraint fk_association_9 foreign key (idbailleur)
       references bailleur (idbailleur) on delete cascade on update cascade;
-
-
-      alter table bien add constraint fk_association_9_1 foreign key (idu)
-      references utilisateur (idu) on delete cascade on update cascade;
-
 
 alter table equipement add constraint fk_association_13 foreign key (idpiece)
       references piece (idpiece) on delete cascade on update cascade;
