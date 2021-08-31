@@ -115,6 +115,31 @@ class ArtisanController extends Controller
          }
     }
 
+
+    public function note(Request $request, Artisan $artisan)
+    {
+        $test=$artisan->update(
+            
+            [ 
+
+                'idartisan'=>$request->idartisan,
+                'valeur'=>$request->valeur,
+ 
+         ]
+         
+         );
+ 
+         if($test){
+ 
+             return response()->json([
+ 
+                 'succes'=>'artisan noté avec succès'
+ 
+             ],200);
+         }
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *

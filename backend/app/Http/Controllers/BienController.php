@@ -13,7 +13,7 @@ class BienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexBailleur()
     {
        
 
@@ -25,7 +25,7 @@ class BienController extends Controller
     }
 
 
-    public function all()
+    public function index()
     {
         $bien=Bien::all();
 

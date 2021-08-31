@@ -107,11 +107,13 @@ Route::Resource('facture', 'App\Http\Controllers\FactureController');
 
 
 // bien //
+
 Route::Resource('bien', 'App\Http\Controllers\BienController');
-Route::get('bien/liste', 'App\Http\Controllers\BienController@all');
+Route::get('bien/bailleur', 'App\Http\Controllers\BienController@indexBailleur');
 
 
 // locataire //
+
 Route::Resource('locataire', 'App\Http\Controllers\LocataireController');
 Route::post('locataire/add/{id}', 'App\Http\Controllers\LocataireController@add');
 Route::get('locataire/liste', 'App\Http\Controllers\LocataireController@all');
@@ -126,16 +128,32 @@ Route::get('location/bailleur', 'App\Http\Controllers\LocationController@indexBa
 
 
 // utilisateur/package/
+
 Route::get('/souscription/{utilisateur}/package/{id}', 'App\Http\Controllers\UtilisateurController@package');
 
 
 
 //package//
+
 Route::Resource('package', 'App\Http\Controllers\PackageController');
 
 
 //artisan//
+
 Route::Resource('artisan', 'App\Http\Controllers\ArtisanController');
+Route::post('artisan/{artisan}/note', 'App\Http\Controllers\ArtisanController@note');
+
+
+
+
+//Type de location/
+
+Route::Resource('type_de_location', 'App\Http\Controllers\TLController');
+
+//Type de bien//
+
+Route::Resource('type_de_bien', 'App\Http\Controllers\TBController');
+
 
 
 
