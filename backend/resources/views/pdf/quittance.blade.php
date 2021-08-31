@@ -5,10 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>template</title>
+    <title>Quittance</title>
 
     <!-- Favicon -->
     <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 
     <!-- Invoice styling -->
     <style>

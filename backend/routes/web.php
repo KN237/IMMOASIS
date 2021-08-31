@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('pdf.quittance');
+    return view('pdf.renovation');
 });
 
 Route::post('/save', [AuthController::class, 'save'])->name('auth.save');
@@ -33,13 +33,63 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/admin/dashboard', [AuthController::class, 'dashboard']);
 });
 
+
+
+
 Route::Resource('utilisateur', 'App\Http\Controllers\UtilisateurController');
+
+
+
 
 // etat des lieux  //
 
 Route::Resource('etat_des_lieux', 'App\Http\Controllers\EtatLieuxController');
 
 Route::get('etat_des_lieux/pdf/{etatLieux}', 'App\Http\Controllers\EtatLieuxController@print');
+
+Route::get('etat_des_lieux/bailleur', 'App\Http\Controllers\EtatLieuxController@indexBailleur');
+
+Route::get('etat_des_lieux/locataire', 'App\Http\Controllers\EtatLieuxController@indexLocataire');
+
+
+// renovation //
+
+Route::Resource('renovation', 'App\Http\Controllers\RenovationController');
+
+Route::get('renovation/pdf/{renovation}', 'App\Http\Controllers\RenovationController@print');
+
+Route::get('renovation/bailleur', 'App\Http\Controllers\RenovationController@indexBailleur');
+
+Route::get('renovation/locataire', 'App\Http\Controllers\RenovationController@indexLocataire');
+
+
+// inventaire //
+
+Route::Resource('inventaire', 'App\Http\Controllers\InventaireController');
+
+Route::get('inventaire/pdf/{inventaire}', 'App\Http\Controllers\InventaireController@print');
+
+Route::get('inventaire/bailleur', 'App\Http\Controllers\InventaireController@indexBailleur');
+
+Route::get('inventaire/locataire', 'App\Http\Controllers\InventaireController@indexLocataire');
+
+
+// article //
+
+Route::Resource('article', 'App\Http\Controllers\ArticleController');
+
+Route::get('article/bailleur', 'App\Http\Controllers\ArticleController@indexBailleur');
+
+
+
+// contrat //
+
+Route::Resource('contrat', 'App\Http\Controllers\ContratController');
+
+Route::get('contrat/pdf/{contrat}', 'App\Http\Controllers\ContratController@print');
+
+Route::get('contrat/bailleur', 'App\Http\Controllers\ContratController@indexBailleur');
+
 
 // facture //
 Route::get('facture/bailleur', 'App\Http\Controllers\FactureController@indexBailleur');
@@ -75,17 +125,17 @@ Route::get('location/locataire', 'App\Http\Controllers\LocationController@indexL
 Route::get('location/bailleur', 'App\Http\Controllers\LocationController@indexBailleur');
 
 
-// utilisateur/package//
+// utilisateur/package/
 Route::get('/souscription/{utilisateur}/package/{id}', 'App\Http\Controllers\UtilisateurController@package');
 
 
 
 //package//
-Route::get('package', 'App\Http\Controllers\PackageController');
+Route::Resource('package', 'App\Http\Controllers\PackageController');
 
 
 //artisan//
-Route::get('artisan', 'App\Http\Controllers\ArtisanController');
+Route::Resource('artisan', 'App\Http\Controllers\ArtisanController');
 
 
 

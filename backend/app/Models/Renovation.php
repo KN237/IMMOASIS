@@ -17,7 +17,6 @@ class Renovation extends Model
         'domaineRenovation',
         'descriptionRenovation',
         'montantRenovation',
-        'motifRenovation',
         'priorite',
         'statut',
       

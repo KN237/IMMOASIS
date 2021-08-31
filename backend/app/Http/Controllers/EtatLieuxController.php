@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bien;
+use App\Models\Bailleur;
+use App\Models\Location;
 use App\Models\EtatLieux;
+use App\Models\Locataire;
 use Illuminate\Http\Request;
 
 class EtatLieuxController extends Controller
@@ -18,6 +22,25 @@ class EtatLieuxController extends Controller
 
         return $etatLieux;
     }
+
+    public function indexBailleur()
+    {
+        $bailleur=Bailleur::where('idu',session('loggedUser')->idu)->get();
+        $bien=Bien::where('idbailleur',$bailleur->idbailleur)->get();
+        $etatLieux=EtatLieux::where('idbien',$bien->idbien)->get();
+
+        return $etatLieux;
+    }
+
+    public function indexLocataire()
+    {
+        $locataire=Locataire::where('idu',session('loggedUser')->idu)->get();
+        $location=Location::where('idLocataire',$locataire->idLocataire)->get();
+        $etatLieux=EtatLieux::where('idbien',$location->idbien)->get();
+
+        return $etatLieux;
+    }
+
 
     /**
      * Show the form for creating a new resource.

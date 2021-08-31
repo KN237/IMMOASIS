@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-	<title>IMMOAIS | Connexion</title>
+	<title>IMMO OASIS | Connexion</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -13,6 +13,19 @@
 </head>
 
 <body>
+
+	    <!-- ***** Preloader Start ***** -->
+		<div id="js-preloader" class="js-preloader">
+			<div class="preloader-inner">
+			  <span class="dot"></span>
+			  <div class="dots">
+				<span></span>
+				<span></span>
+				<span></span>
+			  </div>
+			</div>
+		  </div>
+		  <!-- ***** Preloader End ***** -->
 
 	<div class="limiter">
 		<div class="container-login100">
