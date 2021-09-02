@@ -13,8 +13,8 @@ class Quittance extends Model
 
     protected $fillable = [
         'idLocation',
-        'dateQuittance',
-        'montantQuittance',
+        'datequittance',
+        'montantquittance',
       
     ];
 }

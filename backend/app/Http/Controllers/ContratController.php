@@ -119,6 +119,49 @@ class ContratController extends Controller
          }
     }
 
+    public function signBailleur(Contrat $contrat)
+    {
+        $test=$contrat->update(
+            
+            [ 
+                'signBailleur'=>1,
+         
+         ]
+         
+         );
+ 
+         if($test){
+ 
+             return response()->json([
+ 
+                 'succes'=>'contrat signé par le bailleur avec succès'
+ 
+             ],200);
+         }
+    }
+
+
+    public function signLocataire(Contrat $contrat)
+    {
+        $test=$contrat->update(
+            
+            [ 
+                'signLocataire'=>1,
+         
+         ]
+         
+         );
+ 
+         if($test){
+ 
+             return response()->json([
+ 
+                 'succes'=>'contrat signé par le locataire avec succès'
+ 
+             ],200);
+         }
+    }
+
     /**
      * Remove the specified resource from storage.
      *

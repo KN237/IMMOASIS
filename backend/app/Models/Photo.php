@@ -12,8 +12,8 @@ class Photo extends Model
     public $table='photo';
 
     protected $fillable = [
-        'idBien',
-        'nomPhoto'
+        'idbien',
+        'nomphoto'
     ];
 
 

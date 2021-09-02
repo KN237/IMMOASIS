@@ -35,7 +35,7 @@ class RenovationController extends Controller
     public function indexLocataire()
     {
         $locataire=Locataire::where('idu',session('loggedUser')->idu)->get();
-        $location=Location::where('idLocataire',$locataire->idLocataire)->get();
+        $location=Location::where('idLocataire',$locataire->idlocataire)->get();
         $renovation=Renovation::where('idbien',$location->idbien)->get();
 
         return $renovation;

@@ -11,9 +11,9 @@ class Artisan extends Model
     public $table='artisan';
 
     protected $fillable = [
-        'idAdmin',
-        'nomCompletArtisan',
-        'professionArtisan',
-        'telephoneArtisan',
+        'idadmin',
+        'nomcompletartisan',
+        'professionartisan',
+        'telephoneartisan',
     ];
 }

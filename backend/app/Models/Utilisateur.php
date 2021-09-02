@@ -21,12 +21,11 @@ class Utilisateur extends Model
 
     protected $fillable = [
         'nomu',
-        'nomCompletu',
+        'nomcompletu',
         'emailu',
         'mdpu',
         'telephoneu',
         'idPackage',
-        'api_token'
     ];
 
     /**

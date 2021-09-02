@@ -11,9 +11,11 @@ class Inventaire extends Model
     public $table='inventaire';
 
     protected $fillable = [
-        'idBien',
-        'descriptionInventaire',
-        'dateInventaire',
+        'idbien',
+        'descriptioninventaire',
+        'dateinventaire',
+        'signBailleur',
+        'signLocataire'
       
     ];
 }

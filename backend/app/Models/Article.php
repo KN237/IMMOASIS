@@ -11,8 +11,8 @@ class Article extends Model
     public $table='article';
 
     protected $fillable = [
-        'idBailleur',
-        'titreArticle',
-        'descriptionArticle'
+        'idbailleur',
+        'titrearticle',
+        'descriptionarticle'
     ];
 }

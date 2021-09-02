@@ -10,5 +10,8 @@ class Administrateur extends Model
     use HasFactory;
 
     public $table='administrateur';
+    protected $fillable = [
+        'idu',
+    ];
 
 }

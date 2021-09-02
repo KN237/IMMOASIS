@@ -132,6 +132,50 @@ class InventaireController extends Controller
         }
     }
 
+    public function signBailleur(Inventaire $inventaire)
+    {
+        $test=$inventaire->update(
+            
+            [ 
+                'signBailleur'=>1,
+         
+         ]
+         
+         );
+ 
+         if($test){
+ 
+             return response()->json([
+ 
+                 'succes'=>'inventaire signé par le bailleur avec succès'
+ 
+             ],200);
+         }
+    }
+
+
+    public function signLocataire(Inventaire $inventaire)
+    {
+        $test=$inventaire->update(
+            
+            [ 
+                'signLocataire'=>1,
+         
+         ]
+         
+         );
+ 
+         if($test){
+ 
+             return response()->json([
+ 
+                 'succes'=>'inventaire signé par le locataire avec succès'
+ 
+             ],200);
+         }
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *

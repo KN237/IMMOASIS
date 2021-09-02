@@ -12,6 +12,8 @@ class Contrat extends Model
     public $table='contrat';
 
     protected $fillable = [
-        'idbien'
+        'idbien',
+        'signBailleur',
+        'signLocataire'
     ];
 }

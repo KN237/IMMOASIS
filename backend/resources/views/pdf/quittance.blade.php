@@ -85,9 +85,16 @@
         }
 
         .invoice-box table tr.heading td {
-            background: #eee;
-            border-bottom: 1px solid #ddd;
+            background-color: #e9ecef;
+          
             font-weight: bold;
+           
+        }
+
+        .invoice-box table tr.heading  {
+            
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.623);
+    
         }
 
         .invoice-box table tr.details td {
@@ -96,6 +103,7 @@
 
         .invoice-box table tr.item td {
             border-bottom: 1px solid #eee;
+            margin: 20%;
         }
 
         .invoice-box table tr.item.last td {
@@ -133,7 +141,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="internis.png" alt="Company logo" style="width: 100px;" />
+                                <img src="/internis.png" alt="Company logo" style="width: 100px;" />
                             </td>
 
                             <td>
@@ -161,7 +169,7 @@
                             De<br/>
                             {{$ba->nomu}}<br />
                             {{$ba->nomcompletu}}<br />
-                                {{$ba->telephoneu}}
+                            {{$ba->telephoneu}}
                             </td>
                         </tr>
                         </tr>
@@ -171,14 +179,14 @@
 
             <tr class="heading">
                 <td>Methode de paiement</td>
-                <td>#</td>
+                <td></td>
 
             </tr>
 
             <tr class="details">
                 <td>XXX</td>
 
-                <td>#</td>
+                <td></td>
             </tr>
 
             <tr class="heading">
@@ -206,9 +214,9 @@
 </div>
         <div class="bailleur" style="text-align:center;">
 
-            <h3 style="z-index: 2;"> Bailleur </h3>
+            <h3 style="z-index: 2;"> Le bailleur </h3>
 
-            <img src="internis.png" alt="image" width="150">
+            <img src="/internis.png" alt="image" width="150">
 
 
         </div>

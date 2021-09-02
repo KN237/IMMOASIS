@@ -11,14 +11,13 @@ class Location extends Model
     public $table='location';
     protected $fillable = [
         'utilisation',
-        'activiteLocation',
-        'idU',
-        'idLocataire',
-        'idTl',
-        'idBien',
-        'dateDebutLocation',
-        'dureeLocation',
-        'montantLocation',
-        'montantCaution'
+        'activitelocation',
+        'idlocataire',
+        'idtl',
+        'idbien',
+        'datedebutlocation',
+        'dureelocation',
+        'montantlocation',
+        'montantcaution'
     ];
 }

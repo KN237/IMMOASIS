@@ -1,6 +1,5 @@
 <?php
-
-use App\Models\Utilisateur;
+ 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -20,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('pdf.renovation');
+    return view('pdf.etatlieux');
 });
 
 Route::post('/save', [AuthController::class, 'save'])->name('auth.save');
@@ -155,13 +154,44 @@ Route::Resource('type_de_location', 'App\Http\Controllers\TLController');
 Route::Resource('type_de_bien', 'App\Http\Controllers\TBController');
 
 
+//Piece/
+
+Route::Resource('piece', 'App\Http\Controllers\PieceController');
 
 
+//Equipement/
+
+Route::Resource('tequipement', 'App\Http\Controllers\EquipementController');
 
 
-// signature //
+//enregistrement signature //
 
 
 Route::post('/locataire/sign', 'App\Http\Controllers\SignLocataireController@store');
 
 Route::post('/bailleur/sign', 'App\Http\Controllers\SignBailleurController@store');
+
+
+// signature inventaire //
+
+
+Route::post('/inventaire/locataire/sign', 'App\Http\Controllers\InventaireController@signLocataire');
+
+Route::post('/inventaire/bailleur/sign', 'App\Http\Controllers\InventaireController@signBailleur');
+
+
+// signature contrat//
+
+
+Route::post('/contrat/locataire/sign', 'App\Http\Controllers\ContratController@signLocataire');
+
+Route::post('/contrat/bailleur/sign', 'App\Http\Controllers\ContratController@signBailleur');
+
+
+
+// signature etat des lieux /
+
+
+Route::post('/etat_des_lieux/locataire/sign', 'App\Http\Controllers\EtatLieuxController@signLocataire');
+
+Route::post('/etat_des_lieux/bailleur/sign', 'App\Http\Controllers\EtatLieuxController@signBailleur');

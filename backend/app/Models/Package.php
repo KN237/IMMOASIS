@@ -11,9 +11,9 @@ class Package extends Model
 
     public $table='package';
     protected $fillable = [
-        'nomPackage',
-        'nombreBienMax',
-        'montantPackage',
+        'nompackage',
+        'nombrebienmax',
+        'montantpackage',
         
     ];
 }

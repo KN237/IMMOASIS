@@ -14,9 +14,11 @@ class EtatLieux extends Model
     public $primaryKey='idEtatLieu';
 
     protected $fillable = [
-        'idBien',
-        'descriptionEtatLieu',
-        'dateEtatLieu',
-      
+        'idbien',
+        'descriptionetatlieu',
+        'datedebutetatlieu',
+        'datefinetatlieu',
+        'signBailleur',
+        'signLocataire' 
     ];
 }

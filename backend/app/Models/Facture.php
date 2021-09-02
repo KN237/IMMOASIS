@@ -15,11 +15,11 @@ class Facture extends Model
 
     protected $fillable = [
         'idLocation',
-        'dateFacture',
-        'datedebutFacture',
-        'datefinFacture',
-        'datelimiteFacture',
-        'etatFacture'
+        'datefacture',
+        'datedebutfacture',
+        'datefinfacture',
+        'datelimitefacture',
+        'etatfacture'
       
     ];
 }

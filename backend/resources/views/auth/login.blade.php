@@ -29,6 +29,9 @@
 
 	<div class="limiter">
 		<div class="container-login100">
+
+			<a href="/" style="margin:2%;"><img src="/internis.png" alt="logo" width="150" ></a>
+
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" action="{{ route('auth.check') }}" method="post">
 					<span class="login100-form-title p-b-46">

@@ -13,6 +13,6 @@ class TypeBien extends Model
 
     protected $fillable = [
       
-        'nomTypeBien'
+        'nomtypebien'
     ];
 }

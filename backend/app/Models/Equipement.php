@@ -12,11 +12,12 @@ class Equipement extends Model
     public $table='equipement';
 
     protected $fillable = [
-        'idPiece',
-        'nomEquipement',
-        'etatEquipement',
-        'prixEquipement',
-        'commentaire'
+        'idpiece',
+        'nomequipement',
+        'etatequipement',
+        'prixequipement',
+        'commentaire',
+        
       
     ];
 }

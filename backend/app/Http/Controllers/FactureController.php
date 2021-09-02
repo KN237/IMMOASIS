@@ -266,7 +266,7 @@ class FactureController extends Controller
 
         foreach($locations as $location){
 
-            $idLocationArray=+$location->idLocataire;
+            $idLocationArray=+$location->idlocataire;
 
         }
 

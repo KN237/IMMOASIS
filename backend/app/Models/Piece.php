@@ -13,7 +13,8 @@ class Piece extends Model
 
     protected $fillable = [
       
-        'nomPiece',
-        'idBien'
+        'nompiece',
+        'idbien',
+        'commentaire'
     ];
 }

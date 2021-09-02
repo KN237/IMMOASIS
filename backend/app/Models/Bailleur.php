@@ -13,15 +13,15 @@ class Bailleur extends Model
     public $timestamps=FALSE;
 
     protected $fillable = [
-        'numCniBailleur',
-        'telephoneSecBailleur',
-        'villeBailleur',
-        'quartierBailleur',
-        'paysBailleur',
-        'dateNaissBailleur',
-        'lieuNaissBailleur',
-        'nomCompletRep',
-        'numCniRep',
-        'SignatureBailleur',
+        'numcnibailleur',
+        'telephonesecbailleur',
+        'villebailleur',
+        'quartierbailleur',
+        'paysbailleur',
+        'datenaissbailleur',
+        'lieunaissbailleur',
+        'nomcompletrep',
+        'numcnirep',
+        'signaturebailleur',
     ];
 }

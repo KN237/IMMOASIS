@@ -5,26 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Locataire extends Model
+class locataire extends Model
 {
     use HasFactory;
     public $table='locataire';
-    public $timestamps=FALSE;
+    public $timestamps=FAlSE;
     protected $fillable = [
-        'numCniLoc',
-        'telephoneSecLoc',
-        'villeLoc',
-        'quartierLoc',
-        'paysLoc',
-        'dateNaissLoc',
-        'sexeLoc',
-        'lieuNaissLoc',
-        'nomCompletEmployeurLoc',
-        'telEmployeurLoc',
-        'signatureLoc',
-        'professionLoc',
-        'revenuMensuelLoc',
-        'signatureLocataire',
+        'numcniloc',
+        'telephoneSecloc',
+        'villeloc',
+        'quartierloc',
+        'paysloc',
+        'datenaissloc',
+        'sexeloc',
+        'lieunaissloc',
+        'nomcompletemployeurloc',
+        'telemployeurloc',
+        'signatureloc',
+        'professionloc',
+        'revenumensuelloc',
+        'signaturelocataire',
         'idu'
     ];
 }

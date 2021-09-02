@@ -12,11 +12,11 @@ class Renovation extends Model
     public $table='renovation';
 
     protected $fillable = [
-        'idBien',
-        'motifRenovation',
-        'domaineRenovation',
-        'descriptionRenovation',
-        'montantRenovation',
+        'idbien',
+        'motifrenovation',
+        'domainerenovation',
+        'descriptionrenovation',
+        'montantrenovation',
         'priorite',
         'statut',
       

@@ -35,7 +35,7 @@ class EtatLieuxController extends Controller
     public function indexLocataire()
     {
         $locataire=Locataire::where('idu',session('loggedUser')->idu)->get();
-        $location=Location::where('idLocataire',$locataire->idLocataire)->get();
+        $location=Location::where('idLocataire',$locataire->idlocataire)->get();
         $etatLieux=EtatLieux::where('idbien',$location->idbien)->get();
 
         return $etatLieux;
@@ -64,8 +64,9 @@ class EtatLieuxController extends Controller
             
             [ 
                 'idBien'=>$request->idBien,
-                'descriptionEtatLieu'=>$request->descriptionEtatLieu,
+                'descriptionEtatLieu'=>$request->descriptionetatlieu,
                 'dateEtatLieu'=>$request->dateEtatLieu,
+                
          
          ]
          
@@ -117,7 +118,7 @@ class EtatLieuxController extends Controller
             
             [ 
                 'idBien'=>$request->idBien,
-                'descriptionEtatLieu'=>$request->descriptionEtatLieu,
+                'descriptionEtatLieu'=>$request->descriptionetatlieu,
                 'dateEtatLieu'=>$request->dateEtatLieu,
          
          ]
@@ -129,6 +130,49 @@ class EtatLieuxController extends Controller
              return response()->json([
  
                  'succes'=>'état des lieux modifié avec succès'
+ 
+             ],200);
+         }
+    }
+
+    public function signBailleur(EtatLieux $etatLieux)
+    {
+        $test=$etatLieux->update(
+            
+            [ 
+                'signBailleur'=>1,
+         
+         ]
+         
+         );
+ 
+         if($test){
+ 
+             return response()->json([
+ 
+                 'succes'=>'état des lieux  signé par le bailleur avec succès'
+ 
+             ],200);
+         }
+    }
+
+
+    public function signLocataire(EtatLieux $etatLieux)
+    {
+        $test=$etatLieux->update(
+            
+            [ 
+                'signLocataire'=>1,
+         
+         ]
+         
+         );
+ 
+         if($test){
+ 
+             return response()->json([
+ 
+                 'succes'=>'état des lieux signé par le locataire avec succès'
  
              ],200);
          }
@@ -162,14 +206,6 @@ class EtatLieuxController extends Controller
         $pdf->loadView('pdf/etatlieux',['etatLieux'=>$etatLieux]);
 
         return $pdf->stream('EtatLieux'.$etatLieux->idBien.now().'pdf');
-
-    }
-
-
-    public function sign(EtatLieux $etatLieux)
-    {
-        
-                                                                                     
 
     }
 

@@ -13,7 +13,7 @@ class TypeLocation extends Model
 
     protected $fillable = [
       
-        'nomTypeLocation',
+        'nomtypebocation',
        
     ];
 }
