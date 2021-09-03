@@ -9,6 +9,10 @@
 	<link rel="stylesheet" type="text/css" href="/fonts/iconic/css/material-design-iconic-font.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/main/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/main/assets/css/style.css">
+	<link rel="icon" href="/favicon.ico" >
 	<!--===============================================================================================-->
 </head>
 

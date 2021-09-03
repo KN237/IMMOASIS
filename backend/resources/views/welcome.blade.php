@@ -5,19 +5,25 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+
     <link
         href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
-    <title>IMMO OASIS | Free Real Estate Website </title>
+    <title> Acceuil | Immo Oasis </title>
 
     <link rel="stylesheet" type="text/css" href="/main/assets/css/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="/main/assets/css/font-awesome.css">
-
     <link rel="stylesheet" href="/main/assets/css/style.css">
+
+    <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="icon" href="/favicon.ico">
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25029013.js"></script>
+    <!-- End of HubSpot Embed Code -->
 
 </head>
 
@@ -38,51 +44,42 @@
 
 
     <!-- ***** Header Area Start ***** -->
-    <header class="header-area header-sticky">
+    <header class="header-area header-sticky bg-white">
         <div class="container">
-            <div class="row">
+            <div class="row p-2">
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">Real Estate<em> Website</em></a>
+                        <a href="/" class="logo"><img src="/internis.png" alt="logo" class="mb-5"
+                                width="130"></a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="index.html" class="active">Home</a></li>
-                            <li><a href="properties.html">Properties</a></li>
+                            <li><a href="/" class="active text-dark">Acceuil</a></li>
+
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                    aria-haspopup="true" aria-expanded="false">About</a>
+                                <a class="dropdown-toggle text-dark" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Nos services</a>
 
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="about.html">About Us</a>
-                                    <a class="dropdown-item" href="team.html">Team</a>
-                                    <a class="dropdown-item" href="blog.html">Blog</a>
-                                    <a class="dropdown-item" href="testimonials.html">Testimonials</a>
-                                    <a class="dropdown-item" href="terms.html">Terms</a>
+                                    <a class="dropdown-item" href="/">Relatifs aux bailleurs</a>
+                                    <a class="dropdown-item" href="/">Relatifs aux locataires</a>
                                 </div>
                             </li>
-                            <li><a href="contact.html">Contact</a></li>
 
-                            @if (Route::has('auth.check'))
+                            <li><a href="/" class="text-dark">Tarifs</a></li>
 
-                                @auth
+                            @auth
 
-                                <li><a href="/home">Mon compte</a></li>
+                                <li><a class="text-dark" href="/home">Mon compte</a></li>
 
-                                @else
+                            @else
 
-                                    <li><a href="/login">Se connecter</a></li>
+                                <li><a class="text-dark" href="/login">Se connecter</a></li>
 
-                                    @if (Route::has('auth.save'))
 
-                                    <li><a href="/register">S'inscrire</a></li>
+                            @endauth
 
-                                    @endif
-
-                                @endauth
-
-                                @endif
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -103,11 +100,14 @@
 
         <div class="video-overlay header-text">
             <div class="caption">
-                <h6>Lorem ipsum dolor sit amet</h6>
-                <h2>Find the perfect <em>Real Estate</em></h2>
-                <div class="main-button">
-                    <a href="contact.html">Contact Us</a>
+                <h6>Bailleurs-Gestionnaires de patrimoines-Locataires</h6>
+                <h2>Gérez vos locations <em>sans stresse</em></h2>
+                <div class="container-login100-form-btn" style="margin-top:80px;">
+                    <button class="login100-form-btnn w-25">
+                        Créer un compte
+                    </button>
                 </div>
+
             </div>
         </div>
     </div>
@@ -119,112 +119,150 @@
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="section-heading">
-                        <h2>Featured <em>Properties</em></h2>
-                        <img src="/main/assets/images/line-dec.png" alt="">
-                        <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor,
-                            ultricies fermentum massa consequat eu.</p>
+                        <h2>Nos <em>Services</em></h2>
+                        <center>
+                            <div class="w-25 mt-3 mb-3" style="height:3px;background:red;"></div>
+                        </center>
+                        <p> Notre rôle consiste à faciliter la gestion des biens locatifs. Avec l’ambition de toujours
+                            mieux prendre soin des publics les plus fragiles et la préoccupation constante de placer la
+                            Personne au cœur de toutes nos actions. Dans cette perspective, nos principales missions
+                            consistent à :</p>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row text-center">
+
+                <div class="col-lg-4">
+                    <div class="trainer-item">
+
+                        <div class="image-thumb">
+
+                            <i class="fas fa-file-invoice" style="color: black; font-size:2rem;"></i>
+
+                        </div>
+
+                        <div class="down-content mt-3">
+
+
+                            <h4>Gestion des factures</h4>
+
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="/main/assets/images/product-1-720x480.jpg" alt="">
+                            <i class="fas fa-hand-holding-usd" style="color: black; font-size:2rem;"></i>
                         </div>
-                        <div class="down-content">
-                            <span>
-                                <del><sup>$</sup>80 000</del> <sup>$</sup>70 000
-                            </span>
+                        <div class="down-content mt-3">
 
-                            <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                            <h4>Recouvrement</h4>
 
-                            <p>House &nbsp;/&nbsp; For Sale &nbsp;/&nbsp; 100 sq m &nbsp;/&nbsp; 2010</p>
-
-                            <ul class="social-icons">
-                                <li><a href="property-details.html">+ View More</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="/main/assets/images/product-2-720x480.jpg" alt="">
+                            <i class="fas fa-tools" style="color: black; font-size:2rem;"></i>
                         </div>
-                        <div class="down-content">
-                            <span>
-                                <del><sup>$</sup>80 000</del> <sup>$</sup>70 000
-                            </span>
+                        <div class="down-content mt-3">
 
-                            <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                            <h4>Suivi des travaux d´entretien léger, réparations urgentes ou gros travaux de rénovation
+                            </h4>
 
-                            <p>House &nbsp;/&nbsp; For Sale &nbsp;/&nbsp; 100 sq m &nbsp;/&nbsp; 2010</p>
-
-                            <ul class="social-icons">
-                                <li><a href="property-details.html">+ View More</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="/main/assets/images/product-3-720x480.jpg" alt="">
+                            <i class="fa fa-clipboard" style="color: black; font-size:2rem;"></i>
                         </div>
-                        <div class="down-content">
-                            <span>
-                                <del><sup>$</sup>80 000</del> <sup>$</sup>70 000
-                            </span>
+                        <div class="down-content mt-3">
 
-                            <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                            <h4>Inventaire</h4>
 
-                            <p>House &nbsp;/&nbsp; For Sale &nbsp;/&nbsp; 100 sq m &nbsp;/&nbsp; 2010</p>
-
-                            <ul class="social-icons">
-                                <li><a href="property-details.html">+ View More</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
+
+
+                <div class="col-lg-4">
+                    <div class="trainer-item">
+                        <div class="image-thumb">
+                            <i class="fas fa-file-signature" style="color: black; font-size:2rem;"></i>
+                        </div>
+                        <div class="down-content mt-3">
+
+                            <h4>Génération des contrat de bail</h4>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <div class="trainer-item">
+                        <div class="image-thumb">
+                            <i class="fas fa-signature" style="color: black; font-size:2rem;"></i>
+                        </div>
+                        <div class="down-content mt-3">
+
+                            <h4>Signature en ligne des contrats de bail</h4>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <div class="trainer-item">
+                        <div class="image-thumb">
+                            <i class="fas fa-money-check-alt" style="color: black; font-size:2rem;"></i>
+                        </div>
+                        <div class="down-content mt-3">
+
+                            <h4>Paiement des factures en ligne</h4>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <div class="trainer-item">
+                        <div class="image-thumb">
+                            <i class="fas fa-edit" style="color: black; font-size:2rem;"></i>
+                        </div>
+                        <div class="down-content mt-3">
+
+                            <h4>Etat des lieux d'entée et de sortie</h4>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <div class="trainer-item">
+                        <div class="image-thumb">
+                            <i class="fas fa-question-circle" style="color: black; font-size:2rem;"></i>
+                        </div>
+                        <div class="down-content mt-3">
+
+                            <h4>Support ( disponible 7j/7 )</h4>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <br>
 
-            <div class="main-button text-center">
-                <a href="properties.html">View Properties</a>
-            </div>
-        </div>
-    </section>
-    <!-- ***** Cars Ends ***** -->
-
-    <section class="section section-bg" id="schedule"
-        style="background-image: url(/main/assets/images/about-fullscreen-1-1920x700.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3">
-                    <div class="section-heading dark-bg">
-                        <h2>Read <em>About Us</em></h2>
-                        <img src="/main/assets/images/line-dec.png" alt="">
-                        <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor,
-                            ultricies fermentum massa consequat eu.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="cta-content text-center">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore deleniti voluptas enim!
-                            Provident consectetur id earum ducimus facilis, aspernatur hic, alias, harum rerum velit
-                            voluptas, voluptate enim! Eos, sunt, quidem.</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto nulla quo cum officia
-                            laboriosam. Amet tempore, aliquid quia eius commodi, doloremque omnis delectus laudantium
-                            dolor reiciendis non nulla! Doloremque maxime quo eum in culpa mollitia similique eius
-                            doloribus voluptatem facilis! Voluptatibus, eligendi, illum. Distinctio, non!</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -235,7 +273,9 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="section-heading">
                         <h2>Read our <em>Blog</em></h2>
-                        <img src="/main/assets/images/line-dec.png" alt="">
+                        <center>
+                            <div class="w-25 mt-3 mb-3" style="height:3px;background:red;"></div>
+                        </center>
                         <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor,
                             ultricies fermentum massa consequat eu.</p>
                     </div>
@@ -302,114 +342,41 @@
     </section>
     <!-- ***** Blog End ***** -->
 
-    <!-- ***** Call to Action Start ***** -->
-    <section class="section section-bg" id="call-to-action"
-        style="background-image: url(/main/assets/images/banner-image-1-1920x500.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="cta-content">
-                        <h2>Send us a <em>message</em></h2>
-                        <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula, sit amet dapibus
-                            odio augue eget libero. Morbi tempus mauris a nisi luctus imperdiet.</p>
-                        <div class="main-button">
-                            <a href="contact.html">Contact us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ***** Call to Action End ***** -->
-
-    <!-- ***** Testimonials Item Start ***** -->
-    <section class="section" id="features">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3">
-                    <div class="section-heading">
-                        <h2>Read our <em>Testimonials</em></h2>
-                        <img src="/main/assets/images/line-dec.png" alt="waves">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem incidunt alias minima
-                            tenetur nemo necessitatibus?</p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <ul class="features-items">
-                        <li class="feature-item">
-                            <div class="left-icon">
-                                <img src="/main/assets/images/features-first-icon.png" alt="First One">
-                            </div>
-                            <div class="right-content">
-                                <h4>John Doe</h4>
-                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime
-                                        voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!"</em>
-                                </p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <div class="left-icon">
-                                <img src="/main/assets/images/features-first-icon.png" alt="second one">
-                            </div>
-                            <div class="right-content">
-                                <h4>John Doe</h4>
-                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime
-                                        voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!"</em>
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-6">
-                    <ul class="features-items">
-                        <li class="feature-item">
-                            <div class="left-icon">
-                                <img src="/main/assets/images/features-first-icon.png" alt="fourth muscle">
-                            </div>
-                            <div class="right-content">
-                                <h4>John Doe</h4>
-                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime
-                                        voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!"</em>
-                                </p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <div class="left-icon">
-                                <img src="/main/assets/images/features-first-icon.png" alt="training fifth">
-                            </div>
-                            <div class="right-content">
-                                <h4>John Doe</h4>
-                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta numquam maxime
-                                        voluptatibus, impedit sed! Necessitatibus repellendus sed deleniti id et!"</em>
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="main-button text-center">
-                <a href="testimonials.html">Read More</a>
-            </div>
-        </div>
-    </section>
-    <!-- ***** Testimonials Item End ***** -->
-
     <!-- ***** Footer Start ***** -->
     <footer>
-        <div class="container">
+        <div class="container p-1">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <p>
-                        Copyright © 2020 Company Name
-                        - Template by: <a href="https://www.phpjabbers.com/">PHPJabbers.com</a>
+                        tout droit réservé © 2020 Immo Oasis
+                        - Template : <a href="https://www.phpjabbers.com/">PHPJabbers.com</a>
                     </p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="logos">
+                        <a target="_blank" href="https://itunes.apple.com/us/app/tenantcloud/id773281018?mt=8"
+                            rel="noopener noreferrer">
+                            <img width="107" height="31" class="img-responsive link-image"
+                                src="https://cdn.tenantcloud.com/builds/v37.0.9/promo/images/svg/app-store-badge.svg"
+                                alt="tenantcloud-app-store" />
+                        </a>
+
+
+                        <a target="_blank"
+                            href="https://play.google.com/store/apps/details?id=com.sav.tenantcloud&hl=en"
+                            rel="noopener noreferrer">
+                            <img width="107" height="31" class="img-responsive link-image"
+                                src="https://cdn.tenantcloud.com/builds/v37.0.9/promo/images/svg/google-play-badge.svg"
+                                alt="tenantcloud-google-play" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <div class="addthis_inline_follow_toolbox"></div>
 
     <!-- jQuery -->
     <script src="/main/assets/js/jquery-2.1.0.min.js"></script>
@@ -428,6 +395,10 @@
 
     <!-- Global Init -->
     <script src="/main/assets/js/custom.js"></script>
+
+
+
+
 
 </body>
 

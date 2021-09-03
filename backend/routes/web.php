@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('pdf.etatlieux');
+    return view('admin.dashboard');
 });
 
 Route::post('/save', [AuthController::class, 'save'])->name('auth.save');
