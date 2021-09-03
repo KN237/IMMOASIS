@@ -22,6 +22,22 @@ Route::get('/test', function () {
     return view('admin.dashboard');
 });
 
+
+
+/***********************************  Dashboard Bailleur **********************************/
+
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+
+Route::get('/dashboard/locataires','App\Http\Controllers\LocataireController@all');
+
+//Route::get('locataire/liste', 'App\Http\Controllers\LocataireController@all');
+
+
+/***********************************  Fin Dashboard Bailleur **********************************/
+
 Route::post('/save', [AuthController::class, 'save'])->name('auth.save');
 Route::post('/check', [AuthController::class, 'check'])->name('auth.check');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
@@ -115,7 +131,7 @@ Route::get('bien/bailleur', 'App\Http\Controllers\BienController@indexBailleur')
 
 Route::Resource('locataire', 'App\Http\Controllers\LocataireController');
 Route::post('locataire/add/{id}', 'App\Http\Controllers\LocataireController@add');
-Route::get('locataire/liste', 'App\Http\Controllers\LocataireController@all');
+
 
 
 

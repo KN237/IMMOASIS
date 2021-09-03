@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
+    <link rel="stylesheet" type="text/css" href="/main/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
 </head>
 
@@ -69,23 +73,24 @@
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                             class="p-0 btn">
-                                            <img width="42" class="rounded-circle"
-                                                src="/admin/assets/images/avatars/1.jpg" alt="">
+                                            <img width="42" class="rounded-circle" src="/avatar.png" alt="">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true"
                                             class="dropdown-menu dropdown-menu-right">
-                                            <button type="button" tabindex="0" class="dropdown-item"> <i class="fas fa-users-cog m-1"></i>Mon compte</button>
-                                            <button type="button" tabindex="0" class="dropdown-item"> <i class="fas fa-sign-out-alt m-1"></i> Deconnexion</button>
+                                            <button type="button" tabindex="0" class="dropdown-item"> <i
+                                                    class="fas fa-users-cog m-1"></i>Mon compte</button>
+                                            <button type="button" tabindex="0" class="dropdown-item"> <i
+                                                    class="fas fa-sign-out-alt m-1"></i> Deconnexion</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
-                                       Wilfried Hariel
+                                        Wilfried Hariel
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,7 +135,7 @@
                     <div class="app-sidebar__inner">
                         <ul class="vertical-nav-menu mt-2">
                             <li class="mb-4 mt-4">
-                                <a href="/">
+                                <a href="/dashboard">
                                     <!-- class="mm-active"  -->
                                     <i class="metismenu-icon fas fa-chart-line"></i>
                                     Tableau de bord
@@ -138,22 +143,22 @@
                             </li>
 
                             <li class="mb-4">
-                                <a href="#" >
+                                <a>
                                     <i class="metismenu-icon fas fa-home"></i>
                                     Biens
-                                    
+
                                 </a>
 
                                 <ul>
                                     <li>
-                                        <a href="/">
+                                        <a href="/dashboard/typebiens">
                                             <i class="metismenu-icon"></i>
                                             Type de biens
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="elements-dropdowns.html">
+                                        <a href="/dashboard/biens">
                                             <i class="metismenu-icon">
                                             </i>Biens
                                         </a>
@@ -164,11 +169,29 @@
                             </li>
 
                             <li class="mb-4">
-                                <a href="#" >
+                                <a href="#">
                                     <i class="metismenu-icon fas fa-users"></i>
                                     Locataires
-                                    
+
                                 </a>
+
+                                <ul>
+                                    <li>
+                                        <a href="/dashboard/locataires">
+                                            <i class="metismenu-icon"></i>
+                                            Mes locataires
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/dashboard/locataires" title="Tous les locataires inscrits sur la plateforme">
+                                            <i class="metismenu-icon">
+                                            </i>Locataires
+                                        </a>
+                                    </li>
+
+
+                                </ul>
 
                             </li>
 
@@ -176,20 +199,20 @@
 
 
                             <li class="mb-4">
-                                <a href="#" >
+                                <a href="#">
                                     <i class="metismenu-icon fas fa-key"></i>Locations
                                 </a>
 
                                 <ul>
                                     <li>
-                                        <a href="elements-buttons-standard.html">
+                                        <a href="/dashboard/typelocations">
                                             <i class="metismenu-icon"></i>
                                             Types de locations
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="elements-dropdowns.html">
+                                        <a href="/dashboard/locations">
                                             <i class="metismenu-icon">
                                             </i>Locations
                                         </a>
@@ -200,69 +223,51 @@
                             </li>
 
                             <li class="mb-4">
-                                <a href="#" >
+                                <a href="/dashboard/inventaires">
                                     <i class="metismenu-icon fa fa-clipboard"></i>
-                                    Inventaire
-                                    
+                                    Inventaires
+
                                 </a>
                             </li>
 
 
                             <li class="mb-4">
-                                <a href="#" >
+                                <a href="/dashboard/etatlieux">
                                     <i class="metismenu-icon fas fa-edit"></i>
                                     Etats de lieux
-                                    
+
                                 </a>
 
-                                <ul>
-                                    <li>
-                                        <a href="elements-buttons-standard.html">
-                                            <i class="metismenu-icon"></i>
-                                            Etats de lieux d'entrée
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="elements-dropdowns.html">
-                                            <i class="metismenu-icon">
-                                            </i> Etats de lieux de sortie
-                                        </a>
-                                    </li>
-
-
-                                </ul>
                             </li>
 
                             <li class="mb-4">
-                                <a href="#" >
+                                <a href="/dashboard/interventions">
                                     <i class="metismenu-icon fas fa-tools"></i>
                                     Interventions
-                                    
+
                                 </a>
                             </li>
 
 
 
                             <li class="mb-4">
-                                <a href="#" >
+                                <a href="/dashboard/factures">
                                     <i class="metismenu-icon fas fa-money-check-alt"></i>
                                     Factures
-                                    
+
                                 </a>
 
                             </li>
 
 
                             <li class="mb-4">
-                                <a href="#" >
+                                <a href="/dashboard/contrats">
                                     <i class="metismenu-icon fas fa-file-contract"></i>
                                     Contrats
-                                    
+
                                 </a>
 
                             </li>
-
 
 
                         </ul>
@@ -278,15 +283,20 @@
                                 <div class="page-title-icon">
                                     @yield('icon')
                                 </div>
-                                
+
                                 <div>
-                                    
+
                                     @yield('title')
-                        
+
                                 </div>
                             </div>
-                   </div>
-                    </div> 
+
+                            @yield('bouton')
+                        </div>
+
+
+
+                    </div>
 
                     @yield('content')
 
@@ -295,7 +305,55 @@
             </div>
         </div>
     </div>
+    
+  
+
+
     <script type="text/javascript" src="/admin/assets/scripts/main.js"></script>
+
+    <script src="/main/assets/js/jquery-2.1.0.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(function() {
+            $(document).ready(function() {
+                $('#example').DataTable();
+            });
+        });
+
+        $('#example').DataTable( {
+    language: {
+        processing:     "Traitement en cours...",
+        search:         "Rechercher&nbsp;:",
+        lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
+        info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+        infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+        infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+        infoPostFix:    "",
+        loadingRecords: "Chargement en cours...",
+        zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+        emptyTable:     "Aucune donnée disponible dans le tableau",
+        paginate: {
+            first:      "Premier",
+            previous:   "Pr&eacute;c&eacute;dent",
+            next:       "Suivant",
+            last:       "Dernier"
+        },
+        aria: {
+            sortAscending:  ": activer pour trier la colonne par ordre croissant",
+            sortDescending: ": activer pour trier la colonne par ordre décroissant"
+        }
+    }
+} );
+    </script>
+
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+{!! Toastr::message() !!}
+
 </body>
 
 </html>

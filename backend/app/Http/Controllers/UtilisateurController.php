@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Utilisateur;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class UtilisateurController extends Controller
 {
@@ -42,7 +43,6 @@ class UtilisateurController extends Controller
             
            [ 
 
-        'nomU'=>$request->nomu,
         'nomCompletU'=>$request->nomcompletu,
         'emailU'=>$request->emailu,
         'mdpU'=>bcrypt($request->mdpu),
@@ -54,13 +54,14 @@ class UtilisateurController extends Controller
         );
 
         if($utilisateur){
-
-            return response()->json([
-
-                'succes'=>'utilisateur ajouté avec succès'
-
-            ],200);
-        }
+            Toastr::success('utilisateur créé avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('La création a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
 
     }
 
@@ -99,7 +100,6 @@ class UtilisateurController extends Controller
             
             [ 
  
-         'nomU'=>$request->nomu,
          'nomCompletU'=>$request->nomcompletu,
          'emailU'=>$request->emailu,
          'mdpU'=>bcrypt($request->mdpu),
@@ -111,13 +111,14 @@ class UtilisateurController extends Controller
          );
  
          if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'utilisateur modifié avec succès'
- 
-             ],200);
-         }
+            Toastr::success('utilisateur modifié avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('La modification a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
  
     }
 
@@ -133,13 +134,14 @@ class UtilisateurController extends Controller
 
 
         if($test){
-
-            return response()->json([
-
-                'succes'=>'utilisateur supprimé avec succès'
-
-            ],200);
-        }
+            Toastr::success('utilisateur supprimé avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('La suppréssion a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
     public function package(Utilisateur $utilisateur,$id)
     {
@@ -152,14 +154,15 @@ class UtilisateurController extends Controller
          
          );
  
-         if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'usouscription effectuée avec succès'
- 
-             ],200);
-         }
+     if($test){
+            Toastr::success('package souscrit  avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('La souscription a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
  
     }
 

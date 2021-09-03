@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Utilisateur;
 use App\Models\Bailleur;
 use App\Models\Locataire;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -53,9 +54,12 @@ class AuthController extends Controller
          }
 
          if($save){
-            return back()->with('success','Utilisateur créé avec succès');
+
+            Toastr::success('Utilisateur créé avec succès','Succès',["iconClass"=>'customer-g']);
+            return back();
          }else{
-             return back()->with('fail','Une erreur s\'est produite, veuillez réessayer');
+            Toastr::error('Veuillez réessayer','Erreur',["iconClass"=>'customer-r']);
+             return back();
          }
     }
 
@@ -69,7 +73,8 @@ class AuthController extends Controller
         $userInfo = Utilisateur::where('emailu','=', $request->emailu)->first();
 
         if(!$userInfo){
-            return back()->with('fail','Adresse email inconnue');
+            Toastr::error('Adresse email inconnue','Erreur',["iconClass"=>"customer-r"]);
+            return back();
         }else{
             //check password
             if(Hash::check($request->mdpu, $userInfo->mdpu)){
@@ -77,7 +82,9 @@ class AuthController extends Controller
                 return redirect('admin/dashboard');
 
             }else{
-                return back()->with('fail','Mot de passe incorrect');
+                Toastr::error('Mot de passe incorrect','Erreur',["iconClass"=>"customer-r"]);
+                return back();
+                
             }
         }
     }

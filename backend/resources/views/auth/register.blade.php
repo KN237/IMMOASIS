@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-	<title>IMMO OASIS  | Inscription</title>
+	<title>Inscription | Immo Oasis</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
    <link rel="stylesheet" type="text/css" href="/css/radio.css">
+   <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
    <link rel="icon" href="/favicon.ico" >
 	<!--===============================================================================================-->
 </head>
@@ -40,31 +41,6 @@
 					<span class="login100-form-title p-b-18">
 						<i class="fa fa-plus-circle" aria-hidden="true" style="color:black;"></i>
 					</span>
-<center class="m-t-10 m-b-30">
-
-
-@if(Session::get('fail'))
-<div class="audun_warn">
-   <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-   {{ Session::get('fail') }}
-</div>
-				 @endif
-
-                 @if(Session::get('success'))
-<div class="audun_success">
-   <i class="fa fa-check-circle" aria-hidden="true"></i>
-   {{ Session::get('success') }}
-</div>
-				 @endif
-
-             <div class="text-danger">@error('nomu'){{ $message }} @enderror</div>
-             <div class="text-danger">@error('nomcompletu'){{ $message }} @enderror</div>
-             <div class="text-danger">@error('telephoneu'){{ $message }} @enderror</div>
-             <div class="text-danger">@error('emailu'){{ $message }} @enderror</div>
-             <div class="text-danger">@error('mdpu'){{ $message }} @enderror</div>
-             <div class="text-danger">@error('mdpuc'){{ $message }} @enderror</div>
-
-	   </center>
 					
 				@csrf
 
@@ -171,6 +147,19 @@
 	<!--===============================================================================================-->
 	<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="/js/main.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+	<script>
+		@if(count($errors) > 0)
+			@foreach($errors->all() as $error)
+				toastr.error("{{ $error }}","Erreur"); 
+			@endforeach
+		@endif
+	
+		toastr.options = {
+		"preventDuplicates": true
+	}
+	</script>
 
 </body>
 

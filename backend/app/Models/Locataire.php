@@ -9,6 +9,7 @@ class locataire extends Model
 {
     use HasFactory;
     public $table='locataire';
+    public $primaryKey='idlocataire';
     public $timestamps=FAlSE;
     protected $fillable = [
         'numcniloc',
@@ -24,7 +25,6 @@ class locataire extends Model
         'signatureloc',
         'professionloc',
         'revenumensuelloc',
-        'signaturelocataire',
         'idu'
     ];
 }

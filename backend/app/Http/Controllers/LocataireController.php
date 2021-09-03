@@ -6,7 +6,9 @@ use App\Models\Bien;
 use App\Models\Bailleur;
 use App\Models\Location;
 use App\Models\Locataire;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class LocataireController extends Controller
 {
@@ -86,13 +88,14 @@ class LocataireController extends Controller
          );
 
          if($locataire){
-     
-            return response()->json([
-
-                'succes'=>'locataire créé avec succès'
-
-            ],200);
-        }
+            Toastr::success('locataire créé avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('La création a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -148,13 +151,14 @@ class LocataireController extends Controller
          );
 
          if($test){
-     
-            return response()->json([
-
-                'succes'=>'locataire modifié avec succès'
-
-            ],200);
-        }
+            Toastr::success('locataire modifié avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('La modification a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -168,13 +172,14 @@ class LocataireController extends Controller
         $test=$locataire->delete();
 
         if($test){
-     
-            return response()->json([
-
-                'succes'=>'locataire supprimé avec succès'
-
-            ],200);
-        }
+            Toastr::success('locataire supprimé avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('La suppréssion a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
 
@@ -186,24 +191,28 @@ class LocataireController extends Controller
     // Après avoir choisis le locataire, il faudra aussi choisir le bien //
 
     $location->idbien= $request->idbien;
+
     $test=$location->save();
 
     if($test){
-     
-        return response()->json([
-
-            'succes'=>'locataire ajouté avec succès'
-
-        ],200);
-    }
+        Toastr::success('locataire ajouté avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+        return back();
+    }else{
+       
+            Toastr::error('L\'ajout a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+            return back();
+            
+        }
 
 }
 
 public function all(){
 
-    $locataire=Locataire::all();
+    $locataires=Locataire::all();
 
-    return $locataire;
+    $users=Utilisateur::all();
+
+    return view('admin.locataires',compact('locataires','users'));
 }
 
 
