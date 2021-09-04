@@ -2,6 +2,7 @@
  
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Models\Utilisateur;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,19 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    if(!session('LoggedUser')){
+
+        return view('welcome');
+    }
+
+    else{
+
+          $userinfos=Utilisateur::where('idu',session('LoggedUser'))->get();
+    return view('welcome')->with(['userinfos'=>$userinfos]);
+
+    }
+  
 });
 
 Route::get('/test', function () {

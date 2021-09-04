@@ -18,7 +18,7 @@
 	<!--===============================================================================================-->
 </head>
 
-<body>
+<body >
 
 	    <!-- ***** Preloader Start ***** -->
 		<div id="js-preloader" class="js-preloader">
@@ -33,8 +33,8 @@
 		  </div>
 		  <!-- ***** Preloader End ***** -->
 
-	<div class="limiter">
-		<div class="container-login100">
+	<div class="limiter ">
+		<div class="container-login100" >
 
 			<a href="/" style="margin:2%;"><img src="/internis.png" alt="logo" width="150" ></a>
 

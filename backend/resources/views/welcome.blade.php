@@ -69,16 +69,16 @@
 
                             <li><a href="/" class="text-dark">Tarifs</a></li>
 
-                            @auth
+                            @if($userinfos)
 
-                                <li><a class="text-dark" href="/home">Mon compte</a></li>
+                                <li><a class="text-dark" href="/dashboard">Mon compte</a></li>
 
                             @else
 
                                 <li><a class="text-dark" href="/login">Se connecter</a></li>
 
 
-                            @endauth
+                            @endif
 
                         </ul>
                         <a class='menu-trigger'>

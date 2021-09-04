@@ -21,7 +21,6 @@ class AuthController extends Controller
         
         //Validate requests
         $request->validate([
-            'nomu'=>'required|unique:utilisateur',
             'nomcompletu'=>'required',
             'emailu'=>'required|email|unique:utilisateur',
             'mdpu'=>'required|min:5|max:12',
@@ -79,7 +78,8 @@ class AuthController extends Controller
             //check password
             if(Hash::check($request->mdpu, $userInfo->mdpu)){
                 $request->session()->put('LoggedUser', $userInfo->idu);
-                return redirect('admin/dashboard');
+
+                return view('welcome');
 
             }else{
                 Toastr::error('Mot de passe incorrect','Erreur',["iconClass"=>"customer-r"]);

@@ -148,7 +148,7 @@
 	<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="/js/main.js"></script>
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
+{!! Toastr::message() !!}
 	<script>
 		@if(count($errors) > 0)
 			@foreach($errors->all() as $error)

@@ -13,8 +13,6 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
-    <link rel="stylesheet" type="text/css" href="/main/assets/css/bootstrap.min.css">
-
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
 </head>
