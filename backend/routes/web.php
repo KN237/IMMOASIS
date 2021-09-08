@@ -17,18 +17,11 @@ use App\Models\Utilisateur;
 
 Route::get('/', function () {
 
-    if(!session('LoggedUser')){
-
+    
         return view('welcome');
-    }
 
-    else{
 
-          $userinfos=Utilisateur::where('idu',session('LoggedUser'))->get();
-    return view('welcome')->with(['userinfos'=>$userinfos]);
-
-    }
-  
+    
 });
 
 Route::get('/test', function () {

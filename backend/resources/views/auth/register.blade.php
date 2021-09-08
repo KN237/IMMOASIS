@@ -1,166 +1,186 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+  <head>
+    <title>Inscription | Immo Oasis</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-<head>
-	<title>Inscription | Immo Oasis</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/fonts/iconic/css/material-design-iconic-font.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
-   <link rel="stylesheet" type="text/css" href="/css/radio.css">
-   <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-   <link rel="icon" href="/favicon.ico" >
-	<!--===============================================================================================-->
-</head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap"
+      rel="stylesheet"
+    />
 
-<body>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-	   <!-- ***** Preloader Start ***** -->
-	   <div id="js-preloader" class="js-preloader">
-		<div class="preloader-inner">
-		  <span class="dot"></span>
-		  <div class="dots">
-			<span></span>
-			<span></span>
-			<span></span>
-		  </div>
-		</div>
-	  </div>
-	  <!-- ***** Preloader End ***** -->
+    <link rel="stylesheet" href="/css/main.css">
 
-	<div class="limiter">
-		<div class="container-login100">
-			<a href="/" style="margin:2%;"><img src="/internis.png" alt="logo" width="150"></a>
-			<div class="wrap-login100">
-				<form class="login100-form validate-form" action="{{ route('auth.save') }}" method="post">
-					<span class="login100-form-title p-b-16">
-						Inscription
-					</span>
-					<span class="login100-form-title p-b-18">
-						<i class="fa fa-plus-circle" aria-hidden="true" style="color:black;"></i>
-					</span>
-					
-				@csrf
+    <link
+      rel="stylesheet"
+      href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"
+    />
 
-      <label class="container">Je suis Bailleur
-  <input type="radio" name="compte" value="bailleur">
-  <span class="checkmark"></span>
-</label>
-<label class="container">Je suis Locataire
-  <input type="radio" name="compte" value="locataire">
-  <span class="checkmark"></span>
-</label>
-            <div style="display: flex; justify-content:space-between;" class="m-t-40">
-               
-            <div class="wrap-input100 validate-input">
-						
-						<input class="input100" type="text" name="nomu" value="{{ old('nomu') }}">
-						<span class="focus-input100" data-placeholder="Nom d'utilisateur"></span>
-						
-					</div>
+    <link rel="stylesheet" href="css/auth.css" />
 
+	<link rel="stylesheet" href="css/radio.css" />
 
-
-                    <div class="wrap-input100 validate-input">
-						
-						<input class="input100" type="text" name="nomcompletu" value="{{ old('nomcompletu') }}">
-						<span class="focus-input100" data-placeholder="Nom complet"></span>
-						
-					</div>
-
-            </div>
-
- 
-<div style="display: flex; justify-content:space-between;">
-
-<div class="wrap-input100 validate-input">
-						
-						<input class="input100" type="text" name="emailu" value="{{ old('emailu') }}">
-						<span class="focus-input100" data-placeholder="Email"></span>
-						
-					</div>
-
-					<div class="wrap-input100 validate-input">
-						
-						<input class="input100" type="text" name="telephoneu" value="{{ old('telephoneu') }}">
-						<span class="focus-input100" data-placeholder="Téléphone"></span>
-						
-					</div>
-
-</div>
-
-               
-
-       <div class="wrap-input100 validate-input" style="position: relative;">
-					
-               <span class="btn-show-pass">
-                  <i class="zmdi zmdi-eye"></i>
-               </span>
-               <input class="input100" type="password" name="mdpu">
-               <span class="focus-input100" data-placeholder="Mot de passe"></span>
-               
-            </div>
-
-                 <div class="wrap-input100 validate-input" style="position: relative;">
-            
-               <span class="btn-show-pass">
-                  <i class="zmdi zmdi-eye"></i>
-               </span>
-               <input class="input100" type="password" name="mdpuc">
-               <span class="focus-input100" data-placeholder="Confirmez votre mot de passe"></span>
-               
-            </div>
- 
-
-					
-
-					<div class="container-login100-form-btn p-t-25">
-						<button class="login100-form-btn">
-							S'inscrire
-						</button>
-					</div>
-
-					<div class="text-center p-t-35">
-						<span class="txt1">
-							Déja inscrit ?
-						</span>
-
-						<a href="{{ route('auth.login') }}" class="txt2">
-							Se connecter
-						</a>
-					</div>
-
-					<div class="text-center p-t-15">En vous inscrivant, vous reconnaissez avoir lu et accepté <br> <a href="" class="txt2">les Conditions d'utilisation </a> et <a href="" class="txt2">la Politique de confidentialité</a> .</div>
-
-				</form>
-			</div>
-			
-		</div>
-
+	<style> #toast-container > .toast-error { background-color: #e61721; } 
 	
-	</div>
+	#toast-container > .toast-success { background-color: #1fbb46; } </style>
 
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
 
-	
-	<!--===============================================================================================-->
-	<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<script src="/js/main.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center"></div>
+        <div class="row justify-content-center">
+          <div class="col-md-7 col-lg-5">
+            <div class="login-wrap p-4 p-md-5">
+              <div class="d-flex align-items-center justify-content-center">
+                <a href="/"
+                  ><img src="internis.png" alt="logo" width="200"
+                /></a>
+              </div>
+              <h3 class="text-center mb-4">Inscription</h3>
+              <form
+                class="login-form"
+                action="{{ route('auth.save') }}"
+                method="post"
+              >
+                @csrf
+
+                <label class="container2"
+                  >Je suis Bailleur
+                  <input type="radio" name="compte" value="bailleur" />
+                  <span class="checkmark2"></span>
+                </label>
+                <label class="container2"
+                  >Je suis Locataire
+                  <input type="radio" name="compte" value="locataire" />
+                  <span class="checkmark2"></span>
+                </label>
+                <div class="row mt-4">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control rounded-left"
+                        name="nomcompletu"
+                        placeholder="Nom complet"
+                        value="{{ old('nomcompletu') }}"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control rounded-left"
+                        name="telephoneu"
+                        placeholder="Téléphone"
+                        value="{{ old('telephoneu') }}"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control rounded-left"
+                    name="emailu"
+                    placeholder="Email"
+                    value="{{ old('emailu') }}"
+                  />
+                </div>
+
+                <div class="form-group d-flex">
+                  <span class="btn-show-pass">
+                    <i class="zmdi zmdi-eye"></i>
+                  </span>
+                  <input
+                    type="password"
+                    class="form-control rounded-left"
+                    name="mdpu"
+                    placeholder="Mot de passe"
+                  />
+                </div>
+
+                <div class="form-group d-flex">
+                  <span class="btn-show-pass">
+                    <i class="zmdi zmdi-eye"></i>
+                  </span>
+                  <input
+                    type="password"
+                    class="form-control rounded-left"
+                    name="mdpuc"
+                    placeholder="Confirmez votre mot de passe"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <button
+                    type="submit"
+                    class="form-control btn btn-primary rounded submit px-3"
+                  >
+                    Se connecter
+                  </button>
+                </div>
+                <div class="form-group d-flex" style="justify-content: center">
+                  <div
+                    class="text-md-right d-flex mt-3"
+                    style="justify-content: space-between"
+                  >
+                    <p>Déja inscrit ?</p>
+                    <a href="{{ route('auth.login') }}" class="ml-2">
+                      Connectez-vous
+                    </a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/js/main.js"></script>
+
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
 {!! Toastr::message() !!}
-	<script>
-		@if(count($errors) > 0)
-			@foreach($errors->all() as $error)
-				toastr.error("{{ $error }}","Erreur"); 
-			@endforeach
-		@endif
-	
-		toastr.options = {
-		"preventDuplicates": true
-	}
-	</script>
+<script>
+    @if(count($errors) > 0)
+        @foreach($errors->all() as $error)
+            toastr.error("{{ $error }}","Erreur"); 
+        @endforeach
+    @endif
 
-</body>
+	toastr.options = {
+    "preventDuplicates": true
+}
+</script>
 
+  </body>
 </html>

@@ -1,5 +1,5 @@
 /* Customize the label (the container) */
-.container {
+.container2 {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -13,7 +13,7 @@
   }
   
   /* Hide the browser's default radio button */
-  .container input {
+  .container2 input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -22,7 +22,7 @@
   }
   
   /* Create a custom radio button */
-  .checkmark {
+  .checkmark2 {
     position: absolute;
     top: 0;
     left: 0;
@@ -33,29 +33,29 @@
   }
   
   /* On mouse-over, add a grey background color */
-  .container:hover input ~ .checkmark {
+  .container:hover input ~ .checkmark2 {
     background-color: #ccc;
   }
   
   /* When the radio button is checked, add a blue background */
-  .container input:checked ~ .checkmark {
+  .container input:checked ~ .checkmark2 {
     background-color: #e61721;
   }
   
   /* Create the indicator (the dot/circle - hidden when not checked) */
-  .checkmark:after {
+  .checkmark2:after {
     content: "";
     position: absolute;
     display: none;
   }
   
   /* Show the indicator (dot/circle) when checked */
-  .container input:checked ~ .checkmark:after {
+  .container input:checked ~ .checkmark2:after {
     display: block;
   }
   
   /* Style the indicator (dot/circle) */
-  .container .checkmark:after {
+  .container .checkmark2:after {
     top: 9px;
     left: 9px;
     width: 8px;

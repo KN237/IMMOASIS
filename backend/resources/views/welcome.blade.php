@@ -5,10 +5,6 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link
-        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
@@ -19,6 +15,8 @@
     <link rel="stylesheet" href="/main/assets/css/style.css">
 
     <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="stylesheet" href="/css/auth.css">
 
     <link rel="icon" href="/favicon.ico">
     <!-- Start of HubSpot Embed Code -->
@@ -69,7 +67,7 @@
 
                             <li><a href="/" class="text-dark">Tarifs</a></li>
 
-                            @if($userinfos)
+                            @if(session('LoggedUser'))
 
                                 <li><a class="text-dark" href="/dashboard">Mon compte</a></li>
 
@@ -98,15 +96,19 @@
             <source src="/main/assets/images/video.mp4" type="video/mp4" />
         </video>
 
-        <div class="video-overlay header-text">
-            <div class="caption">
+        <div class="video-overlay header-text" >
+            <div class="caption" style="margin-top:02%;">
                 <h6>Bailleurs-Gestionnaires de patrimoines-Locataires</h6>
                 <h2>Gérez vos locations <em>sans stresse</em></h2>
-                <div class="container-login100-form-btn" style="margin-top:80px;">
-                    <button class="login100-form-btnn w-25">
-                        Créer un compte
+
+                <div class="form-group">
+                    <button
+                      type="submit"
+                      class="form-control btn btn-primary rounded submit px-3 w-25"
+                    >
+                      Se connecter
                     </button>
-                </div>
+                  </div>
 
             </div>
         </div>
