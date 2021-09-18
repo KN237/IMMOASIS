@@ -20,10 +20,7 @@
 
     <link rel="stylesheet" href="/css/main.css">
 
-    <link
-      rel="stylesheet"
-      href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"
-    />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <link rel="stylesheet" href="css/auth.css" />
 
@@ -84,7 +81,7 @@
                       <input
                         type="text"
                         class="form-control rounded-left"
-                        name="nomcompletu"
+                        name="nomcomplet"
                         placeholder="Nom complet"
                         value="{{ old('nomcompletu') }}"
                       />
@@ -96,7 +93,7 @@
                       <input
                         type="text"
                         class="form-control rounded-left"
-                        name="telephoneu"
+                        name="telephone"
                         placeholder="Téléphone"
                         value="{{ old('telephoneu') }}"
                       />
@@ -108,7 +105,7 @@
                   <input
                     type="text"
                     class="form-control rounded-left"
-                    name="emailu"
+                    name="email"
                     placeholder="Email"
                     value="{{ old('emailu') }}"
                   />
@@ -121,7 +118,7 @@
                   <input
                     type="password"
                     class="form-control rounded-left"
-                    name="mdpu"
+                    name="mdp"
                     placeholder="Mot de passe"
                   />
                 </div>
@@ -133,7 +130,7 @@
                   <input
                     type="password"
                     class="form-control rounded-left"
-                    name="mdpuc"
+                    name="mdpc"
                     placeholder="Confirmez votre mot de passe"
                   />
                 </div>
@@ -167,7 +164,7 @@
     <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="/js/main.js"></script>
 
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 {!! Toastr::message() !!}
 <script>

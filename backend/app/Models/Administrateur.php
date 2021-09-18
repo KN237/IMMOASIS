@@ -10,6 +10,8 @@ class Administrateur extends Model
     use HasFactory;
 
     public $table='administrateur';
+    public $timestamps=FALSE;
+    public $primaryKey='idadmin';
     protected $fillable = [
         'idu',
     ];

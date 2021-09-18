@@ -10,10 +10,11 @@ class Package extends Model
     use HasFactory;
 
     public $table='package';
+    public $primaryKey='idpackage';
     protected $fillable = [
-        'nompackage',
+        'nom',
         'nombrebienmax',
-        'montantpackage',
+        'montant',
         
     ];
 }

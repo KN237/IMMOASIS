@@ -17,28 +17,32 @@ class AuthController extends Controller
     function register(){
         return view('auth.register');
     }
+
     function save(Request $request){
         
         //Validate requests
         $request->validate([
-            'nomcompletu'=>'required',
-            'emailu'=>'required|email|unique:utilisateur',
-            'mdpu'=>'required|min:5|max:12',
-            'mdpuc'=>'in:'.$request->mdpu,
-            'compte'=>'required|min:5|max:12',
-            'telephoneu'=>'required',
+            'nomcomplet'=>'required',
+            'email'=>'required|email|unique:utilisateur',
+            'mdp'=>'required|min:5|max:12',
+            'mdpc'=>'in:'.$request->mdp,
+            'compte'=>'required',
+            'telephone'=>'required',
         ]);
 
-         //Insert data into database
+         //Insert data into database  
          $utlisateur = new Utilisateur;
-         $utlisateur->nomu = $request->nomu;
-         $utlisateur->nomcompletu = $request->nomcompletu;
-         $utlisateur->emailu = $request->emailu;
-         $utlisateur->telephoneu = $request->telephoneu;
-         $utlisateur->mdpu = Hash::make($request->mdpu);
+         $utlisateur->nomcomplet = $request->nomcomplet;
+         $utlisateur->email = $request->email;
+         $utlisateur->telephone = $request->telephone;
+         $utlisateur->mdp = Hash::make($request->mdp);
          $save = $utlisateur->save();
 
          if($request->compte=='bailleur'){
+
+            $utlisateur->update([
+                'role'=>'Bailleur'
+            ]);
 
             $bailleur = new Bailleur();
             $bailleur->idu=$utlisateur->idu;
@@ -46,6 +50,9 @@ class AuthController extends Controller
          }
          else{
 
+            $utlisateur->update([
+                'role'=>'Locataire'
+            ]);
             $locataire = new Locataire();
             $locataire->idu=$utlisateur->idu;
             $locataire->save();
@@ -54,10 +61,10 @@ class AuthController extends Controller
 
          if($save){
 
-            Toastr::success('Utilisateur créé avec succès','Succès',["iconClass"=>'customer-g']);
+            Toastr::success('Utilisateur créé avec succès','Succès');
             return back();
          }else{
-            Toastr::error('Veuillez réessayer','Erreur',["iconClass"=>'customer-r']);
+            Toastr::error('Veuillez réessayer','Erreur');
              return back();
          }
     }
@@ -65,18 +72,18 @@ class AuthController extends Controller
     function check(Request $request){
         //Validate requests
         $request->validate([
-             'emailu'=>'required|email',
-             'mdpu'=>'required|min:5|max:12'
+             'email'=>'required|email',
+             'mdp'=>'required|min:5|max:12'
         ]);
 
-        $userInfo = Utilisateur::where('emailu','=', $request->emailu)->first();
+        $userInfo = Utilisateur::where('email','=', $request->email)->first();
 
         if(!$userInfo){
-            Toastr::error('Adresse email inconnue','Erreur',["iconClass"=>"customer-r"]);
+            Toastr::error('Adresse email inconnue','Erreur');
             return back();
         }else{
             //check password
-            if(Hash::check($request->mdpu, $userInfo->mdpu)){
+            if(Hash::check($request->mdp, $userInfo->mdp)){
                 $request->session()->put('LoggedUser', $userInfo->idu);
 
                 return view('welcome');
@@ -97,8 +104,8 @@ class AuthController extends Controller
     }
 
     function dashboard(){
-        $data = ['LoggedUserInfo'=>Utilisateur::where('idu','=', session('LoggedUser'))->first()];
-        return view('admin.dashboard', $data);
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+        return view('admin.dashboard',compact('data'));
     }
 
 }

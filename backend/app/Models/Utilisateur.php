@@ -20,12 +20,11 @@ class Utilisateur extends Model
      */
 
     protected $fillable = [
-        'nomu',
-        'nomcompletu',
-        'emailu',
-        'mdpu',
-        'telephoneu',
-        'idPackage',
+        'nomcomplet',
+        'email',
+        'mdp',
+        'telephone',
+        'role'
     ];
 
     /**
@@ -34,7 +33,7 @@ class Utilisateur extends Model
      * @var array
      */
     protected $hidden = [
-        'mdpu',
+        'mdp',
         
     ];
 

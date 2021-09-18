@@ -11,8 +11,10 @@ class TypeBien extends Model
 
     public $table='type_de_bien';
 
+    public $primaryKey='idtb';
+
     protected $fillable = [
       
-        'nomtypebien'
+        'nom'
     ];
 }

@@ -13,7 +13,10 @@ class TypeLocation extends Model
 
     protected $fillable = [
       
-        'nomtypebocation',
+        'nom',
        
     ];
+
+    public $primaryKey='idtl';
+
 }

@@ -12,19 +12,16 @@ class locataire extends Model
     public $primaryKey='idlocataire';
     public $timestamps=FAlSE;
     protected $fillable = [
-        'numcniloc',
-        'telephoneSecloc',
-        'villeloc',
-        'quartierloc',
-        'paysloc',
-        'datenaissloc',
-        'sexeloc',
-        'lieunaissloc',
-        'nomcompletemployeurloc',
-        'telemployeurloc',
-        'signatureloc',
-        'professionloc',
-        'revenumensuelloc',
+        'numcni',
+        'ville',
+        'quartier',
+        'pays',
+        'datenaiss',
+        'sexe',
+        'nomemployeur',
+        'telemployeur',
+        'signature',
+        'profession',
         'idu'
     ];
 }

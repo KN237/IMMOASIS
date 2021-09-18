@@ -14,12 +14,12 @@ class Facture extends Model
     public $primaryKey='idfacture';
 
     protected $fillable = [
-        'idLocation',
-        'datefacture',
-        'datedebutfacture',
-        'datefinfacture',
-        'datelimitefacture',
-        'etatfacture'
+        'idlocation',
+        'date',
+        'datedebut',
+        'datefin',
+        'datelimite',
+        'etat'
       
     ];
 }

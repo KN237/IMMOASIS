@@ -10,18 +10,19 @@ class Bailleur extends Model
     use HasFactory;
 
     public $table='bailleur';
+
+    public $primaryKey='idbailleur';
+
     public $timestamps=FALSE;
 
     protected $fillable = [
-        'numcnibailleur',
-        'telephonesecbailleur',
-        'villebailleur',
-        'quartierbailleur',
-        'paysbailleur',
-        'datenaissbailleur',
-        'lieunaissbailleur',
-        'nomcompletrep',
-        'numcnirep',
-        'signaturebailleur',
+        'numcni',
+        'ville',
+        'quartier',
+        'pays',
+        'datenaiss',
+        'nomrep',
+        'telrep',
+        'signature',
     ];
 }

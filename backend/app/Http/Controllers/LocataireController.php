@@ -6,6 +6,7 @@ use App\Models\Bien;
 use App\Models\Bailleur;
 use App\Models\Location;
 use App\Models\Locataire;
+use App\Models\Invitation;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
@@ -17,44 +18,13 @@ class LocataireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $bailleur=Bailleur::where('idu',session('loggedUser')->idu)->first();
-
-        $biens=Bien::where('idbailleur',$bailleur->idbailleur)->get();
-
-        $idBienArray=[];
-
-        foreach($biens as $bien){
-
-            $idBienArray=+$bien->idbien;
-
-        }
-
-        $locations=Location::where('idbien', $idBienArray)->get();
-
-        $idLocationArray=[];
-
-        foreach($locations as $location){
-
-            $idLocationArray=+$location->idlocataire;
-
-        }
-
-        $locataires=Locataire::where('idlocataire', $idLocationArray)->get();
-
-        return $locataires;
-    }
+   
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -88,7 +58,7 @@ class LocataireController extends Controller
          );
 
          if($locataire){
-            Toastr::success('locataire créé avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('Locatair créé avec succès','Succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
@@ -115,10 +85,6 @@ class LocataireController extends Controller
      * @param  \App\Models\Locataire  $locataire
      * @return \Illuminate\Http\Response
      */
-    public function edit(Locataire $locataire)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -169,10 +135,10 @@ class LocataireController extends Controller
      */
     public function destroy(Locataire $locataire)
     {
-        $test=$locataire->delete();
+        $test=Location::where('idlocataire',$locataire->idlocataire)->delete();
 
         if($test){
-            Toastr::success('locataire supprimé avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('locataire supprimé de votre liste avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
@@ -183,37 +149,55 @@ class LocataireController extends Controller
     }
 
 
-    public function add(Request $request,$id){
+    public function inviter($id){
 
-    $location=new Location();
-    $location->idlocataire= $id;
+    $bailleur=Bailleur::where('idu',session('LoggedUser'))->first();
+    $biens=Bien::where('idbailleur',$bailleur->idbailleur)->get();
+    $biensID=[];
+    foreach($biens as $i){
 
-    // Après avoir choisis le locataire, il faudra aussi choisir le bien //
+        if(!array_search($i->idbailleur,$biensID) ){
 
-    $location->idbien= $request->idbien;
+            array_push($biensID,$i->idbailleur);
 
-    $test=$location->save();
+            }
+    }
+    $location=Location::where('idlocataire',$id)->whereIn('idbien',$biensID)->get();
+
+
+    $invite=Invitation::where('idlocataire',$id)->where('idbailleur',$bailleur->idbailleur)->get();
+
+    if($location || $invite ){
+
+        Toastr::warning('Ce locataire est déja enregistré chez vous, ou vous lui avez déja envoyé une invitation','attention',["positionClass"=>"toast-top-center"]);
+        return back();
+    }
+
+else {
+
+    $invitation=new Invitation();
+    $invitation->idlocataire= $id;
+    $invitation->etat= 0;
+    $invitation->date= now();
+    
+
+   
+    $invitation->idbailleur= $bailleur->idbailleur;
+    $test=$invitation->save();
 
     if($test){
-        Toastr::success('locataire ajouté avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+        Toastr::success('Invitation envoyée avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
         return back();
     }else{
        
-            Toastr::error('L\'ajout a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+            Toastr::error('L\'invitation a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
             return back();
             
         }
+    }
 
 }
 
-public function all(){
-
-    $locataires=Locataire::all();
-
-    $users=Utilisateur::all();
-
-    return view('admin.locataires',compact('locataires','users'));
-}
 
 
 }

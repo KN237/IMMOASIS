@@ -25,24 +25,32 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('admin.dashboard');
+    
 });
 
 
 
-/***********************************  Dashboard Bailleur **********************************/
-
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-});
+/***********************************  Dashboard **********************************/
 
 
-Route::get('/dashboard/locataires','App\Http\Controllers\LocataireController@all');
+Route::get('/dashboard','App\Http\Controllers\DashboardController@dashboard')->middleware('AuthCheck');
 
-//Route::get('locataire/liste', 'App\Http\Controllers\LocataireController@all');
+Route::get('/dashboard/meslocataires','App\Http\Controllers\DashboardController@meslocataires')->middleware('AuthCheck');
+
+Route::get('/dashboard/locataires','App\Http\Controllers\DashboardController@locataires')->middleware('AuthCheck');
+
+Route::get('/dashboard/profilelocataire/{id}','App\Http\Controllers\DashboardController@showlocataire')->middleware('AuthCheck');
+
+Route::get('/dashboard/monprofile','App\Http\Controllers\DashboardController@showmoncompte')->middleware('AuthCheck');
+
+Route::get('/dashboard/invitationsrecues','App\Http\Controllers\DashboardController@invitationsrecues')->middleware('AuthCheck');
+
+Route::get('/dashboard/invitationsenvoyees','App\Http\Controllers\DashboardController@invitationsenvoyees')->middleware('AuthCheck');
 
 
-/***********************************  Fin Dashboard Bailleur **********************************/
+/***********************************  Fin Dashboard  **********************************/
+
+
 
 Route::post('/save', [AuthController::class, 'save'])->name('auth.save');
 Route::post('/check', [AuthController::class, 'check'])->name('auth.check');
@@ -51,7 +59,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
     Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
-    Route::get('/admin/dashboard', [AuthController::class, 'dashboard']);
 });
 
 
@@ -136,7 +143,7 @@ Route::get('bien/bailleur', 'App\Http\Controllers\BienController@indexBailleur')
 // locataire //
 
 Route::Resource('locataire', 'App\Http\Controllers\LocataireController');
-Route::post('locataire/add/{id}', 'App\Http\Controllers\LocataireController@add');
+Route::post('locataire/{id}/inviter', 'App\Http\Controllers\LocataireController@inviter');
 
 
 
@@ -164,6 +171,14 @@ Route::Resource('package', 'App\Http\Controllers\PackageController');
 Route::Resource('artisan', 'App\Http\Controllers\ArtisanController');
 Route::post('artisan/{artisan}/note', 'App\Http\Controllers\ArtisanController@note');
 
+
+//invitation/
+
+Route::post('invitation/{id}/accepter', 'App\Http\Controllers\InvitationController@accepter');
+
+Route::post('invitation/{id}/rejeter', 'App\Http\Controllers\InvitationController@rejeter');
+
+Route::post('invitation/{id}/supprimer', 'App\Http\Controllers\InvitationController@supprimer');
 
 
 

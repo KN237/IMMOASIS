@@ -15,10 +15,10 @@ class EtatLieux extends Model
 
     protected $fillable = [
         'idbien',
-        'descriptionetatlieu',
-        'datedebutetatlieu',
-        'datefinetatlieu',
-        'signBailleur',
-        'signLocataire' 
+        'description',
+        'datedebut',
+        'datefin',
+        'signbailleur',
+        'signlocataire' 
     ];
 }

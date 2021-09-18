@@ -10,12 +10,14 @@ class Inventaire extends Model
     use HasFactory;
     public $table='inventaire';
 
+    public $primaryKey='idinventaire';
+
     protected $fillable = [
         'idbien',
-        'descriptioninventaire',
-        'dateinventaire',
-        'signBailleur',
-        'signLocataire'
+        'description',
+        'date',
+        'signbailleur',
+        'signlocataire'
       
     ];
 }

@@ -11,6 +11,8 @@ class Note extends Model
 
     public $table='note';
 
+    public $primaryKey='idnote';
+
     protected $fillable = [
         'idartisan',
         'valeur',

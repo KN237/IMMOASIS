@@ -8,9 +8,9 @@
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="/css/auth.css">
 
@@ -51,13 +51,13 @@
                         <form class="login-form" action="{{ route('auth.check') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control rounded-left" name="emailu" placeholder="Email">
+                                <input type="text" class="form-control rounded-left" name="email" placeholder="Email">
                             </div>
-                            <div class="form-group d-flex">
+                            <div class="form-group d-flex" style="position: relative;">
                                 <span class="btn-show-pass">
-                                    <i class="zmdi zmdi-eye"></i>
+                                    <i class="fas fa-eye-slash"></i>
                                 </span>
-                                <input type="password" class="form-control rounded-left" name="mdpu"
+                                <input type="password" class="form-control rounded-left" name="mdp"
                                     placeholder="Mot de passe">
                             </div>
                             <div class="form-group">
@@ -98,7 +98,7 @@
     <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="/js/main.js"></script>
 
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
     {!! Toastr::message() !!}
@@ -111,7 +111,7 @@
         @endif
 
         toastr.options = {
-            "preventDuplicates": true
+            "preventDuplicates": true,
         }
     </script>
 

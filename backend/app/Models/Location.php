@@ -9,15 +9,19 @@ class Location extends Model
 {
     use HasFactory;
     public $table='location';
+    
+    public $primaryKey='idlocation';
+
+    public $timestamps=FALSE;
+
     protected $fillable = [
         'utilisation',
-        'activitelocation',
+        'activite',
         'idlocataire',
         'idtl',
         'idbien',
-        'datedebutlocation',
-        'dureelocation',
-        'montantlocation',
+        'duree',
+        'montant',
         'montantcaution'
     ];
 }

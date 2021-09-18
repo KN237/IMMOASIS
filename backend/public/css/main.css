@@ -45,7 +45,8 @@ label{
 
 .btn-show-pass i{
   position: absolute;
-  right:0;
+  right:3%;
+  top:35%;
 }
 
 .text-danger{

@@ -11,13 +11,12 @@ class Equipement extends Model
 
     public $table='equipement';
 
+    public $primaryKey='idequipement';
+
     protected $fillable = [
         'idpiece',
-        'nomequipement',
-        'etatequipement',
-        'prixequipement',
-        'commentaire',
-        
-      
+        'nom',
+        'prix',
+
     ];
 }

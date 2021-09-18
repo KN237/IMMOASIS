@@ -11,9 +11,11 @@ class Contrat extends Model
 
     public $table='contrat';
 
+    public $primaryKey='idcontrat';
+
     protected $fillable = [
         'idbien',
-        'signBailleur',
-        'signLocataire'
+        'signbailleur',
+        'signlocataire'
     ];
 }

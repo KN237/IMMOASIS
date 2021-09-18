@@ -11,10 +11,11 @@ class Piece extends Model
 
     public $table='piece';
 
+    public $primaryKey='idpiece';
+
     protected $fillable = [
       
-        'nompiece',
+        'nom',
         'idbien',
-        'commentaire'
     ];
 }

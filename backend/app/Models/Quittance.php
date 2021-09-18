@@ -11,10 +11,10 @@ class Quittance extends Model
 
     public $table='quittance';
 
+    public $primaryKey='idquittance';
+
     protected $fillable = [
-        'idLocation',
-        'datequittance',
-        'montantquittance',
-      
+        'idfacture'
+
     ];
 }

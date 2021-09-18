@@ -14,17 +14,17 @@ class Bien extends Model
     public $primaryKey='idbien';
 
     protected $fillable = [
-        'nombien',
-        'idtypebien',
+        'nom',
+        'idtb',
         'idbailleur',
         'numtitrefoncier',
         'numpermisconst',
-        'descriptionbien',
-        'imagebien',
-        'superficiebien',
-        'etatbien',
-        'villebien',
-        'paysbien',
-        'quartierbien'
+        'description',
+        'image',
+        'superficie',
+        'etat',
+        'ville',
+        'pays',
+        'quartier'
     ];
 }

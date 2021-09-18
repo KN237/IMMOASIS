@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bailleur;
+use App\Models\Locataire;
 use App\Models\Utilisateur;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Hash;
 
 class UtilisateurController extends Controller
 {
@@ -14,22 +17,13 @@ class UtilisateurController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $utilisateur=Utilisateur::all();
-
-        return $utilisateur;
-    }
+  
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -39,30 +33,53 @@ class UtilisateurController extends Controller
      */
     public function store(Request $request)
     {
-        $utilisateur=Utilisateur::create(
-            
-           [ 
+       //Validate requests
+       $request->validate([
+        'nomcomplet'=>'required',
+        'email'=>'required|email|unique:utilisateur',
+        'mdp'=>'required|min:5|max:12',
+        'mdpc'=>'in:'.$request->mdp,
+        'compte'=>'required',
+        'telephone'=>'required',
+    ]);
 
-        'nomCompletU'=>$request->nomcompletu,
-        'emailU'=>$request->emailu,
-        'mdpU'=>bcrypt($request->mdpu),
-        'telephoneU'=>$request->telephoneu,
-        'idPackage'=>$request->idPackage
+     //Insert data into database
+     $utlisateur = new Utilisateur;
+     $utlisateur->nomcomplet = $request->nomcomplet;
+     $utlisateur->email = $request->email;
+     $utlisateur->telephone = $request->telephone;
+     $utlisateur->mdp = Hash::make($request->mdp);
+     $save = $utlisateur->save();
 
-        ]
-        
-        );
+     if($request->compte=='bailleur'){
 
-        if($utilisateur){
-            Toastr::success('utilisateur créé avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
-            return back();
-        }else{
-           
-                Toastr::error('La création a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
-                return back();
-                
-            }
+        $utlisateur->update([
+            'role'=>'Bailleur'
+        ]);
 
+        $bailleur = new Bailleur();
+        $bailleur->idu=$utlisateur->idu;
+        $bailleur->save();
+     }
+     else{
+
+        $utlisateur->update([
+            'role'=>'Locataire'
+        ]);
+        $locataire = new Locataire();
+        $locataire->idu=$utlisateur->idu;
+        $locataire->save();
+
+     }
+
+     if($save){
+
+        Toastr::success('Utilisateur créé avec succès','Succès',["positionClass"=>"toast-top-center"]);
+        return back();
+     }else{
+       Toastr::error('La création a échoué','Erreur',["positionClass"=>"toast-top-center"]);
+         return back();
+     }
     }
 
     /**
@@ -71,10 +88,8 @@ class UtilisateurController extends Controller
      * @param  \App\Models\Utilisateur  $utilisateur
      * @return \Illuminate\Http\Response
      */
-    public function show(Utilisateur $utilisateur)
-    {
-        return $utilisateur;
-    }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -82,10 +97,9 @@ class UtilisateurController extends Controller
      * @param  \App\Models\Utilisateur  $utilisateur
      * @return \Illuminate\Http\Response
      */
-    public function edit(Utilisateur $utilisateur)
-    {
-        return $utilisateur;
-    }
+
+     
+     
 
     /**
      * Update the specified resource in storage.
