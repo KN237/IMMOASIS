@@ -147,10 +147,12 @@
 
 				<div class="card ">
 					<div class="card-body">
-						<h5 class="card-title">Signature</h5>
+						<h5 class="card-title">Exemplaire de la signature de {{ $u->nomcomplet }}</h5>
 						<div class="row">
 							<div class="col-md-10 col-lg-6">
-								<img src="/internis.png" alt="signature" width="300">
+
+								<img src="/storage/signatures/{{$l->signature}}" alt="{{ $l->signature || "Pas encore de signature "}}" width="800">
+						
 							</div>
 						</div>
 					</div>
@@ -170,7 +172,7 @@
 	<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('assets/js/script.js')}}"></script>
 	<script src="{{asset('js/app.js')}}"></script>
+	<script src="/main/assets/js/jquery-2.1.0.min.js"></script>
 
 @endpush
-
 

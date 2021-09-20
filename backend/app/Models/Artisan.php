@@ -11,7 +11,7 @@ class Artisan extends Model
     
     public $table='artisan';
 
-    public $primaryKey='idartisan';
+    public $primaryKey='idartisan';   public $timestamps=FAlSE;
 
     protected $fillable = [
         'idadmin',

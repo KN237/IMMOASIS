@@ -11,6 +11,8 @@ class Renovation extends Model
 
     public $table='renovation';
 
+    public $timestamps=FAlSE;
+
     public $primaryKey='idrenovation';
 
     protected $fillable = [

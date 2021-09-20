@@ -41,11 +41,19 @@ Route::get('/dashboard/locataires','App\Http\Controllers\DashboardController@loc
 
 Route::get('/dashboard/profilelocataire/{id}','App\Http\Controllers\DashboardController@showlocataire')->middleware('AuthCheck');
 
+Route::get('/dashboard/profilebailleur/{id}','App\Http\Controllers\DashboardController@showbailleur')->middleware('AuthCheck');
+
 Route::get('/dashboard/monprofile','App\Http\Controllers\DashboardController@showmoncompte')->middleware('AuthCheck');
 
 Route::get('/dashboard/invitationsrecues','App\Http\Controllers\DashboardController@invitationsrecues')->middleware('AuthCheck');
 
 Route::get('/dashboard/invitationsenvoyees','App\Http\Controllers\DashboardController@invitationsenvoyees')->middleware('AuthCheck');
+
+Route::get('/dashboard/utilisateurs','App\Http\Controllers\DashboardController@utilisateurs')->middleware('AuthCheck');
+
+Route::get('/dashboard/biens','App\Http\Controllers\DashboardController@biens')->middleware('AuthCheck');
+
+Route::get('/dashboard/typebiens','App\Http\Controllers\DashboardController@typebiens')->middleware('AuthCheck');
 
 
 /***********************************  Fin Dashboard  **********************************/
@@ -204,9 +212,9 @@ Route::Resource('tequipement', 'App\Http\Controllers\EquipementController');
 //enregistrement signature //
 
 
-Route::post('/locataire/sign', 'App\Http\Controllers\SignLocataireController@store');
+Route::post('/locataire/sign/{id}', 'App\Http\Controllers\SignLocataireController@store');
 
-Route::post('/bailleur/sign', 'App\Http\Controllers\SignBailleurController@store');
+Route::post('/bailleur/sign/{id}', 'App\Http\Controllers\SignBailleurController@store');
 
 
 // signature inventaire //

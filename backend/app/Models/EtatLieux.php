@@ -9,7 +9,7 @@ class EtatLieux extends Model
 {
     use HasFactory;
 
-    public $table='etat_des_lieux';
+    public $table='etat_des_lieux';   public $timestamps=FAlSE;
 
     public $primaryKey='idEtatLieu';
 

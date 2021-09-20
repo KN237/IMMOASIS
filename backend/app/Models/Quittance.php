@@ -9,7 +9,7 @@ class Quittance extends Model
 {
     use HasFactory;
 
-    public $table='quittance';
+    public $table='quittance';   public $timestamps=FAlSE;
 
     public $primaryKey='idquittance';
 

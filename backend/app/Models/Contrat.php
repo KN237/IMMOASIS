@@ -11,7 +11,7 @@ class Contrat extends Model
 
     public $table='contrat';
 
-    public $primaryKey='idcontrat';
+    public $primaryKey='idcontrat';   public $timestamps=FAlSE;
 
     protected $fillable = [
         'idbien',

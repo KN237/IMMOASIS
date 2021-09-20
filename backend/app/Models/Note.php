@@ -9,7 +9,7 @@ class Note extends Model
 {
     use HasFactory;
 
-    public $table='note';
+    public $table='note';   public $timestamps=FAlSE;
 
     public $primaryKey='idnote';
 

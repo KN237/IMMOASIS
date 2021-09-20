@@ -5,44 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\bien;
 use App\Models\Bailleur;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class BienController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexBailleur()
-    {
-       
-
-        $bailleur=Bailleur::where('idu',session('loggedUser')->idu)->first();
-
-        $biens=Bien::where('idbailleur',$bailleur->idbailleur)->get();
-
-        return $biens;
-    }
-
-
-    public function index()
-    {
-        $bien=Bien::all();
-
-        return $bien;
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+ 
     /**
      * Store a newly created resource in storage.
      *
@@ -51,37 +18,32 @@ class BienController extends Controller
      */
     public function store(Request $request)
     {
-        $bailleur=Bailleur::where('idu',session('loggedUser')->idu)->first();
+        $bailleur=Bailleur::where('idu',session('LoggedUser'))->first();
 
-        if($request->has('imagebien')){
+        if($request->has('image')){
             
-            $file=$request->imagebien->getClientOriginalName();
+            $file=$request->image->getClientOriginalName();
 
-            $request->imagebien->storeAs('biens',$file,'/public');
+            $request->image->storeAs('biens',$file);
 
             $bien=Bien::create(
             
                 [ 
-            'nomBien'=>$request->nombien,
-            'idTypeBien'=>$request->idtypebien,
-            'idU'=>$bailleur->idu,
-            'idBailleur'=>$bailleur->idbailleur,
-            'numTitreFoncier'=>$request->numtitrefoncier,
-            'numPermisConst'=>$request->numpermisconst,
-            'descriptionBien'=>$request->descriptionbien,
-            'imageBien'=>$file,
-            'superficieBien'=>$request->superficiebien,
-            'etatBien'=>$request->etatbien,
-            'villeBien'=>$request->nombien,
-            'paysBien'=>$request->paysbien,
-            'quartierBien'=>$request->quartier
+            'nom'=>$request->nom,
+            'idtb'=>$request->idtb,
+            'idbailleur'=>$bailleur->idbailleur,
+            'numtitrefoncier'=>$request->numtitrefoncier,
+            'numpermisconst'=>$request->numpermisconst,
+            'description'=>$request->description,
+            'image'=>$file,
+            'superficie'=>$request->superficie,
+            'ville'=>$request->ville,
+            'quartier'=>$request->quartier
              
              ]
              
              );
      
-
-
         }
 
         else{
@@ -89,68 +51,40 @@ class BienController extends Controller
             $bien=Bien::create(
             
                 [ 
-            'nomBien'=>$request->nombien,
-            'idTypeBien'=>$request->idtypebien,
-            'idU'=>$bailleur->idu,
-            'idBailleur'=>$bailleur->idbailleur,
-            'numTitreFoncier'=>$request->numtitrefoncier,
-            'numPermisConst'=>$request->numpermisconst,
-            'descriptionBien'=>$request->descriptionbien,
-            'imageBien'=>"internis.png",
-            'superficieBien'=>$request->superficiebien,
-            'etatBien'=>$request->etatbien,
-            'villeBien'=>$request->nombien,
-            'paysBien'=>$request->paysbien,
-            'quartierBien'=>$request->quartier
+            'nom'=>$request->nom,
+            'idtb'=>$request->idtb,
+            'idbailleur'=>$bailleur->idbailleur,
+            'numtitrefoncier'=>$request->numtitrefoncier,
+            'numpermisconst'=>$request->numpermisconst,
+            'description'=>$request->description,
+            'image'=>"internis.png",
+            'superficie'=>$request->superficie,
+            'ville'=>$request->ville,
+            'quartier'=>$request->quartier
              
              ]
              
              );
 
      
-             if($bien){
-     
-                 return response()->json([
-     
-                     'succes'=>'bien ajouté avec succès'
-     
-                 ],200);
-             }
+             
 
         }
+
+        if($bien){
+            Toastr::success('bien ajouté avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
 
        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\bien  $bien
-     * @return \Illuminate\Http\Response
-     */
-    public function show(bien $bien)
-    {
-        return $bien;
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\bien  $bien
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(bien $bien)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\bien  $bien
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, bien $bien)
     {
         if($request->has('imagebien')){
@@ -162,17 +96,15 @@ class BienController extends Controller
             $test=$bien->update(
             
                 [ 
-            'nomBien'=>$request->nombien,
-            'idTypeBien'=>$request->idtypebien,
-            'numTitreFoncier'=>$request->numtitrefoncier,
-            'numPermisConst'=>$request->numpermisconst,
-            'descriptionBien'=>$request->descriptionbien,
-            'imageBien'=>$file,
-            'superficieBien'=>$request->superficiebien,
-            'etatBien'=>$request->etatbien,
-            'villeBien'=>$request->nombien,
-            'paysBien'=>$request->paysbien,
-            'quartierBien'=>$request->quartier
+            'nom'=>$request->nom,
+            'idtb'=>$request->idtb,
+            'numtitrefoncier'=>$request->numtitrefoncier,
+            'numpermisconst'=>$request->numpermisconst,
+            'description'=>$request->description,
+            'image'=>$file,
+            'superficie'=>$request->superficie,
+            'ville'=>$request->ville,
+            'quartier'=>$request->quartier
              
              ]
              
@@ -187,17 +119,15 @@ class BienController extends Controller
             $test=$bien->update(
             
                 [ 
-            'nomBien'=>$request->nombien,
-            'idTypeBien'=>$request->idtypebien,
-            'numTitreFoncier'=>$request->numtitrefoncier,
-            'numPermisConst'=>$request->numpermisconst,
-            'descriptionBien'=>$request->descriptionbien,
-            'imageBien'=>"internis.png",
-            'superficieBien'=>$request->superficiebien,
-            'etatBien'=>$request->etatbien,
-            'villeBien'=>$request->nombien,
-            'paysBien'=>$request->paysbien,
-            'quartierBien'=>$request->quartier
+            'nom'=>$request->nom,
+            'idtb'=>$request->idtb,
+            'numtitrefoncier'=>$request->numtitrefoncier,
+            'numpermisconst'=>$request->numpermisconst,
+            'description'=>$request->description,
+            'image'=>"internis.png",
+            'superficie'=>$request->superficie,
+            'ville'=>$request->ville,
+            'quartier'=>$request->quartier
              
              ]
              
@@ -205,13 +135,14 @@ class BienController extends Controller
              
      
              if($test){
-     
-                 return response()->json([
-     
-                     'succes'=>'bien modifié avec succès'
-     
-                 ],200);
-             }
+                Toastr::success('bien modifié avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+                return back();
+            }else{
+               
+                    Toastr::error('L\'opération a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                    return back();
+                    
+                }
 
         }
     }
@@ -227,13 +158,15 @@ class BienController extends Controller
         $test=$bien->delete();
 
         if($test){
-     
-            return response()->json([
+            Toastr::success('bien supprimé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
 
-                'succes'=>'bien supprimé avec succès'
-
-            ],200);
-        }
     }
 
 }

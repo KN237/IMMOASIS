@@ -114,11 +114,9 @@ class UtilisateurController extends Controller
             
             [ 
  
-         'nomCompletU'=>$request->nomcompletu,
-         'emailU'=>$request->emailu,
-         'mdpU'=>bcrypt($request->mdpu),
-         'telephoneU'=>$request->telephoneu,
-         'idPackage'=>$request->idpackage
+         'nomcomplet'=>$request->nomcomplet,
+         'email'=>$request->email,
+         'telephone'=>$request->telephone,
  
          ]
          

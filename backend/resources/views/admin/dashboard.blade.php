@@ -334,3 +334,6 @@ Tableau de bord
 
 @endsection
 
+@push('page-js')
+<script src="/main/assets/js/jquery-2.1.0.min.js"></script>
+@endpush

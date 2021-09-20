@@ -9,7 +9,7 @@ class Facture extends Model
 {
     use HasFactory;
 
-    public $table='facture';
+    public $table='facture';   public $timestamps=FAlSE;
 
     public $primaryKey='idfacture';
 

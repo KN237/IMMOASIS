@@ -9,7 +9,7 @@ class EtatEquipement extends Model
 {
     use HasFactory;
 
-    public $table='etatequipement';
+    public $table='etatequipement';   public $timestamps=FAlSE;
 
     public $primaryKey='idee';
 

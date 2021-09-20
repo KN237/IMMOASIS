@@ -7,15 +7,17 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <link href="/admin/assets/main.css" rel="stylesheet">
-
     <link rel="stylesheet" href="/css/main.css">
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!-- Select2 CSS -->
+	<link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
     @stack('page-css')
 
@@ -345,6 +347,14 @@
 
                             </li>
 
+                            <li class="mb-4">
+                                <a href="/dashboard/utilisateurs">
+                                    <i class="metismenu-icon fas fa-users"></i>
+                                    Utilisateurs
+
+                                </a>
+
+                            </li>
 
                         </ul>
                     </div>
@@ -388,7 +398,7 @@
 
     <script type="text/javascript" src="/admin/assets/scripts/main.js"></script>
 
-    <script src="/main/assets/js/jquery-2.1.0.min.js"></script>
+    @stack('page-js')
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
@@ -432,7 +442,9 @@
         });
     </script>
 
-@stack('page-js')
+    
+
+
 
      <!-- Deconnexion-->
 
@@ -451,7 +463,7 @@
 
 <center class="mt-2"><h4> Voulez-vous vraiment vous déconnecter ?</h4></center>
 
-<center class="mt-5 mb-4"><a href="/logout" class="btn-success mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <button type="button" data-dismiss="modal" aria-label="Close" class="btn-danger p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
+<center class="mt-5 mb-4"><a href="/logout" class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <button type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
 
 
           </div>

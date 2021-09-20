@@ -479,16 +479,16 @@ button.bg-danger:hover {
     border-color: #e61721!important;
 }
 .btn-primary {
-	background-color: #e61721;
-    border: 1px solid #e61721;
+	background-color: #fd303b;
+    border: 1px solid #fd303b;
 }
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary.active,
 .btn-primary:active,
 .open > .dropdown-toggle.btn-primary {
-	background-color: #19c1dc;
-	border: 1px solid #19c1dc;
+	background-color: #fc4f58;
+	border: 1px solid #fc4f58;
 }
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     color: #fff;

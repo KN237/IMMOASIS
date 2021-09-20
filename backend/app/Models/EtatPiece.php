@@ -9,7 +9,7 @@ class EtatPiece extends Model
 {
     use HasFactory;
 
-    public $table='etatpiece';
+    public $table='etatpiece';   public $timestamps=FAlSE;
 
     public $primaryKey='idep';
 

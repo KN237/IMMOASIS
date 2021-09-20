@@ -13,6 +13,8 @@ class TypeBien extends Model
 
     public $primaryKey='idtb';
 
+    public $timestamps=FAlSE;
+
     protected $fillable = [
       
         'nom'

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Inventaire extends Model
 {
     use HasFactory;
-    public $table='inventaire';
+    public $table='inventaire';   public $timestamps=FAlSE;
 
     public $primaryKey='idinventaire';
 

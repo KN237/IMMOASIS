@@ -89,19 +89,10 @@
                             <td style="display:flex;flex-direction: column;"> <center> 
                                     
                                     <button title="supprimer"
-                                    onclick="event.preventDefault; var form=document.getElementById('form{{ $l->idinvitation }}'); form.submit();"
-                                    class="btn btn-danger w-25"><i class="fas fa-trash"></i></button> 
+                                    data-toggle="modal" data-target="#supp{{ $l->idinvitation}}"
+                                    class="btn bg-danger-light"><i class="fas fa-trash"> Supprimer</i></button> 
                                 
                                 </center> </td>
-
-                            <form id="form{{ $l->idinvitation }}" action="/invitation/{{ $l->idinvitation }}/supprimer" method="post"
-                                style="display: none;">
-                                @csrf
-
-                            </form>
-
-
-
                         </tr>
                         
                         @endforeach
@@ -115,3 +106,41 @@
 
 @endsection
 
+
+@foreach ($invitations as $l)
+
+<div class="modal fade" id="supp{{ $l->idinvitation }}" tabindex="-1" role="dialog"
+  aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog">
+
+      <div class="modal-content">
+
+          <div class="modal-body">
+
+              <center>
+                  <h5><img src="/internis.png" alt="logo" width="150"></h5>
+              </center>
+
+<center class="mt-2"><h4> Voulez-vous vraiment supprimer cette invitation ?</h4></center>
+
+<center class="mt-5 mb-4"><button onclick="event.preventDefault; var form=document.getElementById('form2{{ $l->idinvitation}}'); form.submit();"
+    class="btn-success mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close" class="btn-danger p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
+    <form id="form2{{ $l->idinvitation }}" action="/invitation/{{ $l->idinvitation }}/supprimer" method="get"
+        style="display: none;">
+        @csrf
+        @method('delete')
+
+    </form>
+
+          </div>
+
+      </div>
+  </div>
+</div>
+
+@endforeach
+
+@push('page-js')
+<script src="/main/assets/js/jquery-2.1.0.min.js"></script>
+@endpush

@@ -11,6 +11,8 @@ class TypeLocation extends Model
 
     public $table='type_de_location';
 
+    public $timestamps=FAlSE;
+
     protected $fillable = [
       
         'nom',

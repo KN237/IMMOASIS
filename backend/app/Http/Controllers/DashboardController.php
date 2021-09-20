@@ -7,6 +7,7 @@ use App\Models\Bailleur;
 use App\Models\Location;
 use App\Models\Locataire;
 use App\Models\Invitation;
+use App\Models\TypeBien;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
@@ -63,6 +64,18 @@ class DashboardController extends Controller
     }
 
 
+    public function showbailleur($id){
+
+        $l=Bailleur::where('idbailleur',$id)->first();
+    
+        $u=Utilisateur::where('idu',$l->idu)->first();
+    
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+
+        return view('admin.profilebailleur',compact('l','u','data'));
+    }
+
+
     public function showmoncompte(){
 
         $data = Utilisateur::where('idu', session('LoggedUser'))->first();
@@ -71,7 +84,7 @@ class DashboardController extends Controller
 
             $l=Bailleur::where('idu',$data->idu)->first();
 
-            return view('admin.moncompte',compact('l','data'));
+            return view('admin.moncomptebailleur',compact('l','data'));
 
         }
 
@@ -79,7 +92,7 @@ class DashboardController extends Controller
 
             $l=Locataire::where('idu',$data->idu)->first();
 
-            return view('admin.moncompte',compact('l','data'));
+            return view('admin.moncomptelocataire',compact('l','data'));
         }
         
     
@@ -183,6 +196,33 @@ class DashboardController extends Controller
         $data = Utilisateur::where('idu', session('LoggedUser'))->first();
 
         return view('admin.invitationsenvoyees',compact('utilisateurs','locataires','bailleur','invitations','data'));
+    }
+
+    function utilisateurs(){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+        $locataires= Locataire::all();
+        $bailleurs = Bailleur::all();
+        $u=Utilisateur::all();
+        return view('admin.utilisateurs',compact('data','locataires','bailleurs','u'));
+    }
+
+
+    function biens(){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+        $bailleurs = Bailleur::where('idu', $data->idu)->first();
+        $biens=Bien::where('idbailleur',$bailleurs->idbailleur)->get();
+        $tb=TypeBien::all();
+        return view('admin.biens',compact('data','tb','biens'));
+    }
+
+
+    function typebiens(){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+        $tb=TypeBien::all();
+        return view('admin.typebiens',compact('data','tb'));
     }
 
 }

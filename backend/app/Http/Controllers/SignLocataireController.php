@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Locataire;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class SignLocataireController extends Controller
 {
@@ -26,19 +27,23 @@ class SignLocataireController extends Controller
 
         $fichier='signature'.$test[1];
 
-        Locataire::where('idLocataire',$id)->update([
-            'signatureLocataire'=>$fichier
+        Locataire::where('idlocataire',$id)->update([
+            'signature'=>$fichier
         ]);
 
         $test2 = file_put_contents($file, $image_base64);
 
         if ($test2) {
 
-            return response()->json([
+            Toastr::success('signature ajoutée avec succès','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }
 
-                'succes' => 'signature enregistrée avec succès'
+        else{
 
-            ], 200);
+            Toastr::error('l\'opération a échoué','erreur',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+
         }
     }
 }

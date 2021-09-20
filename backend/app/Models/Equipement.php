@@ -11,7 +11,7 @@ class Equipement extends Model
 
     public $table='equipement';
 
-    public $primaryKey='idequipement';
+    public $primaryKey='idequipement';   public $timestamps=FAlSE;
 
     protected $fillable = [
         'idpiece',

@@ -11,7 +11,7 @@ class Bien extends Model
 
     public $table='bien';
 
-    public $primaryKey='idbien';
+    public $primaryKey='idbien';   public $timestamps=FAlSE;
 
     protected $fillable = [
         'nom',
@@ -22,9 +22,7 @@ class Bien extends Model
         'description',
         'image',
         'superficie',
-        'etat',
         'ville',
-        'pays',
         'quartier'
     ];
 }

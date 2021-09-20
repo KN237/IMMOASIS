@@ -11,6 +11,8 @@ class Transaction extends Model
 
     public $table='transaction';
 
+    public $timestamps=FAlSE;
+
     public $primaryKey='idtransaction';
 
     protected $fillable = [

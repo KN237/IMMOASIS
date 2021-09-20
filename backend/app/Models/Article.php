@@ -11,7 +11,7 @@ class Article extends Model
     
     public $table='article';
 
-    public $primaryKey='idarticle';
+    public $primaryKey='idarticle';   public $timestamps=FAlSE;
 
     protected $fillable = [
         'idbailleur',

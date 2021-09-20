@@ -74,10 +74,6 @@ class LocataireController extends Controller
      * @param  \App\Models\Locataire  $locataire
      * @return \Illuminate\Http\Response
      */
-    public function show(Locataire $locataire)
-    {
-        return $locataire;
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -98,20 +94,12 @@ class LocataireController extends Controller
         $test=$locataire->update(
             
             [ 
-                'numCniLoc'=>$request->numcniloc,
-                'telephoneSecLoc'=>$request->telephonesecloc,
-                'villeLoc'=>$request->villeloc,
-                'quartierLoc'=>$request->quartierloc,
-                'paysLoc'=>$request->paysloc,
-                'dateNaissLoc'=>$request->datenaissloc,
-                'sexeLoc'=>$request->sexeloc,
-                'lieuNaissLoc'=>$request->lieunaissloc,
-                'nomCompletEmployeurLoc'=>$request->nomcompletemployeurloc,
-                'telEmployeurLoc'=>$request->telemployeurloc,
-                'signatureLoc'=>'',
-                'professionLoc'=>$request->professionloc,
-                'revenuMensuelLoc'=>$request->revenumensuelloc,
-         
+                'numCni'=>$request->numcni,
+                'ville'=>$request->ville,
+                'quartier'=>$request->quartier,
+                'nomemployeur'=>$request->nomcompletemployeur,
+                'telemployeur'=>$request->telemployeur,
+                'profession'=>$request->profession 
          ]
          
          );
@@ -154,26 +142,27 @@ class LocataireController extends Controller
     $bailleur=Bailleur::where('idu',session('LoggedUser'))->first();
     $biens=Bien::where('idbailleur',$bailleur->idbailleur)->get();
     $biensID=[];
+
     foreach($biens as $i){
 
-        if(!array_search($i->idbailleur,$biensID) ){
+        if(!array_search($i->idbien,$biensID) ){
 
-            array_push($biensID,$i->idbailleur);
+            array_push($biensID,$i->idbien);
 
             }
     }
-    $location=Location::where('idlocataire',$id)->whereIn('idbien',$biensID)->get();
 
+    $location=Location::where('idlocataire',$id)->WhereIn('idbien',$biensID)->get();
 
     $invite=Invitation::where('idlocataire',$id)->where('idbailleur',$bailleur->idbailleur)->get();
 
-    if($location || $invite ){
+    if(!empty($location) or !empty($invite)){
 
         Toastr::warning('Ce locataire est déja enregistré chez vous, ou vous lui avez déja envoyé une invitation','attention',["positionClass"=>"toast-top-center"]);
         return back();
     }
 
-else {
+    else{
 
     $invitation=new Invitation();
     $invitation->idlocataire= $id;

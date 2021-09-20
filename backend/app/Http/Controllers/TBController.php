@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\typeBien;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class TBController extends Controller
 {
@@ -22,7 +23,7 @@ class TBController extends Controller
             
             [ 
  
-                'nomtypebien'=>$request->nomtypebien,
+                'nom'=>$request->nom,
                 
  
          ]
@@ -30,33 +31,31 @@ class TBController extends Controller
          );
  
          if($tb){
- 
-             return response()->json([
- 
-                 'succes'=>'Type de bien ajouté avec succès'
- 
-             ],200);
-         }
+            Toastr::success('type de bien ajouté avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\' ajout a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
-
-    public function show(typeBien $typeBien)
-    {
-        return $typeBien;
-    }
 
   
-    public function destroy(typeBien $typeBien)
+    public function destroy($id)
     {
-        $test=$typeBien->delete();
+        $test=typeBien::where('idtb',$id)->delete();
  
-        if($test){
-
-            return response()->json([
-
-                'succes'=>'Type de bien supprimé avec succès'
-
-            ],200);
-        }
+            if($test){
+                Toastr::success('type de bien supprimé avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+                return back();
+            }else{
+               
+                    Toastr::error('La suppression a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                    return back();
+                    
+                }
+        
     }
 }

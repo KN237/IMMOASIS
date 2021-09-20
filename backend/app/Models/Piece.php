@@ -9,7 +9,7 @@ class Piece extends Model
 {
     use HasFactory;
 
-    public $table='piece';
+    public $table='piece';   public $timestamps=FAlSE;
 
     public $primaryKey='idpiece';
 

@@ -74,11 +74,11 @@
                                     
                                     <button title="accepter"
                                     data-toggle="modal" data-target="#acc{{ $l->idinvitation}}"
-                                    class="btn btn-success w-25"><i class="fas fa-check"></i></button> 
+                                    class="btn bg-success-light"><i class="fas fa-check"> Accepter</i></button> 
 
                                     <button title="refuser"
                                     data-toggle="modal" data-target="#rej{{ $l->idinvitation}}"
-                                    class="btn btn-danger w-25"><i class="fas fa-trash"></i></button> 
+                                    class="btn bg-danger-light"><i class="fas fa-trash"></i> Refuser</button> 
                                 
                                 </center> </td>
 
@@ -163,3 +163,7 @@
 </div>
 
 @endforeach
+
+@push('page-js')
+<script src="/main/assets/js/jquery-2.1.0.min.js"></script>
+@endpush

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bailleur;
 use Illuminate\Http\Request;  
+use Brian2694\Toastr\Facades\Toastr;
 
 class SignBailleurController extends Controller
 {
@@ -25,19 +26,23 @@ class SignBailleurController extends Controller
 
         $fichier='signature'.$test[1];
 
-        Bailleur::where('idBailleur',$id)->update([
-            'signatureBailleur'=>$fichier
+        Bailleur::where('idbailleur',$id)->update([
+            'signature'=>$fichier
         ]);
 
         $test2 = file_put_contents($file, $image_base64);
 
         if ($test2) {
 
-            return response()->json([
+            Toastr::success('signature ajoutée avec succès','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }
 
-                'succes' => 'signature enregistrée avec succès'
+        else{
 
-            ], 200);
+            Toastr::error('l\'opération a échoué','erreur',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+
         }
     }
 }

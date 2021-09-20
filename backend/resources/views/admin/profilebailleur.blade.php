@@ -2,7 +2,7 @@
 
 @section('title')
 
-Mon profile
+  Profile Bailleur
 
 @endsection
 
@@ -33,7 +33,7 @@ Mon profile
 					</a>
 				</div>
 				<div class="col ml-md-n2 profile-user-info">
-					<h4 class="user-name mb-0">{{ $data->nomcomplet }}</h4>
+					<h4 class="user-name mb-0">{{ $u->nomcomplet }}</h4>
 					
 				</div>
 
@@ -63,18 +63,18 @@ Mon profile
 
 								<div class="row">
 									<p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Nom</p>
-									<p class="col-sm-10">{{ $data->nomcomplet }}</p>
+									<p class="col-sm-10">{{ $u->nomcomplet }}</p>
 								</div>
 
 								<div class="row">
 									<p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Email</p>
-									<p class="col-sm-10">{{ $data->email }}</p>
+									<p class="col-sm-10">{{ $u->email }}</p>
 								</div>
 
 								<div class="row">
-									<p class="col-sm-2 text-mdatated text-sm-right mv-0 mb-sm-3">Téléphone</p>
+									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Téléphone</p>
 
-									<p class="col-sm-10">{{ $data->telephone }}</p>
+									<p class="col-sm-10">{{ $u->telephone }}</p>
 
 								</div>
 
@@ -100,31 +100,23 @@ Mon profile
 								</div>
 
                                 <div class="row">
-									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Sexe</p>
+									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Nom représentant</p>
 
-									<p class="col-sm-10">{{ $l->sexe }}</p>
-
-								</div>
-
-                                <div class="row">
-									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Profession</p>
-
-									<p class="col-sm-10">{{ $l->profession }}</p>
+									<p class="col-sm-10">{{ $l->nomrep }}</p>
 
 								</div>
 
                                 <div class="row">
-									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Nom employeur</p>
+									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Téléphone représentant</p>
 
-									<p class="col-sm-10">{{ $l->nomemployeur }}</p>
+									<p class="col-sm-10">{{ $l->telrep }}</p>
 
 								</div>
 
-
                                 <div class="row">
-									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Telephone employeur</p>
+									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Numéro CNI</p>
 
-									<p class="col-sm-10">{{ $l->telemployeur }}</p>
+									<p class="col-sm-10">{{ $l->numcni }}</p>
 
 								</div>
 
@@ -147,10 +139,12 @@ Mon profile
 
 				<div class="card ">
 					<div class="card-body">
-						<h5 class="card-title">Signature</h5>
+						<h5 class="card-title">Exemplaire de la signature de {{ $u->nomcomplet }}</h5>
 						<div class="row">
 							<div class="col-md-10 col-lg-6">
-								<img src="/internis.png" alt="signature" width="300">
+
+								<img src="/storage/signatures/{{$l->signature}}" alt="{{ $l->signature || "Pas encore de signature "}}" width="800">
+						
 							</div>
 						</div>
 					</div>
@@ -170,7 +164,7 @@ Mon profile
 	<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('assets/js/script.js')}}"></script>
 	<script src="{{asset('js/app.js')}}"></script>
+	<script src="/main/assets/js/jquery-2.1.0.min.js"></script>
 
 @endpush
-
 
