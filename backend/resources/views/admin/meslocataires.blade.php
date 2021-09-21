@@ -114,7 +114,7 @@
                     <h5><img src="/internis.png" alt="logo" width="100"></h5>
                 </center>
 
-                <form class="___class_+?15___" class="m-5" action="/utilisateur" method="post">
+                <form  class="m-5" action="/utilisateur" method="post">
                     @csrf
 
                     <input type="hidden" name="compte" value="Locataire">

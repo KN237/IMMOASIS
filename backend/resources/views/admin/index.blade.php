@@ -162,7 +162,7 @@
                             </li>
 
                             <li class="mb-4">
-                                <a>
+                                <a href="#">
                                     <i class="metismenu-icon fas fa-home"></i>
                                     Biens
 
@@ -180,6 +180,14 @@
                                         <a href="/dashboard/biens">
                                             <i class="metismenu-icon">
                                             </i>Biens
+                                        </a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="/dashboard/photosbiens">
+                                            <i class="metismenu-icon">
+                                            </i>Photos
                                         </a>
                                     </li>
 
@@ -234,7 +242,7 @@
                                     <li>
                                         <a href="/dashboard/locations">
                                             <i class="metismenu-icon">
-                                            </i>Locations
+                                            </i>Mes locations
                                         </a>
                                     </li>
 
@@ -328,8 +336,11 @@
 
 
                             <li class="mb-4">
-                                <a href="">
+
+                                <a href="/dashboard/artisan">
+
                                     <i class="metismenu-icon fas fa-hard-hat"></i>
+
                                     Artisans
 
                                 </a>
@@ -339,7 +350,21 @@
 
 
                             <li class="mb-4">
-                                <a href="">
+                                
+                                <a href="/dashboard/artisans">
+
+                                    <i class="metismenu-icon fas fa-hard-hat"></i>
+
+                                    Gestion des artisans
+
+                                </a>
+
+                            </li>
+
+
+
+                            <li class="mb-4">
+                                <a href="/dashboard/packages">
                                     <i class="metismenu-icon fas fa-hand-holding-usd"></i>
                                     Packages
 

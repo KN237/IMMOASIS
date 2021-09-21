@@ -81,7 +81,7 @@
                                     
                                     <button title="inviter"
                                     onclick="event.preventDefault; var form=document.getElementById('form{{ $l->idlocataire }}'); form.submit();"
-                                    class="btn bg-danger-light"><i class="fas fa-plus"> Inviter</i></button> 
+                                    class="btn bg-warning-light"><i class="fas fa-plus"> Inviter</i></button> 
                                 
                                 </center> </td>
                             <form id="form{{ $l->idlocataire }}" action="/locataire/{{ $l->idlocataire }}/inviter" method="post"

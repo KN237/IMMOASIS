@@ -74,10 +74,10 @@ class UtilisateurController extends Controller
 
      if($save){
 
-        Toastr::success('Utilisateur créé avec succès','Succès',["positionClass"=>"toast-top-center"]);
+        Toastr::success('Utilisateur créé avec succes','succes',["positionClass"=>"toast-top-center"]);
         return back();
      }else{
-       Toastr::error('La création a échoué','Erreur',["positionClass"=>"toast-top-center"]);
+       Toastr::error('La création a échoué','erreur',["positionClass"=>"toast-top-center"]);
          return back();
      }
     }
@@ -123,11 +123,11 @@ class UtilisateurController extends Controller
          );
  
          if($test){
-            Toastr::success('utilisateur modifié avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('utilisateur modifié avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
-                Toastr::error('La modification a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('La modification a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }
@@ -146,11 +146,11 @@ class UtilisateurController extends Controller
 
 
         if($test){
-            Toastr::success('utilisateur supprimé avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('utilisateur supprimé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
-                Toastr::error('La suppréssion a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('La suppréssion a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }
@@ -167,11 +167,11 @@ class UtilisateurController extends Controller
          );
  
      if($test){
-            Toastr::success('package souscrit  avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('package souscrit  avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
-                Toastr::error('La souscription a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('La souscription a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }

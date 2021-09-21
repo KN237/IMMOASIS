@@ -84,11 +84,11 @@
 
                             <td>{{ $l->quartier }}</td>
 
-                            <td>{{ $l->image }}</td>
+                            <td> <img src="/storage/biens/{{ $l->image }}" alt="image" width="100" height="100"> </td>
 
                             <td style="display:flex;flex-direction: column">
 
-                                <center><a href="profilelocataire/{{ $l->idbien }}"  title="consulter le profile" class="btn bg-info-light"><i class="far fa-eye"></i> Consulter</a>
+                                <center><a href="infosbien/{{ $l->idbien }}"  title="consulter le profile" class="btn bg-info-light"><i class="far fa-eye"></i> Consulter</a>
                                     <button title="supprimer"
                                     data-toggle="modal" data-target="#supp{{ $l->idbien}}"
                                         class="btn bg-danger-light deletebtn"><i class="fas fa-trash"> Supprimer</i></button>
@@ -125,7 +125,7 @@
                     <h5><img src="/internis.png" alt="logo" width="100"></h5>
                 </center>
 
-                <form class="___class_+?15___" enctype="multipart/form-data" class="m-5" action="/bien" method="post">
+                <form enctype="multipart/form-data" class="m-5" action="/bien" method="post">
                     @csrf
 
                     <input type="hidden" name="compte">
@@ -211,7 +211,7 @@
 
 <center class="mt-5 mb-4"><button onclick="event.preventDefault; var form=document.getElementById('form2{{ $l->idbien}}'); form.submit();"
     class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
-    <form id="form2{{ $l->idbien }}" action="/bien/{{ $l->idbien }}" method="get"
+    <form id="form2{{ $l->idbien }}" action="/bien/{{ $l->idbien }}" method="post"
         style="display: none;">
         @csrf
         @method('delete')

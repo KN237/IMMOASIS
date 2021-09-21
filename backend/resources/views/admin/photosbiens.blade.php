@@ -2,7 +2,7 @@
 
 @section('title')
 
-   Types de bien
+   Photos
 
 @endsection
 
@@ -30,7 +30,7 @@
                 <span class="btn-icon-wrapper pr-2 opacity-7">
                     <i class="metismenu-icon fas fa-plus"></i>
                 </span>
-                Créer un type de bien
+               Ajouter une photo
             </button>
 
         </div>
@@ -47,7 +47,9 @@
                 <thead>
                     <tr style="font-size: 14px;">
 
-                        <th>Nom </th>
+                        <th>Numéro du bien </th>
+
+                        <th>Photo </th>
 
                         <th>Actions</th>
 
@@ -55,16 +57,18 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($tb as $l)
+                    @foreach($photos as $p)
                     
                         <tr style="font-size: 14px;">
 
-                            <td>{{ $l->nom }}</td>
+                            <td>{{ $p->idbien }}</td>
+
+                            <td> <img src="/storage/photosbiens/{{ $p->nom }}" alt="photo" width="100" height="100"></td>
 
                             <td style="display:flex;flex-direction: column">
 
                                 <center> <button title="supprimer"
-                                    data-toggle="modal" data-target="#supp{{ $l->idtb}}"
+                                    data-toggle="modal" data-target="#supp{{ $p->idphoto}}"
                                         class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i> Supprimer</button>
                                 </center>
                             </td>
@@ -99,13 +103,31 @@
                     <h5><img src="/internis.png" alt="logo" width="100"></h5>
                 </center>
 
-                <form  class="m-5" action="/type_de_bien" method="post">
+                <form class="___class_+?15___" enctype="multipart/form-data" class="m-5" action="/photo" method="post">
                     @csrf
-
-                    <input type="hidden" name="compte" value="Locataire">
+  
                     <div class="position-relative form-group"><label for="examplePassword11"
-                            class="___class_+?24___">Nom </label><input name="nom" type="text"
-                            class="form-control"></div>
+                            class="___class_+?24___">Bien </label>
+                            
+                            <select name="idbien" class="form-control">
+
+                                @foreach($biens as $b)
+                                                    <option value="{{$b->idbien}}">{{$b->nom}}</option>
+                                
+                                 @endforeach
+                                
+                            </select>
+                             
+                        </div>
+
+
+                          
+                    <div class="position-relative form-group"><label for="examplePassword11"
+                        class="___class_+?24___">Photo </label>
+                           
+                        <input type="file" name="nom" class="form-control">
+                        
+                    </div>
 
                     <button class="mt-2 btn btn-dark btn-block">Enregistrer</button>
 
@@ -117,9 +139,9 @@
     </div>
 </div>
 
-@foreach ($tb as $l)
+@foreach ($photos as $p)
 
-<div class="modal fade" id="supp{{ $l->idtb }}" tabindex="-1" role="dialog"
+<div class="modal fade" id="supp{{ $p->idphoto }}" tabindex="-1" role="dialog"
   aria-labelledby="mySmallModalLabel" aria-hidden="true">
 
   <div class="modal-dialog">
@@ -132,11 +154,11 @@
                   <h5><img src="/internis.png" alt="logo" width="150"></h5>
               </center>
 
-<center class="mt-2"><h4> Voulez-vous vraiment vous supprimer ce type de bien de votre liste?</h4></center>
+<center class="mt-2"><h4> Voulez-vous vraiment vous supprimer cette photo de votre liste?</h4></center>
 
-<center class="mt-5 mb-4"><button onclick="event.preventDefault; var form=document.getElementById('form2{{ $l->idtb}}'); form.submit();"
+<center class="mt-5 mb-4"><button onclick="event.preventDefault; var form=document.getElementById('form2{{ $p->idphoto}}'); form.submit();"
     class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
-    <form id="form2{{ $l->idtb }}" action="/type_de_bien/{{ $l->idtb }}" method="post"
+    <form id="form2{{ $p->idphoto }}" action="/photo/{{ $p->idphoto }}" method="post"
         style="display: none;">
         @csrf
         @method('delete')
@@ -155,3 +177,4 @@
 <script src="/main/assets/js/jquery-2.1.0.min.js"></script>
 @endpush
 
+ 

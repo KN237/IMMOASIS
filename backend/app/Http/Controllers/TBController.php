@@ -31,11 +31,11 @@ class TBController extends Controller
          );
  
          if($tb){
-            Toastr::success('type de bien ajouté avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('type de bien ajouté avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
-                Toastr::error('L\' ajout a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('L\' ajout a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }
@@ -48,11 +48,11 @@ class TBController extends Controller
         $test=typeBien::where('idtb',$id)->delete();
  
             if($test){
-                Toastr::success('type de bien supprimé avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+                Toastr::success('type de bien supprimé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
                 return back();
             }else{
                
-                    Toastr::error('La suppression a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                    Toastr::error('La suppression a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                     return back();
                     
                 }

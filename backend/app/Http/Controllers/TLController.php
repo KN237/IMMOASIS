@@ -4,64 +4,51 @@ namespace App\Http\Controllers;
 
 use App\Models\typeLocation;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class TLController extends Controller
 {
    
     
-    public function index()
-    {
-        $tl=typeLocation::all();
-
-        return $tl;
-    }
-
-
-    
     public function store(Request $request)
     {
-        $tl=typeLocation::create(
+        $tb=typeLocation::create(
             
             [ 
  
-                'nomtypelocation'=>$request->nomtypelocation,
+                'nom'=>$request->nom,
                 
  
          ]
          
          );
  
-         if($tl){
- 
-             return response()->json([
- 
-                 'succes'=>'Type de location ajouté avec succès'
- 
-             ],200);
-         }
+         if($tb){
+            Toastr::success('type de location ajouté avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\' ajout a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
-    
-    public function show(typeLocation $typeLocation)
-    {
-        return $typeLocation;
-    }
 
   
-    
- 
-    
-    public function destroy(typeLocation $typeLocation)
+    public function destroy($id)
     {
-        $test=$typeLocation->delete();
+        $test=typeLocation::where('idtl',$id)->delete();
  
-         if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'Type de location supprimé avec succès'
- 
-             ],200);
-         }
+            if($test){
+                Toastr::success('type de location supprimé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+                return back();
+            }else{
+               
+                    Toastr::error('La suppression a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                    return back();
+                    
+                }
+        
     }
 }

@@ -61,10 +61,10 @@ class AuthController extends Controller
 
          if($save){
 
-            Toastr::success('Utilisateur créé avec succès','Succès');
+            Toastr::success('Utilisateur créé avec succes','succes');
             return back();
          }else{
-            Toastr::error('Veuillez réessayer','Erreur');
+            Toastr::error('Veuillez réessayer','erreur');
              return back();
          }
     }
@@ -79,7 +79,7 @@ class AuthController extends Controller
         $userInfo = Utilisateur::where('email','=', $request->email)->first();
 
         if(!$userInfo){
-            Toastr::error('Adresse email inconnue','Erreur');
+            Toastr::error('Adresse email inconnue','erreur');
             return back();
         }else{
             //check password
@@ -89,7 +89,7 @@ class AuthController extends Controller
                 return view('welcome');
 
             }else{
-                Toastr::error('Mot de passe incorrect','Erreur',["iconClass"=>"customer-r"]);
+                Toastr::error('Mot de passe incorrect','erreur',["iconClass"=>"customer-r"]);
                 return back();
                 
             }

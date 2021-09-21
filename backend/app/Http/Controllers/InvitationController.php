@@ -34,11 +34,11 @@ class InvitationController extends Controller
         ]);
 
         if($test){
-            Toastr::success('Invitation acceptée','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('Invitation acceptée','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
-                Toastr::error('L\'opération a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }
@@ -54,11 +54,11 @@ class InvitationController extends Controller
         ]);
 
         if($test){
-            Toastr::success('Invitation rejetée avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('Invitation rejetée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
-                Toastr::error('L\'opération a échoué, veuillez réessayer','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('L\'opération a échoué, veuillez réessayer','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }
@@ -70,11 +70,11 @@ class InvitationController extends Controller
         $test=Invitation::where('idinvitation',$id)->delete(); 
 
         if($test){
-            Toastr::success('Invitation supprimée avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('Invitation supprimée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
-                Toastr::error('L\'opération a échoué, veuillez réessayer','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('L\'opération a échoué, veuillez réessayer','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }

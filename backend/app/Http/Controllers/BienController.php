@@ -22,9 +22,9 @@ class BienController extends Controller
 
         if($request->has('image')){
             
-            $file=$request->image->getClientOriginalName();
+            $file=uniqid().".".$request->image->getClientOriginalName();
 
-            $request->image->storeAs('biens',$file);
+            $request->image->storeAs('biens',$file,'public');
 
             $bien=Bien::create(
             
@@ -76,7 +76,7 @@ class BienController extends Controller
             return back();
         }else{
            
-                Toastr::error('L\'opération a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }
@@ -87,11 +87,12 @@ class BienController extends Controller
 
     public function update(Request $request, bien $bien)
     {
-        if($request->has('imagebien')){
+        if($request->has('image')){
             
-            $file=$request->imagebien->getClientOriginalName();
+            $file=uniqid().".".$request->image->getClientOriginalName();
 
-            $request->imagebien->storeAs('biens',$file,'/public');
+            $request->image->storeAs('biens',$file,'public');
+
 
             $test=$bien->update(
             
@@ -109,7 +110,15 @@ class BienController extends Controller
              ]
              
              );
-     
+             if($test){
+                Toastr::success('bien modifié avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+                return back();
+            }else{
+               
+                    Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                    return back();
+                    
+                }
 
 
         }
@@ -139,7 +148,7 @@ class BienController extends Controller
                 return back();
             }else{
                
-                    Toastr::error('L\'opération a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                    Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                     return back();
                     
                 }
@@ -162,7 +171,7 @@ class BienController extends Controller
             return back();
         }else{
            
-                Toastr::error('L\'opération a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }

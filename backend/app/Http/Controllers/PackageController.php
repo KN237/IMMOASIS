@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Package;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class PackageController extends Controller
 {
@@ -41,22 +42,23 @@ class PackageController extends Controller
             
             [ 
  
-                'nomPackage'=>$request->nompackage,
-                'nombreBienMax'=>$request->nombrebienmax,
-                'montantPackage'=>$request->montantpackage,
+                'nom'=>$request->nom,
+                'nombrebienmax'=>$request->nombrebienmax,
+                'montant'=>$request->montant,
  
          ]
          
          );
  
          if($package){
- 
-             return response()->json([
- 
-                 'succes'=>'package ajouté avec succès'
- 
-             ],200);
-         }
+            Toastr::success('package ajouté avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('l\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -94,22 +96,23 @@ class PackageController extends Controller
             
             [ 
  
-                'nomPackage'=>$request->nompackage,
-                'nombreBienMax'=>$request->nombrebienmax,
-                'montantPackage'=>$request->montantpackage,
+                'nom'=>$request->nom,
+                'nombrebienmax'=>$request->nombrebienmax,
+                'montant'=>$request->montant,
  
          ]
          
          );
  
          if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'package modifié avec succès'
- 
-             ],200);
-         }
+            Toastr::success('package modifié avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('l\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -122,13 +125,14 @@ class PackageController extends Controller
     {
         $test=$package->delete();
  
-         if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'package supprimé avec succès'
- 
-             ],200);
-         }
+        if($test){
+            Toastr::success('package supprimé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('l\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 }

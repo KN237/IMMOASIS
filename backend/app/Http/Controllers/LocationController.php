@@ -7,6 +7,7 @@ use App\Models\Bailleur;
 use App\Models\Location;
 use App\Models\Locataire;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class LocationController extends Controller
 {
@@ -73,34 +74,32 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $locataire=Locataire::where('idu',session('loggedUser')->idu)->first();
-
+       
         $test=Location::create(
             
             [ 
         'utilisation'=>$request->utilisation,
-        'activiteLocation'=>$request->activitelocation,
-        'idU'=>session('loggedUser')->idu,
-        'idLocataire'=>$locataire->idlocataire,
-        'idTl'=>$request->idtl,
-        'idBien'=>$request->idbien,
-        'dateDebutLocation'=>$request->datedebutlocation,
-        'dureeLocation'=>$request->dureelocation,
-        'montantLocation'=>$request->montantlocation,
-        'montantCaution'=>$request->montantcaution
+        'activite'=>$request->activite,
+        'idlocataire'=>$request->idlocataire,
+        'idtl'=>$request->idtl,
+        'idbien'=>$request->idbien,
+        'duree'=>$request->duree,
+        'montant'=>$request->montant,
+        'montantcaution'=>$request->montantcaution
          
          ]
          
          );
 
          if($test){
-     
-            return response()->json([
-
-                'succes'=>'location ajoutée avec succès'
-
-            ],200);
-        }
+            Toastr::success('location créée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
 
     }
 
@@ -139,26 +138,26 @@ class LocationController extends Controller
             
             [ 
                     'utilisation'=>$request->utilisation,
-                    'activiteLocation'=>$request->activitelocation,
-                    'idTl'=>$request->idtl,
-                    'idBien'=>$request->idbien,
-                    'dateDebutLocation'=>$request->datedebutlocation,
-                    'dureeLocation'=>$request->dureelocation,
-                    'montantLocation'=>$request->montantlocation,
-                    'montantCaution'=>$request->montantcaution
+                    'activite'=>$request->activite,
+                    'idtl'=>$request->idtl,
+                    'idbien'=>$request->idbien,
+                    'duree'=>$request->duree,
+                    'montant'=>$request->montant,
+                    'montantcaution'=>$request->montantcaution
          
          ]
          
          );
 
          if($test){
-     
-            return response()->json([
-
-                'succes'=>'location modifiée avec succès'
-
-            ],200);
-        }
+            Toastr::success('location modifiée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -172,12 +171,13 @@ class LocationController extends Controller
         $test=$location->delete();
 
         if($test){
-     
-            return response()->json([
-
-                'succes'=>'location supprimée avec succès'
-
-            ],200);
-        }
+            Toastr::success('location supprimée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('l\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 }

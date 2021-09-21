@@ -53,7 +53,19 @@ Route::get('/dashboard/utilisateurs','App\Http\Controllers\DashboardController@u
 
 Route::get('/dashboard/biens','App\Http\Controllers\DashboardController@biens')->middleware('AuthCheck');
 
+Route::get('/dashboard/infosbien/{id}','App\Http\Controllers\DashboardController@infosbien')->middleware('AuthCheck');
+
 Route::get('/dashboard/typebiens','App\Http\Controllers\DashboardController@typebiens')->middleware('AuthCheck');
+
+Route::get('/dashboard/locations','App\Http\Controllers\DashboardController@locationsbailleur')->middleware('AuthCheck');
+
+Route::get('/dashboard/typelocations','App\Http\Controllers\DashboardController@typelocations')->middleware('AuthCheck');
+
+Route::get('/dashboard/photosbiens','App\Http\Controllers\DashboardController@photosbiens')->middleware('AuthCheck');
+
+Route::get('/dashboard/packages','App\Http\Controllers\DashboardController@packages')->middleware('AuthCheck');
+
+Route::get('/dashboard/artisan','App\Http\Controllers\DashboardController@consulterartisans')->middleware('AuthCheck');
 
 
 /***********************************  Fin Dashboard  **********************************/
@@ -73,6 +85,8 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
 
 Route::Resource('utilisateur', 'App\Http\Controllers\UtilisateurController');
+
+Route::Resource('photo', 'App\Http\Controllers\PhotoController');
 
 
 
@@ -159,9 +173,6 @@ Route::post('locataire/{id}/inviter', 'App\Http\Controllers\LocataireController@
 // location //
 
 Route::Resource('location', 'App\Http\Controllers\LocationController');
-Route::get('location/locataire', 'App\Http\Controllers\LocationController@indexLocataire');
-Route::get('location/bailleur', 'App\Http\Controllers\LocationController@indexBailleur');
-
 
 // utilisateur/package/
 

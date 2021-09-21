@@ -58,11 +58,11 @@ class LocataireController extends Controller
          );
 
          if($locataire){
-            Toastr::success('Locatair créé avec succès','Succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('Locatair créé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
-                Toastr::error('La création a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('La création a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }
@@ -105,11 +105,11 @@ class LocataireController extends Controller
          );
 
          if($test){
-            Toastr::success('locataire modifié avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('locataire modifié avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
-                Toastr::error('La modification a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('La modification a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }
@@ -126,11 +126,11 @@ class LocataireController extends Controller
         $test=Location::where('idlocataire',$locataire->idlocataire)->delete();
 
         if($test){
-            Toastr::success('locataire supprimé de votre liste avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('locataire supprimé de votre liste avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
            
-                Toastr::error('La suppréssion a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                Toastr::error('La suppréssion a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
                 return back();
                 
             }
@@ -175,11 +175,11 @@ class LocataireController extends Controller
     $test=$invitation->save();
 
     if($test){
-        Toastr::success('Invitation envoyée avec succès','succès',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+        Toastr::success('Invitation envoyée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
         return back();
     }else{
        
-            Toastr::error('L\'invitation a échoué','Erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+            Toastr::error('L\'invitation a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
             return back();
             
         }

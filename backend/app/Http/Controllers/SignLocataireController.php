@@ -35,7 +35,7 @@ class SignLocataireController extends Controller
 
         if ($test2) {
 
-            Toastr::success('signature ajoutée avec succès','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            Toastr::success('signature ajoutée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }
 
