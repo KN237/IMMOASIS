@@ -4,52 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Bien;
 use App\Models\Bailleur;
-use App\Models\Locataire;
 use App\Models\Location;
+use App\Models\Locataire;
 use App\Models\Renovation;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class RenovationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $renovation=Renovation::all();
-
-        return $renovation;
-    }
-
-    public function indexBailleur()
-    {
-        $bailleur=Bailleur::where('idu',session('loggedUser')->idu)->get();
-        $bien=Bien::where('idbailleur',$bailleur->idbailleur)->get();
-        $renovation=Renovation::where('idbien',$bien->idbien)->get();
-
-        return $renovation;
-    }
-
-    public function indexLocataire()
-    {
-        $locataire=Locataire::where('idu',session('loggedUser')->idu)->get();
-        $location=Location::where('idLocataire',$locataire->idlocataire)->get();
-        $renovation=Renovation::where('idbien',$location->idbien)->get();
-
-        return $renovation;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -62,12 +24,13 @@ class RenovationController extends Controller
         $renovation=Renovation::create(
             
             [ 
-                'idBien'=>$request->idbien,
-                'motifRenovation'=>$request->motifrenovation,
-                'domaineRenovation'=>$request->domainerenovation,
-                'descriptionRenovation'=>$request->descriptionrenovation,
-                'montantRenovation'=>$request->montantrenovation,
-                'priorite'=>$request->priorite,
+                'idbien'=>$request->idbien,
+                'idartisan'=>$request->idartisan,
+                'idu'=>session('LoggedUser'),
+                'libelle'=>$request->libelle,
+                'description'=>$request->description,
+                'montant'=>$request->montant,
+                'date'=>$request->date,
                 'statut'=>$request->statut,
          
          ]
@@ -75,13 +38,14 @@ class RenovationController extends Controller
          );
  
          if($renovation){
- 
-             return response()->json([
- 
-                 'succes'=>'rénovation ajoutée avec succès'
- 
-             ],200);
-         }
+            Toastr::success('intervention ajoutée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\' ajout a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
  
     }
 
@@ -119,12 +83,12 @@ class RenovationController extends Controller
         $test=$renovation->update(
             
             [ 
-                'idBien'=>$request->idbien,
-                'motifRenovation'=>$request->motifrenovation,
-                'domaineRenovation'=>$request->domainerenovation,
-                'descriptionRenovation'=>$request->descriptionrenovation,
-                'montantRenovation'=>$request->montantrenovation,
-                'priorite'=>$request->priorite,
+                'idbien'=>$request->idbien,
+                'idartisan'=>$request->idartisan,
+                'libelle'=>$request->libelle,
+                'description'=>$request->description,
+                'montant'=>$request->montant,
+                'date'=>$request->date,
                 'statut'=>$request->statut,
          
          ]
@@ -132,13 +96,14 @@ class RenovationController extends Controller
          );
  
          if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'rénovation modifiée avec succès'
- 
-             ],200);
-         }
+            Toastr::success('intervention modifiée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('La modification a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -152,13 +117,14 @@ class RenovationController extends Controller
         $test=$renovation->delete();
  
          if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'rénovation supprimée avec succès'
- 
-             ],200);
-         }
+            Toastr::success('intervention supprimée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('La suppréssion a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     public function print(Renovation $renovation)

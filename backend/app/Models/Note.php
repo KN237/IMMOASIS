@@ -16,6 +16,7 @@ class Note extends Model
     protected $fillable = [
         'idartisan',
         'valeur',
+        'idu'
       
     ];
 }

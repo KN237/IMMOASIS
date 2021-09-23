@@ -11,6 +11,15 @@
 	<!-- Select2 CSS -->
 	<link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+
+    <style>
+ 
+        .card:hover {
+            transform: scale(1.06);
+
+        }
+
+    </style>
 	
 @endpush
 
@@ -36,73 +45,75 @@
 
 @section('content')
 
-    <div class="main-card mb-3 card">
-        <div class="card-body">
-            <table id="example" style="width:100%" class="table table-borderless table-hover text-center">
-                <thead>
-                    <tr style="font-size: 14px;">
 
-                        <th>Nom Complet</th>
+    <!-- First Row [Prosucts]-->
 
-                        <th>Téléphones</th>
+    <!-- Default dropup button -->
 
-                        <th>Ville</th>
+    <div class="border p-3 m-4" style="width: 20%;">
 
-                        <th>Profession</th>
+        <form action="/locataires/rechercher" method="post">
+            @csrf
+            <input type="text" name="nom" /> <button class="btn bg-primary-light" type="submit">
+                <i class="fas fa-search"> Rechercher</i>
+            </button>
 
-                        <th>Nom de son employeur</th>
 
-                        <th>Téléphone de son employeur</th>
+        </form>
 
-                        <th>Actions</th>
 
-                    </tr>
-                </thead>
-                <tbody>
+    </div>
 
-                    @foreach ($locataires as $l)
-                        <tr style="font-size: 14px;">
-                            @foreach ($users as $u)
+    <div class="row pb-5 mb-4">
+
+        @foreach ($locataires as $l)
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+
+                <!-- Card-->
+                <div class="card rounded shadow-sm border-0 ">
+                    <div class="card-body p-4"><img src="/locataire.jpg" alt="" class="img-fluid d-block">
+                        <center>
+
+                        @foreach ($users as $u)
                                 @if ($l->idu == $u->idu)
-                                    <td>{{ $u->nomcomplet }}</td>
-                                    <td>{{ $u->telephone }}</td>
+                                    <p class="h4 bold text-center">{{ $u->nomcomplet }}</p>
+                                    <p class="h5 bold text-center">{{ $u->telephone }}</p>
                                 @endif
                             @endforeach
 
-                            <td>{{ $l->ville }}</td>
+                            <p>{{ $l->ville }}</p>
 
-                            <td>{{ $l->profession }}</td>
+                            <p>{{ $l->profession }}</p>
 
-                            <td>{{ $l->nomcompletemployeur }}</td>
+                            <a href="profilelocataire/{{ $l->idlocataire }}" title="consulter" class="btn bg-primary-light mt-3"><i class="fas fa-eye"> Consulter</i></a>
 
-                            <td>{{ $l->telemployeur }}</td>
-
-                            <td style="display:flex;flex-direction: column;"> <center> <a href="profilelocataire/{{ $l->idlocataire }}" title="consulter" class="btn bg-info-light"><i class="fas fa-eye"> Consulter</i></a>
-                                    
-                                    <button title="inviter"
+                            <button title="inviter"
                                     onclick="event.preventDefault; var form=document.getElementById('form{{ $l->idlocataire }}'); form.submit();"
-                                    class="btn bg-warning-light"><i class="fas fa-plus"> Inviter</i></button> 
+                                    class="btn bg-info-light mt-3"><i class="fas fa-plus"> Inviter</i></button> 
                                 
-                                </center> </td>
                             <form id="form{{ $l->idlocataire }}" action="/locataire/{{ $l->idlocataire }}/inviter" method="post"
                                 style="display: none;">
                                 @csrf
 
                             </form>
+                                            
+                                    </p>
+
+
+                        </center>
+
+                    </div>
+                </div>
 
 
 
-                        </tr>
+            </div>
 
+        @endforeach
 
-                    @endforeach
-
-                </tbody>
-            </table>
-        </div>
     </div>
-
-
+    <center>{{ $locataires->links('pagination::bootstrap-4') }}</center>
 
 @endsection
 

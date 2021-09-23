@@ -18,5 +18,7 @@ class Artisan extends Model
         'nomcomplet',
         'profession',
         'telephone',
+        'ville',
+        'quartier',
     ];
 }

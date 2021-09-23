@@ -29,7 +29,7 @@
                 <div class="row align-items-center">
                     <div class="col-auto profile-image">
                         <a href="#">
-                            <img class="rounded-circle" alt="User Image" src="/house.png">
+                            <img class="rounded-circle" alt="User Image" src="/house.png" width="100" height="100">
                         </a>
                     </div>
 

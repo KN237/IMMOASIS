@@ -16,13 +16,14 @@ class Renovation extends Model
     public $primaryKey='idrenovation';
 
     protected $fillable = [
+
+        'idbien',
         'idu',
         'idartisan',
-        'motif',
-        'domaine',
+        'libelle',
         'description',
         'montant',
-        'priorite',
+        'date',
         'statut',
       
     ];

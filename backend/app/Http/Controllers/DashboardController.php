@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Bien;
 use App\Models\Note;
 use App\Models\Photo;
+use App\Models\Article;
 use App\Models\Artisan;
 use App\Models\Bailleur;
+use App\Models\Contrat;
 use App\Models\Location;
 use App\Models\TypeBien;
 use App\Models\Locataire;
 use App\Models\Invitation;
+use App\Models\Renovation;
 use App\Models\Utilisateur;
 use App\Models\TypeLocation;
 use Illuminate\Http\Request;
@@ -35,21 +38,27 @@ class DashboardController extends Controller
 
         foreach($biens as $bien){
 
-            $idBienArray=+$bien->idbien;
+            if(!array_search($bien->idbien,$idBienArray) ){
 
+                array_push($idBienArray,$bien->idbien);
+    
+                }
         }
 
-        $locations=Location::where('idbien', $idBienArray)->get();
+        $locations=Location::whereIn('idbien', $idBienArray)->get();
 
         $idLocationArray=[];
 
         foreach($locations as $location){
 
-            $idLocationArray=+$location->idlocataire;
+            if(!array_search($location->idlocataire,$idLocationArray) ){
 
+                array_push($idLocationArray,$location->idlocataire);
+    
+                }
         }
 
-       $locataires=Locataire::where('idlocataire', $idLocationArray)->get();
+       $locataires=Locataire::whereIn('idlocataire', $idLocationArray)->paginate(8);
 
         $users=Utilisateur::all();
 
@@ -113,7 +122,7 @@ class DashboardController extends Controller
 
     public function locataires(){
 
-        $locataires=Locataire::all();
+        $locataires=Locataire::paginate(8);
     
         $users=Utilisateur::all();
     
@@ -121,6 +130,87 @@ class DashboardController extends Controller
 
         return view('admin.locataires',compact('locataires','users','data'));
     }
+
+
+    public function rechercherlocataires(Request $request){
+
+
+        $users=Utilisateur::where('nomcomplet','like','%'.$request->nom.'%')->get();
+
+        $idUserArray=[];
+
+        foreach($users as $u){
+
+            if(!array_search($u->idu,$idUserArray) ){
+
+                array_push($idUserArray,$u->idu);
+    
+                }
+        }
+
+        $locataires=Locataire::whereIn('idu',$idUserArray)->get();
+    
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+
+        return view('admin.locataires',compact('locataires','users','data'));
+    }
+
+
+
+    public function recherchermeslocataires(Request $request){
+
+        $bailleur=Bailleur::where('idu',session('LoggedUser'))->first();
+
+        $biens=Bien::where('idbailleur',$bailleur->idbailleur)->get();
+
+        $idBienArray=[];
+
+        foreach($biens as $bien){
+
+            if(!array_search($bien->idbien,$idBienArray) ){
+
+                array_push($idBienArray,$bien->idbien);
+    
+                }
+        }
+
+
+        $locations=Location::where('idbien', $idBienArray)->get();
+
+        $idLocationArray=[];
+
+        foreach($locations as $location){
+
+            if(!array_search($location->idlocataire,$idLocationArray) ){
+
+                array_push($idLocationArray,$location->idlocataire);
+    
+                }
+        }
+
+        $users=Utilisateur::where('nomcomplet','like','%'.$request->nom.'%')->get();
+
+
+        $idUserArray=[];
+
+        foreach($users as $u){
+
+            if(!array_search($u->idu,$idUserArray) ){
+
+                array_push($idUserArray,$u->idu);
+    
+                }
+        }
+
+        $locataires=Locataire::where('idlocataire', $idLocationArray)->where('idu',$idUserArray)->get();
+    
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+
+        return view('admin.meslocataires',compact('locataires','users','data'));
+    }
+
+
+
 
     public function invitationsrecues(){
 
@@ -209,8 +299,28 @@ class DashboardController extends Controller
         $data = Utilisateur::where('idu', session('LoggedUser'))->first();
         $locataires= Locataire::all();
         $bailleurs = Bailleur::all();
-        $u=Utilisateur::all();
-        return view('admin.utilisateurs',compact('data','locataires','bailleurs','u'));
+        $users=Utilisateur::paginate(8);
+        return view('admin.utilisateurs',compact('data','locataires','bailleurs','users'));
+    }
+
+
+    function rechercherutilisateurs(Request $request){
+
+        $users= Utilisateur::where('role', $request->role)->where('nomcomplet','like','%'.$request->nom.'%')->get();
+        $locataires= Locataire::all();
+        $bailleurs = Bailleur::all();
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+        return view('admin.utilisateurs',compact('data','locataires','bailleurs','users'));
+    }
+
+
+    function filtrerutilisateurs($role){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+        $locataires= Locataire::all();
+        $bailleurs = Bailleur::all();
+        $users=Utilisateur::where('role',$role)->get();
+        return view('admin.utilisateurs',compact('data','locataires','bailleurs','users'));
     }
 
 
@@ -218,7 +328,18 @@ class DashboardController extends Controller
 
         $data = Utilisateur::where('idu', session('LoggedUser'))->first();
         $bailleurs = Bailleur::where('idu', $data->idu)->first();
-        $biens=Bien::where('idbailleur',$bailleurs->idbailleur)->get();
+        $biens=Bien::where('idbailleur',$bailleurs->idbailleur)->paginate(8);
+        $tb=TypeBien::all();
+        return view('admin.biens',compact('data','tb','biens'));
+    }
+
+
+
+    function rechercherbiens(Request $request){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+        $bailleurs = Bailleur::where('idu', $data->idu)->first();
+        $biens=Bien::where('nom','like','%'.$request->nom.'%')->where('idbailleur',$bailleurs->idbailleur)->get();
         $tb=TypeBien::all();
         return view('admin.biens',compact('data','tb','biens'));
     }
@@ -250,7 +371,21 @@ class DashboardController extends Controller
             }
         }
 
-       $photos=Photo::whereIn('idbien',$biensID)->get();
+       $photos=Photo::whereIn('idbien',$biensID)->paginate(8);
+
+        return view('admin.photosbiens',compact('data','photos','biens'));
+    }
+
+
+    function photosbien($id){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+
+        $bailleurs = Bailleur::where('idu', $data->idu)->first();
+
+        $biens=Bien::where('idbailleur',$bailleurs->idbailleur)->get();
+
+        $photos=Photo::where('idbien',$id)->get();
 
         return view('admin.photosbiens',compact('data','photos','biens'));
     }
@@ -397,10 +532,158 @@ class DashboardController extends Controller
 
         $artisans=Artisan::paginate(8);
 
+        $notes=Note::all();
 
-        $note=Note::all();
-
-        return view('admin.consulterartisans',compact('data','artisans','domaines','note'));
+        return view('admin.consulterartisans',compact('data','artisans','domaines','notes'));
     }
+
+
+    function filtrerartisans($profession){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+
+        $artisans=Artisan::all();
+
+        $domaines=[];
+
+        foreach($artisans as $b){
+
+            if(!array_search($b->profession, $domaines) ){
+
+                array_push($domaines,$b->profession);
+
+            }
+        }
+
+        $artisans=Artisan::where('profession','like', "%".$profession."%")->paginate(8);
+
+        $notes=Note::all();
+
+        return view('admin.consulterartisans',compact('data','artisans','domaines','notes'));
+    }
+
+
+    function artisan($id){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+
+        $artisan=Artisan::where('idartisan',$id)->first();
+
+        $notes=Note::where('idartisan',$id)->get();
+
+        return view('admin.artisan',compact('data','artisan','notes'));
+
+    }
+
+
+    function interventions(){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+
+        $users=Utilisateur::all();
+
+        if($data->role=="Bailleur"){
+
+        $bailleur=Bailleur::where('idu',$data->idu)->first();
+
+        $biens=Bien::where('idbailleur',$bailleur->idbailleur)->get();
+         
+        $biensID=[];
+
+        foreach($biens as $b){
+
+            if(!array_search($b->idbien, $biensID) ){
+
+                array_push($biensID,$b->idbien);
+
+            }
+        }
+
+        $renovations=Renovation::whereIn('idbien',$biensID)->get();
+
+
+        $artisansID=[];
+
+        foreach($renovations as $b){
+
+            if(!array_search($b->idartisan, $artisansID) ){
+
+                array_push($artisansID,$b->idartisan);
+
+            }
+        }
+
+        $artisans=Artisan::all();
+
+        return view('admin.renovation',compact('data','artisans','renovations','biens','users'));
+
+    }else{
+
+
+        $locataire=Locataire::where('idu',$data->idu)->first();
+
+        $locations=Location::where('idlocataire',$locataire->idlocataire)->get();
+
+        $locationsID=[];
+
+        foreach($locations as $b){
+
+            if(!array_search($b->idlocation, $locationsID) ){
+
+                array_push($locationsID,$b->idlocation);
+
+            }
+        }
+
+        $biens=Bien::whereIn('idbien',$locationsID)->get();
+         
+        $biensID=[];
+
+        foreach($biens as $b){
+
+            if(!array_search($b->idbien, $biensID) ){
+
+                array_push($biensID,$b->idbien);
+
+            }
+        }
+
+        $renovations=Renovation::whereIn('idbien',$biensID)->get();
+
+
+        $artisansID=[];
+
+        foreach($renovations as $b){
+
+            if(!array_search($b->idartisan, $artisansID) ){
+
+                array_push($artisansID,$b->idartisan);
+
+            }
+        }
+
+        $artisans=Artisan::all();
+
+        return view('admin.renovation',compact('data','artisans','renovations','biens','users'));
+
+        }
+
+    }
+
+    function articles(){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+
+        $bailleur= Bailleur::where('idu',session('LoggedUser'))->first();
+
+        $articles=Article::where('idbailleur',$bailleur->idbailleur)->get();
+
+        $contrats=Contrat::all();
+
+        $tb=TypeBien::all();
+
+        return view('admin.articles',compact('data','articles','contrats','tb'));
+    }
+
 
 }

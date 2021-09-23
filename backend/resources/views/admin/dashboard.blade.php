@@ -38,7 +38,7 @@ Tableau de bord
                     <div class="widget-subheading">Total Clients Profit</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>$ 568</span></div>
+                    <div class="widget-numbers text-white"><span>FCFA 568</span></div>
                 </div>
             </div>
         </div>

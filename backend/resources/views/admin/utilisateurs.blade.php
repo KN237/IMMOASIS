@@ -7,6 +7,23 @@
 @endsection
 
 
+@push('page-css')
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    <style>
+ 
+        .card:hover {
+            transform: scale(1.06);
+
+        }
+
+    </style>
+
+@endpush
+
+
 @section('icon')
 
     <i class="metismenu-icon fas fa-users"></i>
@@ -28,48 +45,105 @@
 
 @section('content')
 
-    <div class="main-card mb-3 card">
-        <div class="card-body">
-            <table id="example" style="width:100%" class="table table-borderless table-hover text-center">
-                <thead>
-                    <tr style="font-size: 14px;">
+    <!-- First Row [Prosucts]-->
 
-                        <th>Nom Complet</th>
+    <!-- Default dropup button -->
 
-                        <th>Téléphones</th>
+    <div class="d-flex">
+        <div class="dropdown m-4">
 
-                        <th>Email</th>
+            <button class="btn bg-primary-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+    
+                <i class="fas fa-filter"> Filtrer par role </i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    
+    
+                    <a class="dropdown-item" href="/dashboard/utilisateurs/Bailleur">Bailleur</a>
+    
+                    <a class="dropdown-item" href="/dashboard/utilisateurs/Locataire">Locataire</a>
+    
+                    <a class="dropdown-item" href="/dashboard/utilisateurs/Administrateur">Administrateur</a>
+    
+            </div>
+        </div>
+    
+        <div class="border p-3 ml-auto" style="width: 20%;">
+    
+            <form action="/utilisateurs/rechercher" method="post">
+    
+                @csrf
+    
+               <div class="d-flex">
+                   
+                <input type="text" name="nom" class="mr-2 mb-4" style="height:30px;" />
+                
+                <select name="role" style="border: none;height:30px;" class="btn bg-primary-light">
+    
+                   <option value="Administrateur">Administrateur</option>
+    
+                   <option value="Bailleur">Bailleur</option>
+    
+                   <option value="Locataire">Locataire</option>
+    
+    
+                    
+               </select>
+    
+    
+              </div> 
+    
+    
+              <center><button class="btn bg-primary-light" type="submit">
+                <i class="fas fa-search"> Rechercher</i>
+            </button></center>  
+    
+    
+            </form>
+    
+    
+        </div>
 
-                        <th>Role</th>
+    </div>
 
-                        <th>Actions</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach ($u as $l)
-                        <tr style="font-size: 14px;">
-
-                            <td>{{ $l->nomcomplet }}</td>
-
-                            <td>{{ $l->telephone }}</td>
-
-                            <td>{{ $l->email }}</td>
-
-                            <td>{{ $l->role }}</td>
+    
 
 
-                            <td style="display:flex;flex-direction: column;">
+    <div class="row pb-5 mb-4">
 
-                                <center> @if($l->role=="Locataire") 
+        @foreach ($users as $u)
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+
+                <!-- Card-->
+                <div class="card rounded shadow-sm border-0 ">
+
+                    <div class="card-body p-4">
+
+                        <center>
+
+                        <img src="/locataire.jpg" alt="" class="img-fluid d-block" >
+
+
+                            <p>{{ $u->nomcomplet }}</p>
+
+                            <p>{{ $u->telephone }}</p>
+
+                            <p>{{ $u->email }}</p>
+
+
+                            <p>{{ $u->role }}</p>
+
+
+                            @if($u->role=="Locataire") 
                                     
                                     @foreach ($locataires as $lo)
 
-                                    @if($lo->idu==$l->idu)
+                                    @if($lo->idu==$u->idu)
 
                                     <a href="profilelocataire/{{ $lo->idlocataire }}" title="consulter"
-                                        class="btn bg-info-light"><i class="fas fa-eye"> Consulter</i></a>
+                                        class="btn bg-primary-light mt-3"><i class="fas fa-eye"> Consulter</i></a>
                                       @endif  
                                     @endforeach
 
@@ -79,10 +153,10 @@
 
                                         @foreach ($bailleurs as $lo)
 
-                                        @if($lo->idu==$l->idu) 
+                                        @if($lo->idu==$u->idu) 
                                         
                                         <a href="profilebailleur/{{ $lo->idbailleur }}" title="consulter"
-                                            class="btn bg-info-light "><i class="fas fa-eye"> Consulter</i></a>
+                                            class="btn bg-primary-light mt-3 "><i class="fas fa-eye"> Consulter</i></a>
                                             
                                             @endif  
 
@@ -90,24 +164,24 @@
                                             
                                             @endif
 
-                                    <button title="supprimer"
-                                    data-toggle="modal" data-target="#supp{{ $l->idu}}"
-                                        class="btn bg-danger-light"><i class="fas fa-trash"> Supprimer</i></button>
 
-                                </center>
-                            </td>
+                                            <button title="supprimer"
+                                    data-toggle="modal" data-target="#supp{{ $u->idu}}"
+                                        class="btn bg-danger-light mt-3"><i class="fas fa-trash"> Supprimer</i></button>
+                                            
  
-                        </tr>
+                        </center>
+            </div>
+                </div>
 
 
-                    @endforeach
 
-                </tbody>
-            </table>
-        </div>
+            </div>
+
+        @endforeach
+
     </div>
-
-
+    <center>{{ $users->links('pagination::bootstrap-4') }}</center>
 
 @endsection
 
@@ -115,7 +189,7 @@
     <script src="/main/assets/js/jquery-2.1.0.min.js"></script>
 @endpush
 
-@foreach ($u as $l)
+@foreach ($users as $l)
 
 <div class="modal fade" id="supp{{ $l->idu }}" tabindex="-1" role="dialog"
   aria-labelledby="mySmallModalLabel" aria-hidden="true">

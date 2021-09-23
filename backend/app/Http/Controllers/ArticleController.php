@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bien;
-use App\Models\Bailleur;
 use App\Models\Article;
+use App\Models\Bailleur;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ArticleController extends Controller
 {
@@ -17,15 +18,6 @@ class ArticleController extends Controller
     public function index()
     {
         $article=Article::all();
-
-        return $article;
-    }
-
-    public function indexBailleur()
-    {
-        $bailleur=Bailleur::where('idu',session('loggedUser')->idu)->get();
-        $bien=Bien::where('idbailleur',$bailleur->idbailleur)->get();
-        $article=article::where('idbien',$bien->idbien)->get();
 
         return $article;
     }
@@ -49,28 +41,28 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $bailleur=Bailleur::where('idu',session('loggedUser')->idu)->get();
+        $bailleur=Bailleur::where('idu',session('LoggedUser'))->first();
 
         $article=article::create(
             
             [ 
-                'idBailleur'=>$bailleur->idbailleur,
-                'titreArticle'=>$request->titrearticle,
+                'idbailleur'=>$bailleur->idbailleur,
+                'titre'=>$request->titre,
                 'idcontrat'=>$request->idcontrat,
-                'descriptionArticle'=>$request->descriptionarticle,
+                'description'=>$request->description,
          ]
          
          );
  
          if($article){
- 
-             return response()->json([
- 
-                 'succes'=>'article ajouté avec succès'
- 
-             ],200);
-         }
- 
+            Toastr::success('article ajouté avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -107,22 +99,23 @@ class ArticleController extends Controller
         $test=$article->update(
             
             [ 
-                'titreArticle'=>$request->titrearticle,
+                'titre'=>$request->titre,
                 'idcontrat'=>$request->idcontrat,
-                'descriptionArticle'=>$request->descriptionarticle,
+                'description'=>$request->description,
          
          ]
          
          );
  
          if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'article modifié avec succès'
- 
-             ],200);
-         }
+            Toastr::success('article modifié avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -135,14 +128,15 @@ class ArticleController extends Controller
     {
         $test=$article->delete();
  
-         if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'article supprimé avec succès'
- 
-             ],200);
-         }
+            if($test){
+                Toastr::success('article supprimé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+                return back();
+            }else{
+               
+                    Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                    return back();
+                    
+                }
     }
 
 

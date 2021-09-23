@@ -37,7 +37,11 @@ Route::get('/dashboard','App\Http\Controllers\DashboardController@dashboard')->m
 
 Route::get('/dashboard/meslocataires','App\Http\Controllers\DashboardController@meslocataires')->middleware('AuthCheck');
 
+Route::post('/meslocataires/rechercher','App\Http\Controllers\DashboardController@recherchermeslocataires');
+
 Route::get('/dashboard/locataires','App\Http\Controllers\DashboardController@locataires')->middleware('AuthCheck');
+
+Route::post('/locataires/rechercher','App\Http\Controllers\DashboardController@rechercherlocataires');
 
 Route::get('/dashboard/profilelocataire/{id}','App\Http\Controllers\DashboardController@showlocataire')->middleware('AuthCheck');
 
@@ -51,7 +55,13 @@ Route::get('/dashboard/invitationsenvoyees','App\Http\Controllers\DashboardContr
 
 Route::get('/dashboard/utilisateurs','App\Http\Controllers\DashboardController@utilisateurs')->middleware('AuthCheck');
 
+Route::post('/utilisateurs/rechercher','App\Http\Controllers\DashboardController@rechercherutilisateurs');
+
+Route::get('/dashboard/utilisateurs/{role}','App\Http\Controllers\DashboardController@filtrerutilisateurs')->middleware('AuthCheck');
+
 Route::get('/dashboard/biens','App\Http\Controllers\DashboardController@biens')->middleware('AuthCheck');
+
+Route::post('/biens/rechercher','App\Http\Controllers\DashboardController@rechercherbiens');
 
 Route::get('/dashboard/infosbien/{id}','App\Http\Controllers\DashboardController@infosbien')->middleware('AuthCheck');
 
@@ -63,9 +73,19 @@ Route::get('/dashboard/typelocations','App\Http\Controllers\DashboardController@
 
 Route::get('/dashboard/photosbiens','App\Http\Controllers\DashboardController@photosbiens')->middleware('AuthCheck');
 
+Route::get('/dashboard/photosbien/{id}','App\Http\Controllers\DashboardController@photosbien')->middleware('AuthCheck');
+
 Route::get('/dashboard/packages','App\Http\Controllers\DashboardController@packages')->middleware('AuthCheck');
 
-Route::get('/dashboard/artisan','App\Http\Controllers\DashboardController@consulterartisans')->middleware('AuthCheck');
+Route::get('/dashboard/artisans','App\Http\Controllers\DashboardController@consulterartisans')->middleware('AuthCheck');
+
+Route::get('/dashboard/artisan/{id}','App\Http\Controllers\DashboardController@artisan')->middleware('AuthCheck');
+
+Route::get('/dashboard/artisans/{profession}','App\Http\Controllers\DashboardController@filtrerartisans')->middleware('AuthCheck');
+
+Route::get('/dashboard/interventions','App\Http\Controllers\DashboardController@interventions')->middleware('AuthCheck');
+
+Route::get('/dashboard/articles','App\Http\Controllers\DashboardController@articles')->middleware('AuthCheck');
 
 
 /***********************************  Fin Dashboard  **********************************/
@@ -107,11 +127,6 @@ Route::get('etat_des_lieux/locataire', 'App\Http\Controllers\EtatLieuxController
 Route::Resource('renovation', 'App\Http\Controllers\RenovationController');
 
 Route::get('renovation/pdf/{renovation}', 'App\Http\Controllers\RenovationController@print');
-
-Route::get('renovation/bailleur', 'App\Http\Controllers\RenovationController@indexBailleur');
-
-Route::get('renovation/locataire', 'App\Http\Controllers\RenovationController@indexLocataire');
-
 
 // inventaire //
 

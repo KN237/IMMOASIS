@@ -96,7 +96,7 @@
                                             class="dropdown-menu dropdown-menu-right">
                                             <a href="/dashboard/monprofile" type="button" tabindex="0" class="dropdown-item">
                                                 <i class="fas fa-users-cog m-1"></i>Mon compte</a>
-                                            <a type="button" tabindex="0" class="dropdown-item" data-toggle="modal" data-target="#supp">
+                                            <a type="button" tabindex="0" class="dropdown-item" data-toggle="modal" data-target="#dec">
 
                                                <i class="fas fa-sign-out-alt m-1"></i>
 
@@ -326,7 +326,7 @@
                             </li>
 
                             <li class="mb-4">
-                                <a href="">
+                                <a href="/dashboard/articles">
                                     <i class="metismenu-icon fas fa-newspaper"></i>
                                    Articles
 
@@ -337,7 +337,7 @@
 
                             <li class="mb-4">
 
-                                <a href="/dashboard/artisan">
+                                <a href="/dashboard/artisans">
 
                                     <i class="metismenu-icon fas fa-hard-hat"></i>
 
@@ -346,22 +346,6 @@
                                 </a>
 
                             </li>
-
-
-
-                            <li class="mb-4">
-                                
-                                <a href="/dashboard/artisans">
-
-                                    <i class="metismenu-icon fas fa-hard-hat"></i>
-
-                                    Gestion des artisans
-
-                                </a>
-
-                            </li>
-
-
 
                             <li class="mb-4">
                                 <a href="/dashboard/packages">
@@ -473,7 +457,7 @@
 
      <!-- Deconnexion-->
 
-  <div class="modal fade" id="supp" tabindex="-1" role="dialog"
+  <div class="modal fade" id="dec" tabindex="-1" role="dialog"
   aria-labelledby="mySmallModalLabel" aria-hidden="true">
 
   <div class="modal-dialog">

@@ -72,7 +72,7 @@
                                 <td style="display:flex;flex-direction: column">
 
                                     <center><button title="modifier" data-toggle="modal"
-                                            data-target="#mod2{{ $p->idpackage }}" class="btn bg-info-light"><i
+                                            data-target="#mod2{{ $p->idpackage }}" class="btn bg-primary-light"><i
                                                 class="far fa-eye"></i> Modifier</button>
                                         <button title="supprimer" data-toggle="modal"
                                             data-target="#supp{{ $p->idpackage }}"

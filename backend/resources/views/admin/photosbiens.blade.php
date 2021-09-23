@@ -14,10 +14,19 @@
 @endsection
 
 @push('page-css')
-	<!-- Select2 CSS -->
-	<link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-	
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    <style>
+ 
+        .card:hover {
+            transform: scale(1.06);
+
+        }
+
+    </style>
+
 @endpush
 
 @section('bouton')
@@ -35,55 +44,73 @@
 
         </div>
     </div>
-
-
 @endsection
 
-@section('content')
+    @section('content')
 
-    <div class="main-card mb-3 card">
-        <div class="card-body">
-            <table id="example" style="width:100%" class="table table-borderless table-hover text-center">
-                <thead>
-                    <tr style="font-size: 14px;">
+    <!-- First Row [Prosucts]-->
 
-                        <th>Numéro du bien </th>
+    <!-- Default dropup button -->
+    <div class="dropdown m-4">
+        <button class="btn bg-primary-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-filter"> Filtrer par bien </i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                        <th>Photo </th>
+            @foreach ($biens as $d)
 
-                        <th>Actions</th>
+                <a class="dropdown-item" href="/dashboard/photosbien/{{ $d->idbien }}"> {{ $d->nom }} / {{ $d->quartier }} </a>
 
-                    </tr>
-                </thead>
-                <tbody>
+            @endforeach
 
-                    @foreach($photos as $p)
-                    
-                        <tr style="font-size: 14px;">
-
-                            <td>{{ $p->idbien }}</td>
-
-                            <td> <img src="/storage/photosbiens/{{ $p->nom }}" alt="photo" width="100" height="100"></td>
-
-                            <td style="display:flex;flex-direction: column">
-
-                                <center> <button title="supprimer"
-                                    data-toggle="modal" data-target="#supp{{ $p->idphoto}}"
-                                        class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i> Supprimer</button>
-                                </center>
-                            </td>
-
-                        </tr>
-
-
-                    @endforeach
-
-                </tbody>
-            </table>
         </div>
     </div>
 
 
+    <div class="row pb-5 mb-4">
+
+        @foreach ($photos as $b)
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+
+                <!-- Card-->
+                <div class="card rounded shadow-sm border-0 ">
+                    <div class="card-body p-4"><img src="/storage/photosbiens/{{ $b->nom }}" alt="" class="img-fluid d-block">
+
+                        <center>
+
+                        @foreach ($biens as $u)
+
+                          @if ($b->idbien == $u->idbien)
+
+                            <p> {{ $u->nom }} / {{ $u->quartier }} / {{ $u->ville }}</p>
+
+                          @endif
+
+                        @endforeach
+
+                            <p class="m-3">{{ $b->nom }}</p>
+
+
+                            <button title="supprimer"
+                                    data-toggle="modal" data-target="#supp{{ $b->idphoto}}"
+                                        class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i> Supprimer</button>
+                                            
+ 
+                        </center>
+            </div>
+                </div>
+
+
+
+            </div>
+
+        @endforeach
+
+    </div>
+
+    <center>{{ $photos->links('pagination::bootstrap-4') }}</center>
 
 @endsection
 

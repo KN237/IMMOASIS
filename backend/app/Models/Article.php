@@ -15,6 +15,7 @@ class Article extends Model
 
     protected $fillable = [
         'idbailleur',
+        'idcontrat',
         'titre',
         'description'
     ];
