@@ -25,6 +25,8 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
+
+    return view('pdf.inventaire');
     
 });
 
@@ -87,6 +89,16 @@ Route::get('/dashboard/interventions','App\Http\Controllers\DashboardController@
 
 Route::get('/dashboard/articles','App\Http\Controllers\DashboardController@articles')->middleware('AuthCheck');
 
+Route::get('/dashboard/inventaires','App\Http\Controllers\DashboardController@inventaires')->middleware('AuthCheck');
+
+Route::get('/dashboard/configinventaire/{id}','App\Http\Controllers\DashboardController@configinventaire')->middleware('AuthCheck');
+
+Route::get('/dashboard/etatlieux','App\Http\Controllers\DashboardController@etatlieux')->middleware('AuthCheck');
+
+Route::get('/dashboard/configetatlieux/{id}','App\Http\Controllers\DashboardController@configetatlieux')->middleware('AuthCheck');
+
+Route::get('/dashboard/factures','App\Http\Controllers\DashboardController@factures')->middleware('AuthCheck');
+
 
 /***********************************  Fin Dashboard  **********************************/
 
@@ -115,7 +127,7 @@ Route::Resource('photo', 'App\Http\Controllers\PhotoController');
 
 Route::Resource('etat_des_lieux', 'App\Http\Controllers\EtatLieuxController');
 
-Route::get('etat_des_lieux/pdf/{etatLieux}', 'App\Http\Controllers\EtatLieuxController@print');
+Route::get('etat_des_lieux/pdf/{etatlieux}', 'App\Http\Controllers\EtatLieuxController@print');
 
 Route::get('etat_des_lieux/bailleur', 'App\Http\Controllers\EtatLieuxController@indexBailleur');
 
@@ -232,7 +244,19 @@ Route::Resource('piece', 'App\Http\Controllers\PieceController');
 
 //Equipement/
 
-Route::Resource('tequipement', 'App\Http\Controllers\EquipementController');
+Route::Resource('equipement', 'App\Http\Controllers\EquipementController');
+
+
+
+//Etat equipement/
+
+Route::Resource('etatequipement', 'App\Http\Controllers\EtatEquipementController');
+
+
+//Etat piece/
+
+Route::Resource('etatpiece', 'App\Http\Controllers\EtatPieceController');
+
 
 
 //enregistrement signature //
@@ -246,23 +270,23 @@ Route::post('/bailleur/sign/{id}', 'App\Http\Controllers\SignBailleurController@
 // signature inventaire //
 
 
-Route::post('/inventaire/locataire/sign', 'App\Http\Controllers\InventaireController@signLocataire');
+Route::get('/inventaire/locataire/sign/{id}', 'App\Http\Controllers\InventaireController@signLocataire');
 
-Route::post('/inventaire/bailleur/sign', 'App\Http\Controllers\InventaireController@signBailleur');
+Route::get('/inventaire/bailleur/sign/{id}', 'App\Http\Controllers\InventaireController@signBailleur');
 
 
 // signature contrat//
 
 
-Route::post('/contrat/locataire/sign', 'App\Http\Controllers\ContratController@signLocataire');
+Route::get('/contrat/locataire/sign/{id}', 'App\Http\Controllers\ContratController@signLocataire');
 
-Route::post('/contrat/bailleur/sign', 'App\Http\Controllers\ContratController@signBailleur');
+Route::get('/contrat/bailleur/sign/{id}', 'App\Http\Controllers\ContratController@signBailleur');
 
 
 
 // signature etat des lieux /
 
 
-Route::post('/etat_des_lieux/locataire/sign', 'App\Http\Controllers\EtatLieuxController@signLocataire');
+Route::get('/etat_des_lieux/locataire/sign/{id}', 'App\Http\Controllers\EtatLieuxController@signLocataire');
 
-Route::post('/etat_des_lieux/bailleur/sign', 'App\Http\Controllers\EtatLieuxController@signBailleur');
+Route::get('/etat_des_lieux/bailleur/sign/{id}', 'App\Http\Controllers\EtatLieuxController@signBailleur');

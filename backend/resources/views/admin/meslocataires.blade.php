@@ -92,15 +92,6 @@
                             <a href="profilelocataire/{{ $l->idlocataire }}" title="consulter"
                                 class="btn bg-primary-light mt-3"><i class="fas fa-eye"> Consulter</i></a>
 
-                            <button title="inviter"
-                                onclick="event.preventDefault; var form=document.getElementById('form{{ $l->idlocataire }}'); form.submit();"
-                                class="btn bg-info-light mt-3"><i class="fas fa-plus"> Inviter</i></button>
-
-                            <form id="form{{ $l->idlocataire }}" action="/locataire/{{ $l->idlocataire }}/inviter"
-                                method="post" style="display: none;">
-                                @csrf
-
-                            </form>
 
                             </p>
 
@@ -191,14 +182,14 @@
                     </center>
 
                     <center class="mt-2">
-                        <h4> Voulez-vous vraiment vous supprimer ce locataire de votre liste?</h4>
+                        <h4> Voulez-vous vraiment supprimer ce locataire de votre liste?</h4>
                     </center>
 
-                    <center class="mt-5 mb-4"><button
+                    <center class="mt-5 mb-4"><a
                             onclick="event.preventDefault; var form=document.getElementById('form2{{ $l->idlocataire }}'); form.submit();"
                             class="btn bg-success-light mr-3 p-2 rounded text-white"><i class="fas fa-check mr-1"></i>
-                            Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close"
-                            class="btn bg-danger-light  p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button>
+                            Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close"
+                            class="btn bg-danger-light  p-2 rounded "><i class="fas fa-times"></i> Annuler</a>
                     </center>
                     <form id="form2{{ $l->idlocataire }}" action="/locataire/{{ $l->idlocataire }}" method="get"
                         style="display: none;">

@@ -15,9 +15,13 @@
 
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <!-- Select2 CSS -->
-	<link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+<!-- Select2 CSS -->
+<link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+     <!-- Start of HubSpot Embed Code -->
+     <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25029013.js"></script>
+     <!-- End of HubSpot Embed Code -->
 
     @stack('page-css')
 
@@ -472,7 +476,7 @@
 
 <center class="mt-2"><h4> Voulez-vous vraiment vous déconnecter ?</h4></center>
 
-<center class="mt-5 mb-4"><a href="/logout" class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <button type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
+<center class="mt-5 mb-4"><a href="/logout" class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-times"></i> Annuler</a></center>
 
 
           </div>

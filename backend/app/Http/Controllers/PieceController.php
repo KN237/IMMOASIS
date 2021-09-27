@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Piece;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class PieceController extends Controller
 {
@@ -42,21 +43,22 @@ class PieceController extends Controller
 
             [
 
-                'nomPiece'=>$request->nompiece,
-                'idBien'=>$request->idbien
+                'nom'=>$request->nom,
+                'idbien'=>$request->idbien
 
             ]
 
         ); 
 
-        if ($piece) {
-
-            return response()->json([
-
-                'succes' => 'Piece ajouté avec succès'
-
-            ], 200);
-        }
+        if($piece){
+            Toastr::success('pièce ajoutée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -94,21 +96,21 @@ class PieceController extends Controller
 
             [
 
-                'nomPiece'=>$request->nompiece,
-                'idBien'=>$request->idbien
+                'nom'=>$request->nom,
 
             ]
 
         );
 
-        if ($test) {
-
-            return response()->json([
-
-                'succes' => 'Piece modifié avec succès'
-
-            ], 200);
-        }
+        if($test){
+            Toastr::success('pièce modifiée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
 
@@ -125,13 +127,14 @@ class PieceController extends Controller
     {
         $test = $piece->delete();
 
-        if ($test) {
-
-            return response()->json([
-
-                'succes' => 'Piece supprimé avec succès'
-
-            ], 200);
-        }
+        if($test){
+            Toastr::success('pièce supprimée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 }

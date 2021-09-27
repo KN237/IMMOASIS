@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bien;
+use App\Models\Piece;
 use App\Models\Bailleur;
-use App\Models\Locataire;
 use App\Models\Location;
+use App\Models\Locataire;
+use App\Models\Equipement;
 use App\Models\Inventaire;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use App\Models\EtatEquipement;
+use Brian2694\Toastr\Facades\Toastr;
 
 class InventaireController extends Controller
 {
@@ -62,22 +67,22 @@ class InventaireController extends Controller
         $inventaire = Inventaire::create(
 
             [
-                'idBien' => $request->idbien,
-                'descriptionInventaire' => $request->descriptioninventaire,
-                'dateInventaire' => $request->dateinventaire,
+                'idbien' => $request->idbien,
+                'description' => $request->description,
+                'date' => $request->date,
 
             ]
 
         );
-
-        if ($inventaire) {
-
-            return response()->json([
-
-                'succes' => 'inventaire ajouté avec succès'
-
-            ], 200);
-        }
+        if($inventaire){
+            Toastr::success('inventaire ajouté avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -114,65 +119,68 @@ class InventaireController extends Controller
         $test = $inventaire->update(
 
             [
-                'idBien' => $request->idbien,
-                'descriptionInventaire' => $request->descriptioninventaire,
-                'dateInventaire' => $request->dateinventaire,
+                'idbien' => $request->idbien,
+                'description' => $request->description,
+                'date' => $request->date,
 
             ]
 
         );
 
-        if ($test) {
-
-            return response()->json([
-
-                'succes' => 'inventaire modifié avec succès'
-
-            ], 200);
-        }
+        if($test){
+            Toastr::success('inventaire modifié avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
-    public function signBailleur(Inventaire $inventaire)
+    public function signBailleur($id)
     {
-        $test=$inventaire->update(
+        $test=Inventaire::where('idinventaire',$id)->update(
             
             [ 
-                'signBailleur'=>1,
+                'signbailleur'=>1,
          
          ]
          
          );
  
          if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'inventaire signé par le bailleur avec succès'
- 
-             ],200);
-         }
+            Toastr::success('inventaire signé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
 
-    public function signLocataire(Inventaire $inventaire)
+    public function signLocataire($id)
     {
-        $test=$inventaire->update(
+        $test=Inventaire::where('idinventaire',$id)->update(
             
             [ 
-                'signLocataire'=>1,
+                'signlocataire'=>1,
          
          ]
          
          );
  
          if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'inventaire signé par le locataire avec succès'
- 
-             ],200);
-         }
+            Toastr::success('inventaire signé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
 
@@ -186,23 +194,73 @@ class InventaireController extends Controller
     {
         $test = $inventaire->delete();
 
-        if ($test) {
-
-            return response()->json([
-
-                'succes' => 'inventaire supprimé avec succès'
-
-            ], 200);
-        }
+        if($test){
+            Toastr::success('inventaire supprimé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     public function print(Inventaire $inventaire)
     {
+        
+        $users=Utilisateur::all();
+
+        $bien=Bien::where('idbien',$inventaire->idbien)->first();
+
+        $bailleur=Bailleur::where('idbailleur',$bien->idbailleur)->first();
+
+       $location=Location::where('idbien',$bien->idbien)->first();
+
+    $locataire=Locataire::where('idlocataire',$location->idlocataire)->first();
+         
+        $pieces=Piece::where('idbien',$bien->idbien)->get();
+
+        $piecesID=[];
+
+        foreach($pieces as $b){
+
+            if(!array_search($b->idpiece, $piecesID) ){
+
+                array_push($piecesID,$b->idpiece);
+
+            }
+        }
+
+
+        $equipements=Equipement::whereIn('idpiece',$piecesID)->get();
+
+        $equipementsID=[];
+
+        foreach($equipements as $b){
+
+            if(!array_search($b->idequipement, $equipementsID) ){
+
+                array_push($equipementsID,$b->idequipement);
+
+            }
+        }
+
+        $etatsequipements=EtatEquipement::where('date',$inventaire->date)->whereIn('idequipement',$equipementsID)->get();
+
+        if($etatsequipements){
 
         $pdf = app('dompdf.wrapper');
 
-        $pdf->loadView('pdf/inventaire', ['inventaire' => $inventaire]);
+        $pdf->loadView('pdf/inventaire', ['inventaire' => $inventaire,'bailleur'=>$bailleur,'pieces'=>$pieces,'equipements'=>$equipements,'bien'=>$bien,'users'=>$users,'locataire'=>$locataire,'etatsequipements'=>$etatsequipements]);
 
         return $pdf->stream('inventaire' . $inventaire->idbien . now() . 'pdf');
+
+        }else{
+
+            Toastr::warning('Veuillez tout d\'abord configurer l\'inventaire','attention',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+            return back();
+
+        }
+        
     }
 }

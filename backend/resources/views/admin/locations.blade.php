@@ -172,13 +172,13 @@
 
                                 <td style="display:flex;flex-direction: column">
 
-                                    <center><button title="modifier" data-toggle="modal"
+                                    <center><a title="modifier" data-toggle="modal"
                                             data-target="#mod2{{ $l->idlocation }}" class="btn bg-primary-light"><i
-                                                class="far fa-eye"></i> Modifier</button>
-                                        <button title="supprimer" data-toggle="modal"
+                                                class="far fa-eye"></i> Modifier</a>
+                                        <a title="supprimer" data-toggle="modal"
                                             data-target="#supp{{ $l->idlocation }}"
                                             class="btn bg-danger-light deletebtn"><i class="fas fa-trash">
-                                                Supprimer</i></button>
+                                                Supprimer</i></a>
                                     </center>
                                 </td>
 
@@ -462,16 +462,16 @@
                         </center>
 
                         <center class="mt-2">
-                            <h4> Voulez-vous vraiment vous supprimer cette location de votre liste?</h4>
+                            <h4> Voulez-vous vraiment supprimer cette location de votre liste ?</h4>
                         </center>
 
-                        <center class="mt-5 mb-4"><button
+                        <center class="mt-5 mb-4"><a
                                 onclick="event.preventDefault; var form=document.getElementById('form3{{ $l->idlocation }}'); form.submit();"
                                 class="btn bg-success-light mr-3 p-2 rounded text-white"><i
                                     class="fas fa-check mr-1"></i>
-                                Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close"
-                                class="btn bg-danger-light p-2 rounded "><i class="fas fa-trash mr-1"></i>
-                                Annuler</button>
+                                Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close"
+                                class="btn bg-danger-light p-2 rounded "><i class="fas fa-times"></i>
+                                Annuler</a>
                         </center>
                         <form id="form3{{ $l->idlocation }}" action="/location/{{ $l->idlocation }}" method="post"
                             style="display: none;">

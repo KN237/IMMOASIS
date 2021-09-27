@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bien;
+use App\Models\Piece;
 use App\Models\Bailleur;
 use App\Models\Location;
 use App\Models\EtatLieux;
+use App\Models\EtatPiece;
 use App\Models\Locataire;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class EtatLieuxController extends Controller
 {
@@ -63,9 +67,10 @@ class EtatLieuxController extends Controller
         $etatLieux=EtatLieux::create(
             
             [ 
-                'idBien'=>$request->idBien,
-                'descriptionEtatLieu'=>$request->descriptionetatlieu,
-                'dateEtatLieu'=>$request->dateEtatLieu,
+                'idbien'=>$request->idbien,
+                'description'=>$request->description,
+                'datedebut'=>$request->date,
+                'datefin'=>$request->date,
                 
          
          ]
@@ -73,109 +78,92 @@ class EtatLieuxController extends Controller
          );
  
          if($etatLieux){
- 
-             return response()->json([
- 
-                 'succes'=>'état des lieux ajouté avec succès'
- 
-             ],200);
-         }
+            Toastr::success('état des lieux ajouté avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
  
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\EtatLieux  $etatLieux
-     * @return \Illuminate\Http\Response
-     */
-    public function show(EtatLieux $etatLieux)
-    {
-        return $etatLieux;
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\EtatLieux  $etatLieux
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(EtatLieux $etatLieux)
-    {
-        return $etatLieux;
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\EtatLieux  $etatLieux
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, EtatLieux $etatLieux)
+    public function update(Request $request,$id)
     {
-        $test=$etatLieux->update(
+        $test=EtatLieux::where('idetatlieu',$id)->update(
             
             [ 
-                'idBien'=>$request->idBien,
-                'descriptionEtatLieu'=>$request->descriptionetatlieu,
-                'dateEtatLieu'=>$request->dateEtatLieu,
+                'description'=>$request->description,
+                'datedebut'=>$request->date,
+                'datefin'=>$request->date,
+                
          
          ]
          
          );
  
          if($test){
+            Toastr::success('état des lieux modifié avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
  
-             return response()->json([
- 
-                 'succes'=>'état des lieux modifié avec succès'
- 
-             ],200);
-         }
     }
 
-    public function signBailleur(EtatLieux $etatLieux)
+
+ 
+
+
+    public function signBailleur($id)
     {
-        $test=$etatLieux->update(
+        $test=EtatLieux::where('idetatlieu',$id)->update(
             
             [ 
-                'signBailleur'=>1,
+                'signbailleur'=>1,
          
          ]
          
          );
  
          if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'état des lieux  signé par le bailleur avec succès'
- 
-             ],200);
-         }
+            Toastr::success('état des lieux signé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
 
-    public function signLocataire(EtatLieux $etatLieux)
+    public function signLocataire($id)
     {
-        $test=$etatLieux->update(
+        $test=EtatLieux::where('idetatlieu',$id)->update(
             
             [ 
-                'signLocataire'=>1,
+                'signlocataire'=>1,
          
          ]
          
          );
  
          if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'état des lieux signé par le locataire avec succès'
- 
-             ],200);
-         }
+            Toastr::success('état des lieux signé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -184,28 +172,64 @@ class EtatLieuxController extends Controller
      * @param  \App\Models\EtatLieux  $etatLieux
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EtatLieux $etatLieux)
+
+    public function destroy($id)
     {
-        $test=$etatLieux->delete();
+        $test=EtatLieux::where('idetatlieu',$id)->delete();
  
-         if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'état des lieux supprimé avec succès'
- 
-             ],200);
-         }
+        if($test){
+            Toastr::success('état des lieux supprimé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
-    public function print(EtatLieux $etatLieux)
+    public function print(EtatLieux $etatlieux)
     {
         
+        $users=Utilisateur::all();
+
+        $bien=Bien::where('idbien',$etatlieux->idbien)->first();
+
+        $bailleur=Bailleur::where('idbailleur',$bien->idbailleur)->first();
+
+        $location=Location::where('idbien',$bien->idbien)->first();
+
+        $locataire=Locataire::where('idlocataire',$location->idlocataire)->first();
+         
+        $pieces=Piece::where('idbien',$bien->idbien)->get();
+
+        $piecesID=[];
+
+        foreach($pieces as $b){
+
+            if(!array_search($b->idpiece, $piecesID) ){
+
+                array_push($piecesID,$b->idpiece);
+
+            }
+        }
+
+        $etatspieces=EtatPiece::where('date',$etatlieux->datedebut)->whereIn('idpiece',$piecesID)->get();
+
+        if($etatspieces){
+
         $pdf = app('dompdf.wrapper');
 
-        $pdf->loadView('pdf/etatlieux',['etatLieux'=>$etatLieux]);
+        $pdf->loadView('pdf/etatlieux', ['etatlieux'=>$etatlieux,'bailleur'=>$bailleur,'pieces'=>$pieces,'bien'=>$bien,'users'=>$users,'locataire'=>$locataire,'etatspieces'=>$etatspieces]);
 
-        return $pdf->stream('EtatLieux'.$etatLieux->idBien.now().'pdf');
+        return $pdf->stream('EtatLieux'.$etatlieux->idBien.now().'pdf');
+
+        }else{
+
+            Toastr::warning('Veuillez tout d\'abord configurer l\'état de lieu','attention',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+            return back();
+
+        }
 
     }
 

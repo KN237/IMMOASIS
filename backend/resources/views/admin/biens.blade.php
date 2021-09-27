@@ -76,9 +76,12 @@
         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
 
             <!-- Card-->
-            <div class="card rounded shadow-sm border-0 ">
-                <div class="card-body p-4"><center><img src="/storage/biens/{{ $b->image }}" alt="Image"
-                        class="img-fluid d-block m-3" style="height: 200px;">
+            <div class="card rounded shadow-sm border-0 " style="height: 390px;">
+
+                <img src="/storage/biens/{{ $b->image }}" alt="Image"
+                        class="card-img-top" style="height: 240px;">
+
+                <div class="card-body p-4"><center>
                     
 
                         <p>{{ $b->nom }}</p>
@@ -99,9 +102,9 @@
                         <p>{{ $b->quartier }}</p>
 
                         <a href="infosbien/{{ $b->idbien }}" title="consulter le profile"
-                            class="btn bg-primary-light"><i class="far fa-eye"></i> Consulter</a>
+                            class="btn bg-primary-light mb-3"><i class="far fa-eye"></i> Consulter</a>
                         <button title="supprimer" data-toggle="modal" data-target="#supp{{ $b->idbien }}"
-                            class="btn bg-danger-light deletebtn"><i class="fas fa-trash"> Supprimer</i></button>
+                            class="btn bg-danger-light deletebtn mb-3"><i class="fas fa-trash"> Supprimer</i></button>
 
 
                     </center>
@@ -222,14 +225,14 @@ aria-hidden="true">
                 </center>
 
                 <center class="mt-2">
-                    <h4> Voulez-vous vraiment vous supprimer ce bien de votre liste?</h4>
+                    <h4> Voulez-vous vraiment supprimer ce bien de votre liste?</h4>
                 </center>
 
-                <center class="mt-5 mb-4"><button
+                <center class="mt-5 mb-4"><a
                         onclick="event.preventDefault; var form=document.getElementById('form2{{ $l->idbien }}'); form.submit();"
                         class="btn bg-success-light mr-3 p-2 rounded text-white"><i class="fas fa-check mr-1"></i>
-                        Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close"
-                        class="btn bg-danger-light p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button>
+                        Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close"
+                        class="btn bg-danger-light p-2 rounded "><i class="fas fa-times"></i>Annuler</a>
                 </center>
                 <form id="form2{{ $l->idbien }}" action="/bien/{{ $l->idbien }}" method="post"
                     style="display: none;">

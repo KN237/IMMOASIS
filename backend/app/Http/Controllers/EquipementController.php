@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Administrateur;
 use App\Models\Equipement;
 use Illuminate\Http\Request;
+use App\Models\Administrateur;
+use Brian2694\Toastr\Facades\Toastr;
 
 class EquipementController extends Controller
 {
@@ -43,24 +44,24 @@ class EquipementController extends Controller
 
             [
 
-                'idPiece'=>$request->idpiece,
-                'nomEquipement'=>$request->nomequipement,
-                'etatEquipement'=>$request->etatequipement,
-                'prixEquipement'=>$request->prixequipement,
-                'commentaire'=>$request->commentaire
+                'idpiece'=>$request->idpiece,
+                'nom'=>$request->nom,
+                'prix'=>$request->prix,
+                'quantite'=>$request->quantite
 
             ]
 
         ); 
 
-        if ($equipement) {
-
-            return response()->json([
-
-                'succes' => 'Equipement ajouté avec succès'
-
-            ], 200);
-        }
+        if($equipement){
+            Toastr::success('equipement ajouté avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
     /**
@@ -97,25 +98,23 @@ class EquipementController extends Controller
         $test = $equipement->update(
 
             [
-
-                'idPiece'=>$request->idpiece,
-                'nomEquipement'=>$request->nomequipement,
-                'etatEquipement'=>$request->etatequipement,
-                'prixEquipement'=>$request->prixequipement,
-                'commentaire'=>$request->commentaire
+                'nom'=>$request->nom,
+                'prix'=>$request->prix,
+                'quantite'=>$request->quantite
 
             ]
 
         );
 
-        if ($test) {
-
-            return response()->json([
-
-                'succes' => 'Equipement modifié avec succès'
-
-            ], 200);
-        }
+        if($test){
+            Toastr::success('equipement modifié avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 
 
@@ -132,13 +131,14 @@ class EquipementController extends Controller
     {
         $test = $equipement->delete();
 
-        if ($test) {
-
-            return response()->json([
-
-                'succes' => 'Equipement supprimé avec succès'
-
-            ], 200);
-        }
+        if($test){
+            Toastr::success('equipement supprimé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
     }
 }

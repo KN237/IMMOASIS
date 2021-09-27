@@ -63,9 +63,9 @@
 
                             <td style="display:flex;flex-direction: column">
 
-                                <center> <button title="supprimer"
+                                <center> <a title="supprimer"
                                     data-toggle="modal" data-target="#supp{{ $l->idtb}}"
-                                        class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i> Supprimer</button>
+                                        class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i> Supprimer</a>
                                 </center>
                             </td>
 
@@ -132,10 +132,10 @@
                   <h5><img src="/internis.png" alt="logo" width="150"></h5>
               </center>
 
-<center class="mt-2"><h4> Voulez-vous vraiment vous supprimer ce type de bien de votre liste?</h4></center>
+<center class="mt-2"><h4> Voulez-vous vraiment supprimer ce type de bien de votre liste?</h4></center>
 
-<center class="mt-5 mb-4"><button onclick="event.preventDefault; var form=document.getElementById('form2{{ $l->idtb}}'); form.submit();"
-    class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
+<center class="mt-5 mb-4"><a onclick="event.preventDefault; var form=document.getElementById('form2{{ $l->idtb}}'); form.submit();"
+    class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-times"></i> Annuler</a></center>
     <form id="form2{{ $l->idtb }}" action="/type_de_bien/{{ $l->idtb }}" method="post"
         style="display: none;">
         @csrf

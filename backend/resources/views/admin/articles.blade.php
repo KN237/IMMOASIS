@@ -91,14 +91,14 @@
 
                                 <center> 
                                     
-                                    <button title="modifier"
+                                    <a title="modifier"
                                     data-toggle="modal" data-target="#mod{{ $a->idarticle}}"
-                                        class="btn bg-primary-light"><i class="fas fa-eye"></i> Modifier</button>
+                                        class="btn bg-primary-light"><i class="fas fa-eye"></i> Modifier</a>
                                     
                                     
-                                    <button title="supprimer"
+                                    <a title="supprimer"
                                     data-toggle="modal" data-target="#supp{{ $a->idarticle}}"
-                                        class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i> Supprimer</button>
+                                        class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i> Supprimer</a>
                                 </center>
                             </td>
 
@@ -227,7 +227,7 @@
 
                             @foreach ($tb as $t)
 
-                            @if ($c->tb==$t->tb)
+                            @if ($c->idtb==$t->idtb)
 
                             <option value="{{ $c->idcontrat }}">{{ $t->nom }}</option>
 
@@ -272,8 +272,8 @@
 
 <center class="mt-2"><h4> Voulez-vous vraiment  supprimer cet article de votre liste?</h4></center>
 
-<center class="mt-5 mb-4"><button onclick="event.preventDefault; var form=document.getElementById('form2{{ $a->idarticle }}'); form.submit();"
-    class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
+<center class="mt-5 mb-4"><a onclick="event.preventDefault; var form=document.getElementById('form2{{ $a->idarticle }}'); form.submit();"
+    class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-times"></i> Annuler</a></center>
     <form id="form2{{ $a->idarticle }}" action="/article/{{ $a->idarticle }}" method="post"
         style="display: none;">
         @csrf

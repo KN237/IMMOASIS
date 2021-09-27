@@ -30,7 +30,7 @@
                 <span class="btn-icon-wrapper pr-2 opacity-7">
                     <i class="metismenu-icon fas fa-plus"></i>
                 </span>
-                Ajouter une rénovation
+                Ajouter une intervention
             </button>
 
         </div>
@@ -120,16 +120,16 @@
 
                                 <center>
 
-                                    <button title="modifier" data-toggle="modal"
+                                    <a title="modifier" data-toggle="modal"
                                         data-target="#mod2{{ $l->idrenovation }}" class="btn bg-primary-light"><i
-                                            class="fas fa-eye"></i> Modifier</button>
+                                            class="fas fa-eye"></i> Modifier</a>
 
-                                            <a href="renovation/pdf/{{ $l->idrenovation }}" class="btn bg-secondary-light"> <i class="fas fa-file-pdf"> Exporter</i> </a>
+                                            <a href="renovation/pdf/{{ $l->idrenovation }}" class="btn bg-info-light"> <i class="fas fa-file-pdf"> Exporter</i> </a>
 
-                                    <button title="supprimer" data-toggle="modal"
+                                    <a title="supprimer" data-toggle="modal"
                                         data-target="#supp{{ $l->idrenovation }}"
                                         class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i>
-                                        Supprimer</button>
+                                        Supprimer</a>
                                 </center>
                             </td>
 
@@ -365,14 +365,14 @@
                     </center>
 
                     <center class="mt-2">
-                        <h4> Voulez-vous vraiment vous supprimer cette intervention de votre liste?</h4>
+                        <h4> Voulez-vous vraiment supprimer cette intervention de votre liste?</h4>
                     </center>
 
-                    <center class="mt-5 mb-4"><button
+                    <center class="mt-5 mb-4"><a
                             onclick="event.preventDefault; var form=document.getElementById('form2{{ $l->idrenovation }}'); form.submit();"
                             class="btn bg-success-light mr-3 p-2 rounded text-white"><i class="fas fa-check mr-1"></i>
-                            Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close"
-                            class="btn bg-danger-light p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button>
+                            Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close"
+                            class="btn bg-danger-light p-2 rounded "><i class="fas fa-times"></i> Annuler</a>
                     </center>
                     <form id="form2{{ $l->idrenovation }}" action="/renovation/{{ $l->idrenovation }}"
                         method="post" style="display: none;">

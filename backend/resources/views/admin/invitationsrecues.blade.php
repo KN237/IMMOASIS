@@ -72,13 +72,13 @@
 
                             <td style="display:flex;flex-direction: column;"> <center> 
                                     
-                                    <button title="accepter"
+                                    <a title="accepter"
                                     data-toggle="modal" data-target="#acc{{ $l->idinvitation}}"
-                                    class="btn bg-success-light"><i class="fas fa-check"> Accepter</i></button> 
+                                    class="btn bg-success-light"><i class="fas fa-check"> Accepter</i></a> 
 
-                                    <button title="refuser"
+                                    <a title="refuser"
                                     data-toggle="modal" data-target="#rej{{ $l->idinvitation}}"
-                                    class="btn bg-danger-light"><i class="fas fa-trash"></i> Refuser</button> 
+                                    class="btn bg-danger-light"><i class="fas fa-times"></i> Refuser</a> 
                                 
                                 </center> </td>
 
@@ -111,10 +111,10 @@
                   <h5><img src="/internis.png" alt="logo" width="150"></h5>
               </center>
 
-<center class="mt-2"><h4> Voulez-vous vraiment vous rejeter cette invitation ?</h4></center>
+<center class="mt-2"><h4> Voulez-vous vraiment  rejeter cette invitation ?</h4></center>
 
-<center class="mt-5 mb-4"><button onclick="event.preventDefault; var form=document.getElementById('form{{ $l->idinvitation}}'); form.submit();"
-    class="btn-success mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close" class="btn-danger p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
+<center class="mt-5 mb-4"><a onclick="event.preventDefault; var form=document.getElementById('form{{ $l->idinvitation}}'); form.submit();"
+    class="btn-success mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn-danger p-2 rounded "><i class="fas fa-times"></i> Annuler</a></center>
     <form id="form{{ $l->idinvitation }}" action="/invitation/{{ $l->idinvitation }}/rejeter" method="post"
         style="display: none;">
         @csrf

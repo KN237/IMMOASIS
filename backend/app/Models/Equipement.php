@@ -17,6 +17,7 @@ class Equipement extends Model
         'idpiece',
         'nom',
         'prix',
+        'quantite'
 
     ];
 }

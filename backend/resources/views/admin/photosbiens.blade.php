@@ -75,8 +75,11 @@
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
 
                 <!-- Card-->
-                <div class="card rounded shadow-sm border-0 ">
-                    <div class="card-body p-4"><img src="/storage/photosbiens/{{ $b->nom }}" alt="" class="img-fluid d-block">
+                <div class="card rounded shadow-sm border-0 " style="height: 381px;">
+
+                    <img src="/storage/photosbiens/{{ $b->nom }}" alt="photo" class="card-img-top" style="height: 240px;">
+
+                    <div class="card-body p-4">
 
                         <center>
 
@@ -93,9 +96,9 @@
                             <p class="m-3">{{ $b->nom }}</p>
 
 
-                            <button title="supprimer"
+                            <a title="supprimer"
                                     data-toggle="modal" data-target="#supp{{ $b->idphoto}}"
-                                        class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i> Supprimer</button>
+                                        class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i> Supprimer</a>
                                             
  
                         </center>
@@ -181,10 +184,10 @@
                   <h5><img src="/internis.png" alt="logo" width="150"></h5>
               </center>
 
-<center class="mt-2"><h4> Voulez-vous vraiment vous supprimer cette photo de votre liste?</h4></center>
+<center class="mt-2"><h4> Voulez-vous vraiment supprimer cette photo de votre liste?</h4></center>
 
-<center class="mt-5 mb-4"><button onclick="event.preventDefault; var form=document.getElementById('form2{{ $p->idphoto}}'); form.submit();"
-    class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
+<center class="mt-5 mb-4"><a onclick="event.preventDefault; var form=document.getElementById('form2{{ $p->idphoto}}'); form.submit();"
+    class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-times"></i> Annuler</a></center>
     <form id="form2{{ $p->idphoto }}" action="/photo/{{ $p->idphoto }}" method="post"
         style="display: none;">
         @csrf

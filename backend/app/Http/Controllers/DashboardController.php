@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Bien;
 use App\Models\Note;
 use App\Models\Photo;
+use App\Models\Piece;
 use App\Models\Article;
 use App\Models\Artisan;
-use App\Models\Bailleur;
 use App\Models\Contrat;
+use App\Models\Facture;
+use App\Models\Bailleur;
 use App\Models\Location;
 use App\Models\TypeBien;
+use App\Models\EtatLieux;
 use App\Models\Locataire;
+use App\Models\Equipement;
+use App\Models\Inventaire;
 use App\Models\Invitation;
 use App\Models\Renovation;
 use App\Models\Utilisateur;
@@ -351,7 +356,22 @@ class DashboardController extends Controller
         $bien=Bien::where('idbien',$id)->first();
         $photos=Photo::where('idbien',$bien->idbien)->get();
         $tb=TypeBien::all();
-        return view('admin.infosbien',compact('data','photos','tb','bien'));
+        $pieces=Piece::where('idbien',$bien->idbien)->get();
+        $piecesID=[];
+
+        foreach($pieces as $b){
+
+            if(!array_search($b->idpiece, $piecesID) ){
+
+                array_push($piecesID,$b->idpiece);
+
+            }
+        }
+
+
+        $equipements=Equipement::whereIn('idpiece',$piecesID)->get();
+
+        return view('admin.infosbien',compact('data','photos','tb','bien','pieces','equipements'));
     }
 
 
@@ -686,4 +706,308 @@ class DashboardController extends Controller
     }
 
 
-}
+    function inventaires(){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+
+        $users=Utilisateur::all();
+
+        if($data->role=="Bailleur"){
+
+        $bailleur=Bailleur::where('idu',$data->idu)->first();
+
+        $biens=Bien::where('idbailleur',$bailleur->idbailleur)->get();
+         
+        $biensID=[];
+
+        foreach($biens as $b){
+
+            if(!array_search($b->idbien, $biensID) ){
+
+                array_push($biensID,$b->idbien);
+
+            }
+        }
+
+        $inventaires=Inventaire::whereIn('idbien',$biensID)->get();
+
+
+        $pieces=Piece::whereIn('idbien',$biensID)->get();
+
+        $piecesID=[];
+
+        foreach($pieces as $b){
+
+            if(!array_search($b->idpiece, $piecesID) ){
+
+                array_push($piecesID,$b->idpiece);
+
+            }
+        }
+
+
+        $equipements=Equipement::whereIn('idpiece',$piecesID)->get();
+
+
+
+        return view('admin.inventaires',compact('data','inventaires','biens','users','pieces','equipements'));
+
+    }else{
+
+
+        $locataire=Locataire::where('idu',$data->idu)->first();
+
+        $locations=Location::where('idlocataire',$locataire->idlocataire)->get();
+
+        $locationsID=[];
+
+        foreach($locations as $b){
+
+            if(!array_search($b->idbien, $locationsID) ){
+
+                array_push($locationsID,$b->idbien);
+
+            }
+        }
+
+        $biens=Bien::whereIn('idbien',$locationsID)->get();
+         
+        $biensID=[];
+
+        foreach($biens as $b){
+
+            if(!array_search($b->idbien, $biensID) ){
+
+                array_push($biensID,$b->idbien);
+
+            }
+        }
+
+        $inventaires=Inventaire::whereIn('idbien',$biensID)->get();
+
+        $pieces=Piece::whereIn('idbien',$biensID)->get();
+
+        $piecesID=[];
+
+        foreach($pieces as $b){
+
+            if(!array_search($b->idpiece, $piecesID) ){
+
+                array_push($piecesID,$b->idpiece);
+
+            }
+        }
+
+
+        $equipements=Equipement::whereIn('idpiece',$piecesID)->get();
+
+
+        return view('admin.inventaires',compact('data','inventaires','biens','users','pieces','equipements'));
+
+        }
+    }
+
+
+    function configinventaire($id){
+
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+
+        $bailleur=Bailleur::where('idu',$data->idu)->first();
+
+        $inventaires=Inventaire::where('idinventaire',$id)->first();
+
+        $bien=Bien::where('idbien',$inventaires->idbien)->first();
+         
+        $pieces=Piece::where('idbien',$bien->idbien)->get();
+
+        $piecesID=[];
+
+        foreach($pieces as $b){
+
+            if(!array_search($b->idpiece, $piecesID) ){
+
+                array_push($piecesID,$b->idpiece);
+
+            }
+        }
+
+
+        $equipements=Equipement::whereIn('idpiece',$piecesID)->get();
+
+
+        return view('admin.configinventaire',compact('data','inventaires','bien','pieces','equipements'));
+
+        }
+
+
+
+        function etatlieux(){
+
+            $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+    
+            $users=Utilisateur::all();
+    
+            if($data->role=="Bailleur"){
+    
+            $bailleur=Bailleur::where('idu',$data->idu)->first();
+    
+            $biens=Bien::where('idbailleur',$bailleur->idbailleur)->get();
+             
+            $biensID=[];
+    
+            foreach($biens as $b){
+    
+                if(!array_search($b->idbien, $biensID) ){
+    
+                    array_push($biensID,$b->idbien);
+    
+                }
+            }
+    
+            $etatlieux=EtatLieux::whereIn('idbien',$biensID)->get();
+    
+    
+            $pieces=Piece::whereIn('idbien',$biensID)->get();
+    
+
+            return view('admin.etatlieux',compact('data','etatlieux','biens','users','pieces'));
+    
+        }else{
+    
+    
+            $locataire=Locataire::where('idu',$data->idu)->first();
+    
+            $locations=Location::where('idlocataire',$locataire->idlocataire)->get();
+    
+            $locationsID=[];
+    
+            foreach($locations as $b){
+    
+                if(!array_search($b->idbien, $locationsID) ){
+    
+                    array_push($locationsID,$b->idbien);
+    
+                }
+            }
+    
+            $biens=Bien::whereIn('idbien',$locationsID)->get();
+             
+            $biensID=[];
+    
+            foreach($biens as $b){
+    
+                if(!array_search($b->idbien, $biensID) ){
+    
+                    array_push($biensID,$b->idbien);
+    
+                }
+            }
+    
+            $etatlieux=EtatLieux::whereIn('idbien',$biensID)->get();
+    
+            $pieces=Piece::whereIn('idbien',$biensID)->get();
+    
+            return view('admin.etatlieux',compact('data','etatlieux','biens','users','pieces'));
+    
+            }
+        }
+
+
+        function configetatlieux($id){
+
+            $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+    
+            $bailleur=Bailleur::where('idu',$data->idu)->first();
+    
+            $etatlieux=EtatLieux::where('idetatlieu',$id)->first();
+    
+            $bien=Bien::where('idbien',$etatlieux->idbien)->first();
+             
+            $pieces=Piece::where('idbien',$bien->idbien)->get();
+    
+            $piecesID=[];
+    
+            foreach($pieces as $b){
+    
+                if(!array_search($b->idpiece, $piecesID) ){
+    
+                    array_push($piecesID,$b->idpiece);
+    
+                }
+            }
+    
+
+            return view('admin.configetatlieux',compact('data','etatlieux','bien','pieces'));
+    
+            }
+
+
+            function factures(){
+
+                $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+
+                if($data->role=="Bailleur"){
+
+                    $bailleurs = Bailleur::where('idu', $data->idu)->first();
+
+                    $biens=Bien::where('idbailleur',$bailleurs->idbailleur)->get();
+
+                    $locationsID=[];
+
+                    foreach($biens as $b){
+    
+                        if(!array_search($b->idbien, $locationsID) ){
+            
+                            array_push($locationsID,$b->idbien);
+            
+                        }
+                    }
+
+                    $locations=Location::whereIn('idbien',$locationsID)->get();
+    
+                    $locationsID=[];
+
+                    foreach($locations as $b){
+    
+                        if(!array_search($b->idlocation, $locationsID) ){
+            
+                            array_push($locationsID,$b->idlocation);
+            
+                        }
+                    }
+
+
+                    $factures=Facture::whereIn('idlocation',$locationsID)->get();
+
+                    $locationsID=[];
+
+                    foreach($locations as $b){
+    
+                        if(!array_search($b->idlocataire, $locationsID) ){
+            
+                            array_push($locationsID,$b->idlocataire);
+            
+                        }
+                    }
+
+
+                    $locataires=Locataire::whereIn('idlocataire',$locationsID)->get();
+    
+                    return view('admin.factures',compact('data','factures','locataires'));
+                }
+
+                else{
+
+
+
+                }
+
+                
+            }
+
+
+    }
+
+
+
+

@@ -377,9 +377,6 @@
         </div>
     </footer>
 
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-    <div class="addthis_inline_follow_toolbox"></div>
-
     <!-- jQuery -->
     <script src="/main/assets/js/jquery-2.1.0.min.js"></script>
 
