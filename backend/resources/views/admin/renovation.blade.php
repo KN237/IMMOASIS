@@ -31,7 +31,7 @@
                     <i class="metismenu-icon fas fa-plus"></i>
                 </span>
                 Ajouter une intervention
-            </button>
+            </button><br>
 
         </div>
     </div>
@@ -124,7 +124,7 @@
                                         data-target="#mod2{{ $l->idrenovation }}" class="btn bg-primary-light"><i
                                             class="fas fa-eye"></i> Modifier</a>
 
-                                            <a href="renovation/pdf/{{ $l->idrenovation }}" class="btn bg-info-light"> <i class="fas fa-file-pdf"> Exporter</i> </a>
+                                           
 
                                     <a title="supprimer" data-toggle="modal"
                                         data-target="#supp{{ $l->idrenovation }}"

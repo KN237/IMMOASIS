@@ -7,6 +7,7 @@ use App\Models\Bailleur;
 use App\Models\Location;
 use App\Models\Locataire;
 use App\Models\Renovation;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -127,16 +128,7 @@ class RenovationController extends Controller
             }
     }
 
-    public function print(Renovation $renovation)
-    {
-        
-        $pdf = app('dompdf.wrapper');
 
-        $pdf->loadView('pdf/renovation',['renovation'=>$renovation]);
-
-        return $pdf->stream('Renovation'.$renovation->idbien.now().'pdf');
-
-    }
 
 
 }
