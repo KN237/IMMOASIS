@@ -142,13 +142,12 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="/internis.png" alt="Company logo" style="width: 100px;" />
+                                <img src="internis.png" alt="Company logo" style="width: 100px;" />
                             </td>
 
                             <td>
-                                Quittance Num:#00Q{{$quittance->idquittance}} <br />
-                                Délivrée le : {{$quittance->datequittance}} <br />
-                               Relative à la facture Num :#00F{{$facture->idfacture}} <br />
+                                Quittance Num: 00{{$quittance->idquittance}} <br />
+                               Relative à la facture Num : 00{{$facture->idfacture}} <br />
                             </td>
                         </tr>
                     </table>
@@ -161,33 +160,20 @@
                         <tr>
                         <td>
                                 A<br/>
-                                {{$loc->nomcompletu}}<br />
-                                {{$locataire->quartierloc}},{{$locataire->villeloc}} {{$locataire->paysloc}}<br />
-                                {{$locataire->telephonesecloc}}, {{$locataire->numcniloc}}
+                                {{$loc->nomcomplet}}<br />
+                                {{$locataire->quartier}},{{$locataire->ville}}<br />
+                                +237 {{$loc->telephone}}
                             </td>
 
                             <td>
                             De<br/>
-                            {{$ba->nomu}}<br />
-                            {{$ba->nomcompletu}}<br />
-                            {{$ba->telephoneu}}
+                            {{$ba->nomcomplet}}<br />
+                            +237 {{$ba->telephone}}
                             </td>
                         </tr>
                         </tr>
                     </table>
                 </td>
-            </tr>
-
-            <tr class="heading">
-                <td>Methode de paiement</td>
-                <td></td>
-
-            </tr>
-
-            <tr class="details">
-                <td>XXX</td>
-
-                <td></td>
             </tr>
 
             <tr class="heading">
@@ -197,16 +183,16 @@
             </tr>
 
             <tr class="item">
-            <td>Paiement de loyer pour la période du {{$facture->datedebutfacture}} au {{$facture->datefinfacture}} </td>
+            <td>Paiement de loyer pour la période du {{$facture->datedebut}} au {{$facture->datefin}} </td>
 
-            <td>{{$location->montantLocation}} FCFA</td>
+            <td>{{$location->montant}} FCFA</td>
 
             </tr>
 
             <tr class="total">
                 <td></td>
 
-                <td>Total: {{$location->montantLocation}} FCFA </td>
+                <td>Total: {{$location->montant}} FCFA </td>
 
             </tr>
         </table>
@@ -217,7 +203,7 @@
 
             <h3 style="z-index: 2;"> Le bailleur </h3>
 
-            <img src="/internis.png" alt="image" width="150">
+            <img src="storage/signatures/{{$bailleur->signature}}" style="transform: translateX(10%);" alt="image" width="450">
 
 
         </div>

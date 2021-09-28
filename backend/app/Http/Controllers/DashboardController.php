@@ -698,11 +698,9 @@ class DashboardController extends Controller
 
         $articles=Article::where('idbailleur',$bailleur->idbailleur)->get();
 
-        $contrats=Contrat::all();
-
         $tb=TypeBien::all();
 
-        return view('admin.articles',compact('data','articles','contrats','tb'));
+        return view('admin.articles',compact('data','articles','tb'));
     }
 
 
@@ -946,6 +944,8 @@ class DashboardController extends Controller
 
                 $data = Utilisateur::where('idu', session('LoggedUser'))->first();
 
+                $users=Utilisateur::all();
+
                 if($data->role=="Bailleur"){
 
                     $bailleurs = Bailleur::where('idu', $data->idu)->first();
@@ -993,11 +993,62 @@ class DashboardController extends Controller
 
                     $locataires=Locataire::whereIn('idlocataire',$locationsID)->get();
     
-                    return view('admin.factures',compact('data','factures','locataires'));
+                    return view('admin.factures',compact('data','biens','factures','locataires','locations','users'));
                 }
 
                 else{
 
+
+                    $locataire = Locataire::where('idu', $data->idu)->first();
+
+                    $locations=Location::where('idlocataire',$locataire->idlocataire)->get();
+    
+                    $locationsID=[];
+
+                    foreach($locations as $b){
+    
+                        if(!array_search($b->idlocation, $locationsID) ){
+            
+                            array_push($locationsID,$b->idlocation);
+            
+                        }
+                    }
+
+
+                    $factures=Facture::whereIn('idlocation',$locationsID)->get();
+
+
+                    $locationsID=[];
+
+                    foreach($locations as $b){
+    
+                        if(!array_search($b->idbien, $locationsID) ){
+            
+                            array_push($locationsID,$b->idbien);
+            
+                        }
+                    }
+
+
+                    $biens=Bien::whereIn('idbien',$locationsID)->get();
+
+
+                    $locationsID=[];
+
+                    foreach($biens as $b){
+    
+                        if(!array_search($b->idbailleur, $locationsID) ){
+            
+                            array_push($locationsID,$b->idbailleur);
+            
+                        }
+                    }
+
+
+                    $bailleurs=Bailleur::whereIn('idbailleur',$locationsID)->get(); 
+
+    
+                    return view('admin.factures',compact('data','factures','biens','bailleurs','locations','users'));
 
 
                 }

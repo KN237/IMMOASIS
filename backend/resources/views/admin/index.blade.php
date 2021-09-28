@@ -319,19 +319,10 @@
 
                             </li>
 
-
-                            <li class="mb-4">
-                                <a href="">
-                                    <i class="metismenu-icon fas fa-file-contract"></i>
-                                    Contrats
-
-                                </a>
-
-                            </li>
-
                             <li class="mb-4">
                                 <a href="/dashboard/articles">
                                     <i class="metismenu-icon fas fa-newspaper"></i>
+                                    
                                    Articles
 
                                 </a>

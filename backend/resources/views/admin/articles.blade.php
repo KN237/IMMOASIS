@@ -51,7 +51,7 @@
 
                         <th>Description </th>
 
-                        <th>Type de contrat </th>
+                        <th>Type de bien </th>
 
                         <th>Actions</th>
 
@@ -68,22 +68,13 @@
 
                             <td>{{ $a->description }}</td>
 
-                            @foreach ($contrats as $c)
-
-                        @if($c->idcontrat == $a->idcontrat)
-
                             @foreach ($tb as $t)
 
-                            @if($t->idtb == $c->idtb)
+                            @if($t->idtb == $a->idtb)
 
                             <td>{{ $t->nom }}</td>
 
-
                             @endif
-
-                            @endforeach
-
-                        @endif
 
                             @endforeach
 
@@ -146,9 +137,9 @@
 
 
                                 <div class="position-relative form-group"><label for="examplePassword11"
-                                    class="___class_+?24___">Contrat</label>
+                                    class="___class_+?24___">Type de bien</label>
                                     
-                                    <select name="idcontrat" type="text"
+                                    <select name="idtb" type="text"
                                     class="form-control">
 
 
@@ -157,13 +148,10 @@
 
                             @foreach ($tb as $t)
 
-                            @foreach ($contrats as $c)
+                            
 
-                            <option value="{{ $c->idcontrat }}">{{ $t->nom }}</option>
+                            <option value="{{ $t->idtb }}">{{ $t->nom }}</option>
 
-
-
-                            @endforeach
 
                             @endforeach
 
@@ -223,21 +211,11 @@
                          
 
 
-                            @foreach ($contrats as $c)
-
                             @foreach ($tb as $t)
 
-                            @if ($c->idtb==$t->idtb)
-
-                            <option value="{{ $c->idcontrat }}">{{ $t->nom }}</option>
-
-
-                            @endif
+                            <option value="{{ $t->idcontrat }}">{{ $t->nom }}</option>
 
                             @endforeach
-
-                            @endforeach
-
                                     </select>
                                 
                                 </div>

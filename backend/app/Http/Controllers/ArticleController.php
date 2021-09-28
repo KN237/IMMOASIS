@@ -48,7 +48,7 @@ class ArticleController extends Controller
             [ 
                 'idbailleur'=>$bailleur->idbailleur,
                 'titre'=>$request->titre,
-                'idcontrat'=>$request->idcontrat,
+                'idtb'=>$request->idtb,
                 'description'=>$request->description,
          ]
          
@@ -100,8 +100,8 @@ class ArticleController extends Controller
             
             [ 
                 'titre'=>$request->titre,
-                'idcontrat'=>$request->idcontrat,
                 'description'=>$request->description,
+                'idtb'=>$request->idtb,
          
          ]
          

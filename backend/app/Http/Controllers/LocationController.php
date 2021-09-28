@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bien;
+use App\Models\Contrat;
 use App\Models\Bailleur;
 use App\Models\Location;
 use App\Models\Locataire;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -180,4 +182,76 @@ class LocationController extends Controller
                 
             }
     }
+
+    public function signBailleur($id)
+    {
+        $test=Location::where('idlocation',$id)->update(
+            
+            [ 
+                'signbailleur'=>1,
+         
+         ]
+         
+         );
+ 
+         if($test){
+            Toastr::success('contrat signé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
+    }
+
+
+    public function signLocataire($id)
+    {
+        $test=Location::where('idlocation',$id)->update(
+            
+            [ 
+                'signlocataire'=>1,
+         
+         ]
+         
+         );
+ 
+         if($test){
+            Toastr::success('contrat signé avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+            return back();
+        }else{
+           
+                Toastr::error('L\'opération a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+                
+            }
+    }
+
+
+    public function print($id)
+    {
+        
+        $users=Utilisateur::all();
+
+        $location=Location::where('idlocation',$id)->first();
+
+        $bien=Bien::where('idbien',$location->idbien)->first();
+
+        $bailleur=Bailleur::where('idbailleur',$bien->idbailleur)->first();
+
+        $locataire=Locataire::where('idlocataire',$location->idlocataire)->first();
+         
+        $pdf = app('dompdf.wrapper');
+
+        $pdf->loadView('pdf/contrat', ['location' => $location,'bailleur'=>$bailleur,'bien'=>$bien,'users'=>$users,'locataire'=>$locataire]);
+
+        return $pdf->stream('contrat' . $location->idbien . now() . 'pdf');
+
+  
+        
+    }
+
+
+
 }

@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
 
-    return view('pdf.inventaire');
+    return view('pdf.contrat');
     
 });
 
@@ -163,22 +163,13 @@ Route::get('article/bailleur', 'App\Http\Controllers\ArticleController@indexBail
 
 Route::Resource('contrat', 'App\Http\Controllers\ContratController');
 
-Route::get('contrat/pdf/{contrat}', 'App\Http\Controllers\ContratController@print');
-
-Route::get('contrat/bailleur', 'App\Http\Controllers\ContratController@indexBailleur');
+Route::get('contrat/pdf/{id}', 'App\Http\Controllers\LocationController@print');
 
 
 // facture //
-Route::get('facture/bailleur', 'App\Http\Controllers\FactureController@indexBailleur');
-Route::get('facture/locataire', 'App\Http\Controllers\FactureController@indexLocataire');
+Route::post('facture/pay', 'App\Http\Controllers\FactureController@pay');
 Route::get('facture/{facture}/pdf', 'App\Http\Controllers\FactureController@print');
-
 Route::get('facture/{facture}/quittance/pdf', 'App\Http\Controllers\FactureController@printQuittance');
-
-Route::get('facture/{facture}/quittance/generer', 'App\Http\Controllers\FactureController@generateQuittance');
-
-Route::get('facture/{facture}/quittance/{id}/consulter', 'App\Http\Controllers\FactureController@consultQuittance');
-
 Route::Resource('facture', 'App\Http\Controllers\FactureController');
 
 
@@ -278,9 +269,9 @@ Route::get('/inventaire/bailleur/sign/{id}', 'App\Http\Controllers\InventaireCon
 // signature contrat//
 
 
-Route::get('/contrat/locataire/sign/{id}', 'App\Http\Controllers\ContratController@signLocataire');
+Route::get('/contrat/locataire/sign/{id}', 'App\Http\Controllers\LocationController@signLocataire');
 
-Route::get('/contrat/bailleur/sign/{id}', 'App\Http\Controllers\ContratController@signBailleur');
+Route::get('/contrat/bailleur/sign/{id}', 'App\Http\Controllers\LocationController@signBailleur');
 
 
 

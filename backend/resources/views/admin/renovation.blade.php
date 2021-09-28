@@ -112,8 +112,15 @@
                             @endforeach
 
 
+                            @if ($l->statut == "EFFECTUé")
 
-                            <td>{{ $l->statut }}</td>
+                            <td class="bg-success-light">{{ $l->statut }}</td>
+   
+                            @else
+
+                            <td class="bg-danger-light">{{ $l->statut }}</td>
+                                
+                            @endif
 
 
                             <td style="display:flex;flex-direction: column">

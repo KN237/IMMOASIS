@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Facture;
-use App\Models\Locataire;
-use App\Models\Utilisateur;
-use App\Models\Bailleur;
 use App\Models\Bien;
+use App\Models\Facture;
+use App\Models\Bailleur;
 use App\Models\Location;
+use App\Models\Locataire;
 use App\Models\Quittance;
+use Malico\MeSomb\Payment;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Brian2694\Toastr\Facades\Toastr;
 
 class FactureController extends Controller
 {
@@ -21,35 +23,35 @@ class FactureController extends Controller
      */
     public function index()
     {
-        $facture=Facture::all();
+        $facture = Facture::all();
 
         return $facture;
     }
 
     public function indexLocataire()
     {
-        $locataire=Locataire::where('idu',session('loggedUser')->idu)->first();
-        $locations=Location::where('idlocataire',$locataire->getAttributes('idlocataire'))->get();
-        $locationsArray=[];
+        $locataire = Locataire::where('idu', session('loggedUser')->idu)->first();
+        $locations = Location::where('idlocataire', $locataire->getAttributes('idlocataire'))->get();
+        $locationsArray = [];
 
-        foreach($locations as $location){
-            $locationsArray+=$location->idlocation;
+        foreach ($locations as $location) {
+            $locationsArray += $location->idlocation;
         }
-        $factures=Facture::where('idlocation',$locationsArray)->get();
+        $factures = Facture::where('idlocation', $locationsArray)->get();
 
         return $factures;
     }
 
     public function indexBailleur()
     {
-        $bailleur=Bailleur::where('idu',session('loggedUser')->idu)->first();
-        $locations=Location::where('idbailleur',$bailleur->getAttributes('idbailleur'))->get();
-        $locationsArray=[];
+        $bailleur = Bailleur::where('idu', session('loggedUser')->idu)->first();
+        $locations = Location::where('idbailleur', $bailleur->getAttributes('idbailleur'))->get();
+        $locationsArray = [];
 
-        foreach($locations as $location){
-            $locationsArray+=$location->idlocation;
+        foreach ($locations as $location) {
+            $locationsArray += $location->idlocation;
         }
-        $factures=Facture::where('idlocation',$locationsArray)->get();
+        $factures = Facture::where('idlocation', $locationsArray)->get();
 
         return $factures;
     }
@@ -72,27 +74,29 @@ class FactureController extends Controller
      */
     public function store(Request $request)
     {
-        $facture=Facture::create(
-            
-            [ 'idLocation'=>$request->idLocation,
-            'datefacture'=>$request->datefacture,
-            'datedebutfacture'=>$request->datedebutfacture,
-            'datefinfacture'=>$request->datefinfacture,
-            'datelimitefacture'=>$request->datelimitefacture,
-            'etatfacture'=>$request->etatfacture
-         
-         ]
-         
-         );
- 
-         if($facture){
- 
-             return response()->json([
- 
-                 'succes'=>'facture ajoutée avec succès'
- 
-             ],200);
-         }
+        $facture = Facture::create(
+
+            [
+
+                'idlocation' => $request->idlocation,
+                'date' => $request->date,
+                'datedebut' => $request->datedebut,
+                'datefin' => $request->datefin,
+                'datelimite' => $request->datelimite,
+                'etat' => $request->etat
+
+            ]
+
+        );
+
+        if ($facture) {
+            Toastr::success('facture ajoutée avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);
+            return back();
+        } else {
+
+            Toastr::error('L\'opération a échoué', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+            return back();
+        }
     }
 
     /**
@@ -126,27 +130,28 @@ class FactureController extends Controller
      */
     public function update(Request $request, Facture $facture)
     {
-        $test=$facture->update(
-            
-            [ 'idLocation'=>$request->idLocation,
-            'datefacture'=>$request->datefacture,
-            'datedebutfacture'=>$request->datedebutfacture,
-            'datefinfacture'=>$request->datefinfacture,
-            'datelimitefacture'=>$request->datelimitefacture,
-            'etatfacture'=>$request->etatfacture
-         
-         ]
-         
-         );
- 
-         if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'facture modifiée avec succès'
- 
-             ],200);
-         }
+        $test = $facture->update(
+
+            [
+                'etat' => 1
+
+            ]
+
+        );
+
+        if ($test) {
+
+            Quittance::create([
+                'idfacture' => $request->id
+            ]);
+
+            Toastr::success('facture modifiée avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);
+            return back();
+        } else {
+
+            Toastr::error('L\'opération a échoué', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+            return back();
+        }
     }
 
     /**
@@ -157,125 +162,95 @@ class FactureController extends Controller
      */
     public function destroy(Facture $facture)
     {
-        $test=$facture->delete();
- 
-         if($test){
- 
-             return response()->json([
- 
-                 'succes'=>'facture supprimée avec succès'
- 
-             ],200);
-         }
-    }
+        $test = $facture->delete();
 
-    public function search(Request $request)
-    {
-        
-        $result = Facture::where('idLocation',$request->key)->get();
 
-        if($result){
+        if ($test) {
+            Toastr::success('facture supprimée avec succes', 'succes', ["iconClass" => "customer-g", "positionClass" => "toast-top-center"]);
+            return back();
+        } else {
 
-            return $result;
+            Toastr::error('L\'opération a échoué', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+            return back();
         }
-
     }
+
 
 
     public function print(Facture $facture)
     {
-            
-        $location=Location::where('idlocation',$facture->getAttributes('idlocation'))->first();
 
-        $locataire=Locataire::where('idlocataire',$location->idlocataire)->first();
+        $location = Location::where('idlocation', $facture->idlocation)->first();
 
-        $bien=Bien::where('idbien',$location->getAttributes('idbien'))->first();
+        $locataire = Locataire::where('idlocataire', $location->idlocataire)->first();
 
-        $bailleur=Bailleur::where('idbailleur',$bien->getAttributes('idbailleur'))->first();
+        $bien = Bien::where('idbien', $location->idbien)->first();
 
-        $ba=Utilisateur::where('idu',$bailleur->getAttributes('idu'))->first();
+        $bailleur = Bailleur::where('idbailleur', $bien->idbailleur)->first();
 
-        $loc=Utilisateur::where('idu',$locataire->getAttributes('idu'))->first();
-        
+        $ba = Utilisateur::where('idu', $bailleur->idu)->first();
+
+        $loc = Utilisateur::where('idu', $locataire->idu)->first();
+
         $pdf = app('dompdf.wrapper');
 
-        $pdf->loadView('pdf/facture',['facture'=>$facture,'locataire'=>$locataire,'bailleur'=>$bailleur,'ba'=>$ba,'loc'=>$loc,'location'=>$location]);
+        $pdf->loadView('pdf/facture', ['facture' => $facture, 'locataire' => $locataire, 'bailleur' => $bailleur, 'ba' => $ba, 'loc' => $loc, 'location' => $location]);
 
-        return $pdf->stream('facture'.$facture->idLocation.now().'.pdf');
-
-        
+        return $pdf->stream('facture' . $facture->idLocation . now() . '.pdf');
     }
 
 
     public function printQuittance(Facture $facture)
     {
-            
-          
-        $location=Location::where('idlocation',$facture->getAttributes('idlocation'))->first();
 
-        $locataire=Locataire::where('idlocataire',$location->idlocataire)->first();
+        $location = Location::where('idlocation', $facture->idlocation)->first();
 
-        $bien=Bien::where('idbien',$location->getAttributes('idbien'))->first();
+        $locataire = Locataire::where('idlocataire', $location->idlocataire)->first();
 
-        $bailleur=Bailleur::where('idbailleur',$bien->getAttributes('idbailleur'))->first();
+        $bien = Bien::where('idbien', $location->idbien)->first();
 
-        $ba=Utilisateur::where('idu',$bailleur->getAttributes('idu'))->first();
+        $bailleur = Bailleur::where('idbailleur', $bien->idbailleur)->first();
 
-        $loc=Utilisateur::where('idu',$locataire->getAttributes('idu'))->first();
+        $ba = Utilisateur::where('idu', $bailleur->idu)->first();
 
-        $quittance=Quittance::where('idlocation',$facture->getAttributes('idlocation'))->first();
-        
+        $loc = Utilisateur::where('idu', $locataire->idu)->first();
+
+        $quittance = Quittance::where('idfacture', $facture->idfacture)->first();
+
         $pdf = app('dompdf.wrapper');
 
-        $pdf->loadView('pdf/quittance',['facture'=>$facture,'quittance'=>$quittance,'locataire'=>$locataire,'bailleur'=>$bailleur,'ba'=>$ba,'loc'=>$loc,'location'=>$location]);
+        $pdf->loadView('pdf/quittance', ['facture' => $facture, 'quittance' => $quittance, 'locataire' => $locataire, 'bailleur' => $bailleur, 'ba' => $ba, 'loc' => $loc, 'location' => $location]);
 
-        return $pdf->stream('quittance'.$quittance->idLocation.now().'.pdf');
-
+        return $pdf->stream('quittance' . $quittance->idLocation . now() . '.pdf');
     }
 
-    public function generateQuittance(Facture $facture){
+    public function pay(Request $request)
+    {
 
-        $quittance=Quittance::create(
-            
-            ['idLocation'=>$facture->getAttributes('idLocation'),
-            'dateQuittance'=>now(),
-            'montantQuittance'=>$facture->getAttributes('montantfacture')
-         
-         ]
-         
-         );
- 
-         if($quittance){
- 
-             return response()->json([
- 
-                 'succes'=>'quittance générée avec succès'
- 
-             ],200);
-         }
-    
+        $request2 = new Payment('+237' . $request->num, $request->montant);
 
-    }
+        $payment = $request2->pay();
 
+        if ($payment->success) {
 
-    public function consultQuittance(Facture $facture,$id){
+            $facture = Facture::where('idfacture', $request->id)->first();
 
-        $locataire=Utilisateur::where('idu',session('loggedUser')->idu)->first();
-        $locations=Location::where('idlocataire',$locataire->idlocataire)->get();
-        $idLocationArray=[];
+            $facture->update([
 
-        foreach($locations as $location){
+                'etat' => 1
+            ]);
 
-            $idLocationArray=+$location->idlocataire;
+            Quittance::create([
+                'idfacture' => $request->id
+            ]);
 
+            Toastr::success('Facture payée avec succes', 'succes', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+
+            return back();
+        } else {
+
+            Toastr::error('L\'opération a échoué', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+            return back();
         }
-
-
-        return $quittance=DB::table('quittance')->where('idlocation',$idLocationArray)->get();
-
-    }
-
-    public function pay(){
-
     }
 }

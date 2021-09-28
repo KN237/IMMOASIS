@@ -71,9 +71,14 @@
 
                         <th>Montant caution</th>
 
-                        @if ($data->role == 'Bailleur')
-                            <th>Actions</th>
-                        @endif
+                        <th>Signé par le locataire ?</th>
+
+                        <th>Signé par le bailleur ?</th>
+
+
+
+                        <th>Actions</th>
+
 
                     </tr>
                 </thead>
@@ -168,21 +173,70 @@
 
                             <td>{{ $l->montantcaution }}</td>
 
-                            @if ($data->role == 'Bailleur')
 
-                                <td style="display:flex;flex-direction: column">
+                            @if ($l->signlocataire == 0)
 
-                                    <center><a title="modifier" data-toggle="modal"
-                                            data-target="#mod2{{ $l->idlocation }}" class="btn bg-primary-light"><i
-                                                class="far fa-eye"></i> Modifier</a>
-                                        <a title="supprimer" data-toggle="modal"
-                                            data-target="#supp{{ $l->idlocation }}"
+                            <td>Non</td>
+
+                        @else
+
+                            <td>Oui</td>
+                        @endif
+
+
+
+                        @if ($l->signbailleur == 0)
+
+                            <td>Non</td>
+
+
+                        @else
+
+                            <td>Oui</td>
+
+                        @endif
+
+
+
+                            <td style="display:flex;flex-direction: column">
+
+                                <center>
+
+                                    @if ($data->role == 'Bailleur')
+
+                                        <a title="modifier" data-toggle="modal" data-target="#mod2{{ $l->idlocation }}"
+                                            class="btn bg-primary-light"><i class="far fa-eye"></i> Modifier</a>
+
+
+                                        <a title="supprimer" data-toggle="modal" data-target="#supp{{ $l->idlocation }}"
                                             class="btn bg-danger-light deletebtn"><i class="fas fa-trash">
                                                 Supprimer</i></a>
-                                    </center>
-                                </td>
 
-                            @endif
+                                    @endif
+
+
+                                    <a title="exporter" href="/contrat/pdf/{{ $l->idlocation }}"
+                                        class="btn bg-info-light "><i class="fas fa-file-pdf"></i>
+                                        Exporter le contrat </a>
+
+                                    @if ($data->role == 'Bailleur')
+
+                                        <a title="signer" href="/contrat/bailleur/sign/{{ $l->idlocation }}"
+                                            class="btn bg-warning-light m-2 "><i class="fas fa-signature"></i>
+                                            Signer</a>
+
+                                    @else
+
+                                        <a title="signer" href="/contrat/locataire/sign/{{ $l->idlocation }}"
+                                            class="btn bg-warning-light m-2"><i class="fas fa-signature"></i>
+                                            Signer</a>
+
+                                    @endif
+
+                                </center>
+                            </td>
+
+
 
                         </tr>
 
@@ -213,8 +267,7 @@
                         <h5><img src="/internis.png" alt="logo" width="100"></h5>
                     </center>
 
-                    <form  class="m-5"
-                        action="/location" method="post">
+                    <form class="m-5" action="/location" method="post">
                         @csrf
 
                         <input type="hidden" name="compte">
@@ -231,30 +284,30 @@
 
 
 
-                                <div class="position-relative form-group"><label for="exampleAddress"
-                                    class="___class_+?27___">Locataire</label>
+                        <div class="position-relative form-group"><label for="exampleAddress"
+                                class="___class_+?27___">Locataire</label>
 
-                                <input type="text">
+                            <input type="text">
 
-                                <select name="idlocataire" class="form-control">
-                                    @foreach ($locataires as $u)
+                            <select name="idlocataire" class="form-control">
+                                @foreach ($locataires as $u)
 
-                                          @foreach ($users as $user)
+                                    @foreach ($users as $user)
 
-                                          @if ($u->idu == $user->idu)
-                                              
-                                          
-                                        <option value="{{ $u->idlocataire }}">{{ $user->nomcomplet }}</option>
+                                        @if ($u->idu == $user->idu)
+
+
+                                            <option value="{{ $u->idlocataire }}">{{ $user->nomcomplet }}</option>
 
                                         @endif
 
                                     @endforeach
 
-                                    @endforeach
+                                @endforeach
 
-                                </select>
+                            </select>
 
-                            </div>
+                        </div>
 
 
 
@@ -337,8 +390,7 @@
                             <h5><img src="/internis.png" alt="logo" width="100"></h5>
                         </center>
 
-                        <form  class="m-5"
-                            action="/location/{{ $l->idlocation }}" method="post">
+                        <form class="m-5" action="/location/{{ $l->idlocation }}" method="post">
                             @csrf
                             @method('put')
 
@@ -364,16 +416,17 @@
                                 <select name="idlocataire" class="form-control">
                                     @foreach ($locataires as $u)
 
-                                          @foreach ($users as $user)
+                                        @foreach ($users as $user)
 
-                                          @if ($u->idu == $user->idu)
-                                              
-                                          
-                                        <option value="{{ $u->idlocataire }}">{{ $user->nomcomplet }}</option>
+                                            @if ($u->idu == $user->idu)
 
-                                        @endif
 
-                                    @endforeach
+                                                <option value="{{ $u->idlocataire }}">{{ $user->nomcomplet }}
+                                                </option>
+
+                                            @endif
+
+                                        @endforeach
 
                                     @endforeach
 
@@ -390,7 +443,7 @@
 
                                 <input type="text">
 
-                                <select name="idtb" class="form-control">
+                                <select name="idtl" class="form-control">
                                     @foreach ($tl as $u)
                                         <option value="{{ $u->idtl }}">{{ $u->nom }}</option>
 
@@ -407,7 +460,7 @@
 
                                 <input type="text">
 
-                                <select name="idtb" class="form-control">
+                                <select name="idbien" class="form-control">
                                     @foreach ($biens as $u)
                                         <option value="{{ $u->idbien }}">{{ $u->nom }}</option>
 
