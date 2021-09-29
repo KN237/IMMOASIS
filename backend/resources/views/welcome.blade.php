@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/css/auth.css">
 
     <link rel="icon" href="/favicon.ico">
+    
     <!-- Start of HubSpot Embed Code -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25029013.js"></script>
     <!-- End of HubSpot Embed Code -->

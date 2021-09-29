@@ -15,13 +15,13 @@
 
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-<!-- Select2 CSS -->
-<link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-     <!-- Start of HubSpot Embed Code -->
-     <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25029013.js"></script>
-     <!-- End of HubSpot Embed Code -->
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25029013.js"></script>
+    <!-- End of HubSpot Embed Code -->
 
     @stack('page-css')
 
@@ -44,7 +44,8 @@
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
-                <div class="logo-src"> <a href="/"> <img src="/internis.png" alt="logo" width="100" style="transform: translateY(-30%)"> </a> </div>
+                <div class="logo-src"> <a href="/"> <img src="/internis.png" alt="logo" width="100"
+                            style="transform: translateY(-30%)"> </a> </div>
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
@@ -79,10 +80,7 @@
                 <div class="app-header-left">
                     <div class="search-wrapper">
                         <div class="input-holder">
-                            <input type="text" class="search-input" placeholder="Recherche">
-                            <button class="search-icon"><span></span></button>
                         </div>
-                        <button class="close"></button>
                     </div>
                 </div>
                 <div class="app-header-right">
@@ -98,19 +96,21 @@
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true"
                                             class="dropdown-menu dropdown-menu-right">
-                                            <a href="/dashboard/monprofile" type="button" tabindex="0" class="dropdown-item">
+                                            <a href="/dashboard/monprofile" type="button" tabindex="0"
+                                                class="dropdown-item">
                                                 <i class="fas fa-users-cog m-1"></i>Mon compte</a>
-                                            <a type="button" tabindex="0" class="dropdown-item" data-toggle="modal" data-target="#dec">
+                                            <a type="button" tabindex="0" class="dropdown-item" data-toggle="modal"
+                                                data-target="#dec">
 
-                                               <i class="fas fa-sign-out-alt m-1"></i>
+                                                <i class="fas fa-sign-out-alt m-1"></i>
 
-                                                    Deconnexion</a>
+                                                Deconnexion</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
-                                        {{ $data->nomcomplet }} / {{ $data->role }}
+                                        {{ $data->nomcomplet }}
                                     </div>
                                 </div>
                             </div>
@@ -293,9 +293,18 @@
 
 
                             <li class="mb-4">
+                                <a href="/dashboard/transactions">
+                                    <i class="metismenu-icon fa fa-cash-register"></i>
+                                    Transactions
+
+                                </a>
+                            </li>
+
+
+                            <li class="mb-4">
                                 <a href="">
                                     <i class="metismenu-icon fas fa-location-arrow"></i>
-                                  Invitations
+                                    Invitations
 
                                 </a>
 
@@ -322,8 +331,8 @@
                             <li class="mb-4">
                                 <a href="/dashboard/articles">
                                     <i class="metismenu-icon fas fa-newspaper"></i>
-                                    
-                                   Articles
+
+                                    Articles
 
                                 </a>
 
@@ -446,35 +455,41 @@
         });
     </script>
 
-    
 
 
 
-     <!-- Deconnexion-->
 
-  <div class="modal fade" id="dec" tabindex="-1" role="dialog"
-  aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <!-- Deconnexion-->
 
-  <div class="modal-dialog">
+    <div class="modal fade" id="dec" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
 
-      <div class="modal-content">
+        <div class="modal-dialog">
 
-          <div class="modal-body">
+            <div class="modal-content">
 
-              <center>
-                  <h5><img src="/internis.png" alt="logo" width="150"></h5>
-              </center>
+                <div class="modal-body">
 
-<center class="mt-2"><h4> Voulez-vous vraiment vous déconnecter ?</h4></center>
+                    <center>
+                        <h5><img src="/internis.png" alt="logo" width="150"></h5>
+                    </center>
 
-<center class="mt-5 mb-4"><a href="/logout" class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-times"></i> Annuler</a></center>
+                    <center class="mt-2">
+                        <h4> Voulez-vous vraiment vous déconnecter ?</h4>
+                    </center>
+
+                    <center class="mt-5 mb-4"><a href="/logout"
+                            class="btn bg-success-light mr-3 p-2 rounded text-white"><i class="fas fa-check mr-1"></i>
+                            Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close"
+                            class="btn bg-danger-light p-2 rounded "><i class="fas fa-times"></i> Annuler</a>
+                    </center>
 
 
-          </div>
+                </div>
 
-      </div>
-  </div>
-</div>
+            </div>
+        </div>
+    </div>
 
 
 

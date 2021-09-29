@@ -8,11 +8,13 @@ use App\Models\Bailleur;
 use App\Models\Location;
 use App\Models\Locataire;
 use App\Models\Quittance;
+use App\Models\Transaction;
 use Malico\MeSomb\Payment;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
+use Malico\MeSomb\Deposit;
 
 class FactureController extends Controller
 {
@@ -244,6 +246,16 @@ class FactureController extends Controller
                 'idfacture' => $request->id
             ]);
 
+
+            Transaction::create([
+
+                'idu'=>session('LoggedUser'),
+                'motif'=>'Location',
+                'date'=>now(), 
+                'recepteur'=>$request->idbailleur,
+                'montant'=>$request->montant,
+            ]);
+
             Toastr::success('Facture payée avec succes', 'succes', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
 
             return back();
@@ -253,4 +265,68 @@ class FactureController extends Controller
             return back();
         }
     }
+
+
+    public function Withdraw(Request $request)
+    {
+      
+        $bailleur = Bailleur::where('idu', session('LoggedUser'))->first();
+
+        $transactions = Transaction::where('recepteur', $bailleur->idbailleur)->get();
+
+        $solde = 0;
+
+        foreach ($transactions as $t) {
+
+            if ($t->motif == "Location") {
+                $solde = $solde + $t->montant;
+            }
+            if ($t->motif == "Retrait") {
+                $solde = $solde - $t->montant;
+            }
+        }
+
+        if($solde<$request->montant){
+
+            Toastr::error('L\'opération a échoué, pas assez de fonds', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+            return back();
+
+        }
+
+        else{
+
+        $request2 = new Deposit('+237' . $request->num, $request->montant);
+
+        $payment = $request2->pay();
+
+        if ($payment->success) {
+
+            Transaction::create([
+
+                'idu'=>session('LoggedUser'),
+                'motif'=>'Retrait',
+                'date'=>now(), 
+                'recepteur'=>$bailleur->idbailleur,
+                'montant'=>$request->montant,
+            ]);
+
+            Toastr::success('Retrait éffectué avec succes', 'succes', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+
+            return back();
+        } else {
+
+            Toastr::error('L\'opération a échoué', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+            return back();
+        }
+
+    }
+
+    }
+
+
+
+
+
+
+
 }

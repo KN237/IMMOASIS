@@ -17,9 +17,10 @@ class Transaction extends Model
 
     protected $fillable = [
         'idu',
-        'reference',
+        'motif',
         'date', 
-        'mode',
-        'initiateur',
+        'montant',
+        'recepteur',
+        'created_at',
     ];
 }

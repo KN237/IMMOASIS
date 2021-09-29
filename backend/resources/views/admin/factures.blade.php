@@ -407,6 +407,33 @@
 
                         <input type="hidden" name="id" value="{{ $l->idfacture }}">
 
+                        @foreach ($locations as $location)
+
+                                    @if ($location->idlocation == $l->idlocation)
+
+                                        @foreach ($biens as $b)
+
+                                            @if ($location->idbien == $b->idbien)
+
+                                                @foreach ($bailleurs as $ba)
+
+                                                    @if ($ba->idbailleur == $b->idbailleur)
+
+                                                            <input type="hidden" name="idbailleur" value="{{ $ba->idbailleur }}">
+
+                                                    @endif
+
+                                                @endforeach
+
+                                            @endif
+
+                                        @endforeach
+
+                                    @endif
+
+                                @endforeach
+
+
                         <input type="hidden" name="montant" value="{{ $location->montant }}">
 
                         <div class="position-relative form-group"><label for="examplePassword11"
@@ -453,6 +480,34 @@
                                 @csrf
 
                                 <input type="hidden" name="id" value="{{ $l->idfacture }}">
+
+
+                                @foreach ($locations as $location)
+
+                                @if ($location->idlocation == $l->idlocation)
+
+                                    @foreach ($biens as $b)
+
+                                        @if ($location->idbien == $b->idbien)
+
+                                            @foreach ($bailleurs as $ba)
+
+                                                @if ($ba->idbailleur == $b->idbailleur)
+
+                                                        <input type="hidden" name="idbailleur" value="{{ $ba->idbailleur }}">
+
+                                                @endif
+
+                                            @endforeach
+
+                                        @endif
+
+                                    @endforeach
+
+                                @endif
+
+                            @endforeach
+
 
                                 <input type="hidden" name="montant" value="{{ $location->montant }}">
 
