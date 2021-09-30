@@ -51,12 +51,14 @@
         <div class="row justify-content-center"></div>
         <div class="row justify-content-center">
           <div class="col-md-7 col-lg-5">
+            
+            <div class="d-flex align-items-center justify-content-center">
+              <a href="/"
+                ><img src="internis.png" alt="logo" width="200"
+              /></a>
+            </div>
+
             <div class="login-wrap p-4 p-md-5">
-              <div class="d-flex align-items-center justify-content-center">
-                <a href="/"
-                  ><img src="internis.png" alt="logo" width="200"
-                /></a>
-              </div>
               <h3 class="text-center mb-4">Inscription</h3>
               <form
                 class="login-form"

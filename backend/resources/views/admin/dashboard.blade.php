@@ -2,7 +2,7 @@
 
 @section('title')
 
-    Tableau de bord
+    Tableau de bord - {{$data->role}}
 
 @endsection
 
@@ -13,7 +13,7 @@
 
 @endsection
 
-@if($data->role=="Bailleur" and $biens and $locataires )
+@if($data->role=="Bailleur" and $biens!=null )
 
 @section('content')
 
@@ -110,7 +110,7 @@
 
 @endif
 
-@if($data->role=="Bailleur" and !$biens)
+@if($data->role=="Bailleur" and $biens==null)
 
 @section('content')
 
@@ -169,7 +169,7 @@
     
     <div class="d-flex m-5"><i class="bg-light p-3 rounded-circle metismenu-icon fas fa-key mr-3" style="font-size: 3rem;"></i> <div style="height: 50px; width:1px;background:black;"></div> <p style="font-size:1.6rem; font-weight:bold;" class="ml-5">
         
-        {{ $locations->count() ?? '0' }}
+        Locations {{ $locations->count() ?? '0' }}
     
     </p></div>
             
@@ -181,6 +181,25 @@
 
 </div>
 
+<div class="col-4">
+
+    <div class="card">
+        <div class="card-header">Invitations</div>
+        <div class="card-body">
+    
+    <div class="d-flex m-5"><i class="bg-light p-3 rounded-circle metismenu-icon fas fa-location-arrow mr-3" style="font-size: 3rem;"></i> <div style="height: 50px; width:1px;background:black;"></div> <p style="font-size:1.6rem; font-weight:bold;" class="ml-5">
+        
+        Invitations  {{ $factures->count() ?? '0' }}
+    
+    </p></div>
+            
+          <a href="/dashboard/factures" class="btn btn-secondary btn-block">Voir plus</a>
+    
+        </div>
+      </div>
+    
+
+</div>
 
 
 <div class="col-4">
@@ -421,7 +440,7 @@
 @push('page-js')
     <script src="/main/assets/js/jquery-2.1.0.min.js"></script>
 
-    @if($data->role=="Bailleur")
+    @if($data->role=="Bailleur" and $biens!=null )
 
     {{-- ChartScript --}}
 

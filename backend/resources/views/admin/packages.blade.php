@@ -20,8 +20,9 @@
 
 @endpush
 
-@section('bouton')
 
+@section('bouton')
+<!--
     <div class="page-title-actions">
 
         <div class="d-inline-block dropdown">
@@ -35,8 +36,8 @@
         </div>
     </div>
 
-
-@endsection
+-->
+@endsection 
 
 @section('content')
 
@@ -74,10 +75,10 @@
                                     <center><a title="modifier" data-toggle="modal"
                                             data-target="#mod2{{ $p->idpackage }}" class="btn bg-primary-light"><i
                                                 class="far fa-eye"></i> Modifier</a>
-                                        <a title="supprimer" data-toggle="modal"
+                                     <!--   <a title="supprimer" data-toggle="modal"
                                             data-target="#supp{{ $p->idpackage }}"
                                             class="btn bg-danger-light deletebtn"><i class="fas fa-trash">
-                                                Supprimer</i></a>
+                                                Supprimer</i></a> -->
                                     </center>
                                 </td>
 

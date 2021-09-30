@@ -203,17 +203,14 @@
                                 <center>
 
                                     @if ($data->role == 'Bailleur')
-
                                         <a title="modifier" data-toggle="modal" data-target="#mod2{{ $l->idlocation }}"
                                             class="btn bg-primary-light"><i class="far fa-eye"></i> Modifier</a>
+                                    @endif        
 
 
                                         <a title="supprimer" data-toggle="modal" data-target="#supp{{ $l->idlocation }}"
                                             class="btn bg-danger-light deletebtn"><i class="fas fa-trash">
                                                 Supprimer</i></a>
-
-                                    @endif
-
 
                                     <a title="exporter" href="/contrat/pdf/{{ $l->idlocation }}"
                                         class="btn bg-info-light "><i class="fas fa-file-pdf"></i>
@@ -370,7 +367,7 @@
         </div>
     </div>
 
-
+@endif
 
 
     <!-- Mod -->
@@ -405,34 +402,6 @@
                             <div class="position-relative form-group"><label for="exampleAddress"
                                     class="___class_+?27___">Activité</label><input name="activite" type="text"
                                     class="form-control" value="{{ $l->activite }}"></div>
-
-
-
-                            <div class="position-relative form-group"><label for="exampleAddress"
-                                    class="___class_+?27___">Locataire</label>
-
-                                <input type="text">
-
-                                <select name="idlocataire" class="form-control">
-                                    @foreach ($locataires as $u)
-
-                                        @foreach ($users as $user)
-
-                                            @if ($u->idu == $user->idu)
-
-
-                                                <option value="{{ $u->idlocataire }}">{{ $user->nomcomplet }}
-                                                </option>
-
-                                            @endif
-
-                                        @endforeach
-
-                                    @endforeach
-
-                                </select>
-
-                            </div>
 
 
 
@@ -541,7 +510,7 @@
 
     @endforeach
 
-@endif
+
 
 @push('page-js')
     <script src="/main/assets/js/jquery-2.1.0.min.js"></script>

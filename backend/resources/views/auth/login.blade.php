@@ -18,7 +18,9 @@
 
     <link rel="icon" href="/favicon.ico">
 
-	<style> #toast-container > .toast-error { background-color: #e61721; } </style>
+	<style> #toast-container > .toast-error { background-color: #e61721; }
+    
+    </style>
 
 </head>
 
@@ -35,18 +37,21 @@
             </div>
         </div>
     </div>
-    <!-- ***** Preloader End ***** -->
 
-    <section class="ftco-section">
+    <!-- ***** Preloader End ***** -->
+   <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center" style="z-index:2;">
                 <div class="col-md-7 col-lg-5">
+                    
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a href="/"><img src="internis.png" alt="logo" width="200"></a>
+                    </div>
+
                     <div class="login-wrap p-4 p-md-5">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <a href="/"><img src="internis.png" alt="logo" width="200"></a>
-                        </div>
+                       
                         <h3 class="text-center mb-4">Connexion</h3>
                         <form class="login-form" action="{{ route('auth.check') }}" method="post">
                             @csrf
@@ -92,8 +97,12 @@
                     </div>
                 </div>
             </div>
+            
         </div>
-    </section>
+
+         </section>
+
+  
 
     <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="/js/main.js"></script>

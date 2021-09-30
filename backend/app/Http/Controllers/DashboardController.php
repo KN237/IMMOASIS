@@ -42,6 +42,17 @@ class DashboardController extends Controller
 
         $biens = Bien::where('idbailleur', $bailleur->idbailleur)->get();
 
+        if(count($biens)==0){
+            
+            $biens=null;
+
+            return view('admin.dashboard', compact('data','biens'));
+        }
+
+        else{
+
+
+
         $transactions = Transaction::where('recepteur', $bailleur->idbailleur)->get();
 
         $entrees = Transaction::where('recepteur', $bailleur->idbailleur)->where('motif', "Location")->get();
@@ -132,10 +143,11 @@ class DashboardController extends Controller
 
 
 
-        return view('admin.dashboard', compact('data', 'biens', 'solde', 'locataires', 'usersChart', 'usersChart2'));
+        return view('admin.dashboard', compact('data', 'biens', 'solde', 'locataires', 'usersChart', 'usersChart2'));}
 
     }
-    else if($data->role=="Locataire"){
+
+    if($data->role=="Locataire"){
 
         $locataire = Locataire::where('idu', $data->idu)->first();
 

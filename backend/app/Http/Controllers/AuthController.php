@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Package;
 use App\Models\Bailleur;
 use App\Models\Locataire;
 use App\Models\Utilisateur;
@@ -85,8 +86,9 @@ class AuthController extends Controller
             //check password
             if(Hash::check($request->mdp, $userInfo->mdp)){
                 $request->session()->put('LoggedUser', $userInfo->idu);
-
-                return view('welcome');
+                $packages=Package::all();
+                $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+                return view('welcome',compact('packages','data'));
 
             }else{
                 Toastr::error('Mot de passe incorrect','erreur',["iconClass"=>"customer-r"]);
@@ -102,10 +104,4 @@ class AuthController extends Controller
             return redirect('/login');
         }
     }
-
-    function dashboard(){
-        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
-        return view('admin.dashboard',compact('data'));
-    }
-
 }

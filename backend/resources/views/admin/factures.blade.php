@@ -275,6 +275,7 @@
 
 @endsection
 
+@if($data->role=="Bailleur")
 
 <!-- Ajout -->
 
@@ -347,6 +348,10 @@
     </div>
 </div>
 
+@endif
+
+
+@if($data->role!="Bailleur")
 
 <!-- Paiement -->
 
@@ -531,7 +536,7 @@
 
 @endforeach
 
-
+@endif
 
 @foreach ($factures as $l)
 

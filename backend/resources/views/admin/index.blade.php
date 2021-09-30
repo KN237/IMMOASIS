@@ -54,6 +54,7 @@
                                 <span class="hamburger-inner"></span>
                             </span>
                         </button>
+
                     </div>
                 </div>
             </div>
@@ -165,6 +166,8 @@
                                 </a>
                             </li>
 
+                            @if($data->role!="Locataire")
+
                             <li class="mb-4">
                                 <a href="#">
                                     <i class="metismenu-icon fas fa-home"></i>
@@ -173,12 +176,19 @@
                                 </a>
 
                                 <ul>
+
+                                    @if($data->role=="Administrateur")
+
                                     <li>
                                         <a href="/dashboard/typebiens">
                                             <i class="metismenu-icon"></i>
                                             Type de biens
                                         </a>
                                     </li>
+
+                                    @endif
+
+                                    @if($data->role=="Bailleur")
 
                                     <li>
                                         <a href="/dashboard/biens">
@@ -187,7 +197,6 @@
                                         </a>
                                     </li>
 
-
                                     <li>
                                         <a href="/dashboard/photosbiens">
                                             <i class="metismenu-icon">
@@ -195,9 +204,15 @@
                                         </a>
                                     </li>
 
+                                    @endif
+
 
                                 </ul>
                             </li>
+
+                            @endif
+
+                            @if($data->role!="Locataire")
 
                             <li class="mb-4">
                                 <a href="#">
@@ -207,12 +222,18 @@
                                 </a>
 
                                 <ul>
+
+
+                                    @if($data->role=="Bailleur")
+
                                     <li>
                                         <a href="/dashboard/meslocataires">
                                             <i class="metismenu-icon"></i>
                                             Mes locataires
                                         </a>
                                     </li>
+
+                                    @endif
 
                                     <li>
                                         <a href="/dashboard/locataires"
@@ -227,6 +248,8 @@
 
                             </li>
 
+                            @endif
+
 
 
 
@@ -236,12 +259,19 @@
                                 </a>
 
                                 <ul>
+
+                                    @if($data->role=="Administrateur")
+
                                     <li>
                                         <a href="/dashboard/typelocations">
                                             <i class="metismenu-icon"></i>
                                             Types de locations
                                         </a>
                                     </li>
+
+                                    @endif
+
+                                    @if($data->role!="Administrateur")
 
                                     <li>
                                         <a href="/dashboard/locations">
@@ -250,9 +280,13 @@
                                         </a>
                                     </li>
 
+                                    @endif
+
 
                                 </ul>
                             </li>
+
+                            @if($data->role!="Administrateur")
 
                             <li class="mb-4">
                                 <a href="/dashboard/inventaires">
@@ -261,6 +295,11 @@
 
                                 </a>
                             </li>
+
+                            @endif
+
+
+                            @if($data->role!="Administrateur")
 
 
                             <li class="mb-4">
@@ -272,6 +311,12 @@
 
                             </li>
 
+
+                            @endif
+
+
+                            @if($data->role!="Administrateur")
+
                             <li class="mb-4">
                                 <a href="/dashboard/interventions">
                                     <i class="metismenu-icon fas fa-tools"></i>
@@ -280,7 +325,9 @@
                                 </a>
                             </li>
 
+                            @endif
 
+                            @if($data->role!="Administrateur")
 
                             <li class="mb-4">
                                 <a href="/dashboard/factures">
@@ -291,6 +338,9 @@
 
                             </li>
 
+                            @endif
+
+                            @if($data->role=="Bailleur")
 
                             <li class="mb-4">
                                 <a href="/dashboard/transactions">
@@ -299,6 +349,11 @@
 
                                 </a>
                             </li>
+
+                            @endif
+
+
+                            @if($data->role!="Administrateur")
 
 
                             <li class="mb-4">
@@ -309,12 +364,20 @@
                                 </a>
 
                                 <ul>
+                                    @if($data->role=="Bailleur")
+
                                     <li>
                                         <a href="/dashboard/invitationsenvoyees">
                                             <i class="metismenu-icon"></i>
                                             Invitations envoyées
                                         </a>
                                     </li>
+
+                                    @endif
+
+
+                                    @if($data->role=="Locataire")
+
 
                                     <li>
                                         <a href="/dashboard/invitationsrecues">
@@ -323,10 +386,17 @@
                                         </a>
                                     </li>
 
+                                    @endif
+
 
                                 </ul>
 
                             </li>
+
+
+                            @endif
+
+                            @if($data->role=="Bailleur")
 
                             <li class="mb-4">
                                 <a href="/dashboard/articles">
@@ -338,6 +408,7 @@
 
                             </li>
 
+                            @endif
 
                             <li class="mb-4">
 
@@ -351,6 +422,9 @@
 
                             </li>
 
+
+                            @if($data->role=="Administrateur")
+
                             <li class="mb-4">
                                 <a href="/dashboard/packages">
                                     <i class="metismenu-icon fas fa-hand-holding-usd"></i>
@@ -359,6 +433,7 @@
                                 </a>
 
                             </li>
+                            
 
                             <li class="mb-4">
                                 <a href="/dashboard/utilisateurs">
@@ -368,6 +443,8 @@
                                 </a>
 
                             </li>
+
+                            @endif
 
                         </ul>
                     </div>

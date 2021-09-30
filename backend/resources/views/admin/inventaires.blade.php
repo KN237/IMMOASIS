@@ -127,8 +127,12 @@
 
                                 <center>
 
+                                    @if($data->role=="Bailleur")
+
                                     <a href="/dashboard/configinventaire/{{ $l->idinventaire }}" title="configurer"
                                         class="btn bg-primary-light "><i class="fas fa-edit"></i> Configurer </a>
+
+                                     @endif   
 
 
 
@@ -147,6 +151,7 @@
                                             
                                         @endif
 
+                                        @if($data->role=="Bailleur")
 
                                     <a title="modifier" data-toggle="modal" data-target="#mod{{ $l->idinventaire }}"
                                         class="btn bg-primary-light "><i class="fas fa-eye"></i> modifier </a>
@@ -155,6 +160,8 @@
                                         data-target="#supp{{ $l->idinventaire }}" class="btn bg-danger-light deletebtn"><i
                                             class="fas fa-trash"></i>
                                         Supprimer</a>
+
+                                      @endif  
                                 </center>
                             </td>
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Models\Package;
 use App\Models\Utilisateur;
 
 /*
@@ -16,14 +17,20 @@ use App\Models\Utilisateur;
 */
 
 Route::get('/', function () {
+if(session('LoggedUser')){
+    $packages=Package::all();
+    $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+    return view('welcome',compact('packages','data'));}
 
-
-    return view('welcome');
+    else{
+        $packages=Package::all();
+    return view('welcome',compact('packages'));
+    }
 });
 
 Route::get('/test', function () {
 
-    return view('pdf.contrat');
+    return view('welcome2');
 });
 
 
@@ -193,7 +200,7 @@ Route::Resource('location', 'App\Http\Controllers\LocationController');
 
 // utilisateur/package/
 
-Route::get('/souscription/{utilisateur}/package/{id}', 'App\Http\Controllers\UtilisateurController@package');
+Route::get('/souscription/{utilisateur}/package/{id}', 'App\Http\Controllers\UtilisateurController@package')->middleware('AuthCheck');
 
 
 
