@@ -30,7 +30,7 @@ if(session('LoggedUser')){
 
 Route::get('/test', function () {
 
-    return view('welcome2');
+    return view('paiement');
 });
 
 
@@ -202,6 +202,8 @@ Route::Resource('location', 'App\Http\Controllers\LocationController');
 
 Route::get('/souscription/{utilisateur}/package/{id}', 'App\Http\Controllers\UtilisateurController@package')->middleware('AuthCheck');
 
+Route::post('/payersouscription/{utilisateur}/package/{id}', 'App\Http\Controllers\UtilisateurController@payerpackage');
+
 
 
 //package//
@@ -221,7 +223,7 @@ Route::post('invitation/{id}/accepter', 'App\Http\Controllers\InvitationControll
 
 Route::post('invitation/{id}/rejeter', 'App\Http\Controllers\InvitationController@rejeter');
 
-Route::post('invitation/{id}/supprimer', 'App\Http\Controllers\InvitationController@supprimer');
+Route::delete('invitation/{id}/supprimer', 'App\Http\Controllers\InvitationController@supprimer');
 
 
 

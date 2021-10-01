@@ -125,8 +125,8 @@
 <center class="mt-2"><h4> Voulez-vous vraiment supprimer cette invitation ?</h4></center>
 
 <center class="mt-5 mb-4"><a onclick="event.preventDefault; var form=document.getElementById('form2{{ $l->idinvitation}}'); form.submit();"
-    class="btn-success mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn-danger p-2 rounded "><i class="fas fa-times"></i> Annuler</a></center>
-    <form id="form2{{ $l->idinvitation }}" action="/invitation/{{ $l->idinvitation }}/supprimer" method="get"
+    class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-times"></i> Annuler</a></center>
+    <form id="form2{{ $l->idinvitation }}" action="/invitation/{{ $l->idinvitation }}/supprimer" method="post"
         style="display: none;">
         @csrf
         @method('delete')

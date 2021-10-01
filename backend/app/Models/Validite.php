@@ -9,12 +9,13 @@ class Validite extends Model
 {
     use HasFactory;
 
-    public $table='transaction';
+    public $table='validitepackage';
 
-    public $primaryKey='idtransaction';
+    public $primaryKey='idvp';
 
     protected $fillable = [
         'idu',
+        'idpackage',
         'datesous',
         'dateexp', 
     ];

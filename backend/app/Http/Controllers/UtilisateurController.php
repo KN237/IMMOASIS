@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Facture;
+use App\Models\Package;
 use App\Models\Bailleur;
+use App\Models\Validite;
 use App\Models\Locataire;
+use Malico\MeSomb\Payment;
+use App\Models\Transaction;
 use App\Models\Utilisateur;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -155,27 +160,50 @@ class UtilisateurController extends Controller
                 
             }
     }
+
     public function package(Utilisateur $utilisateur,$id)
     {
-        $test=$utilisateur->update(
-            
-            [ 
-         'idPackage'=>$id
+        $package=Package::where('idpackage',$id)->first();
+        $montant=$package->montant;
+        return view('paiement',compact('package','montant','utilisateur'));
  
-         ]
-         
-         );
- 
-     if($test){
-            Toastr::success('package souscrit  avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
+    }
+
+
+
+    public function payerpackage(Request $request)
+    {
+        $request2 = new Payment('+237' . $request->num, $request->montant);
+
+        $payment = $request2->pay();
+
+        if ($payment->success) {
+
+            Validite::create([
+                'idu'=>session('LoggedUser'),
+                'idpackage'=>$request->idpackage,
+                'datesous'=>now(),
+                'dateexp'=>now()->addDays(30)
+            ]);
+
+
+            Transaction::create([
+
+                'idu'=>session('LoggedUser'),
+                'motif'=>'Souscription',
+                'date'=>now(), 
+                'montant'=>$request->montant
+            ]);
+
+            Toastr::success('Souscription éffectuée avec succes', 'succes', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+
             return back();
-        }else{
-           
-                Toastr::error('La souscription a échoué','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
-                return back();
-                
-            }
- 
+        } else {
+
+            Toastr::error('L\'opération a échoué', 'erreur', ["iconClass" => "customer-r", "positionClass" => "toast-top-center"]);
+            return back();
+        }
+
     }
 
 

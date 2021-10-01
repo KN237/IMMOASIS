@@ -51,7 +51,6 @@
 
                         <th>Montant</th>
 
-
                         <th>Nombre de biens</th>
 
                        <th>Actions</th>

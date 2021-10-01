@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\bien;
+use App\Models\Package;
 use App\Models\Bailleur;
+use App\Models\Validite;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -19,6 +21,42 @@ class BienController extends Controller
     public function store(Request $request)
     {
         $bailleur=Bailleur::where('idu',session('LoggedUser'))->first();
+
+        $permissions=Validite::where('idu',$bailleur->idu)->whereDate('dateexp','>=',date("Y-m-d"))->get();
+
+        if(count($permissions)==0){
+
+            Toastr::error('Désolé, votre plan n\'est plus à jour, veuillez l\'upgrader','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+            return back();
+        }
+
+        else{
+
+            $permissionsID = [];
+
+            foreach ($permissions as $b) {
+
+                    array_push($permissionsID, $b->idpackage);
+
+            }
+
+
+        $packages=Package::whereIn('idpackage',$permissionsID)->get();
+
+
+        $nombrebiens = 0;
+
+            foreach ($packages as $b) {
+
+                $nombrebiens=$nombrebiens + $b->nombrebienmax;
+
+            }
+
+        $permission=Validite::where('idu',$bailleur->idu)->whereDate('dateexp','>=',date("Y-m-d"))->orderBy('datesous','asc')->first();
+
+        $biens=Bien::where('idbailleur',$bailleur->idbailleur)->where('date','<=',$permission->dateexp)->where('date','>=',$permission->datesous)->get();
+
+        if(count($biens)<=$nombrebiens){
 
         if($request->has('image')){
             
@@ -38,7 +76,8 @@ class BienController extends Controller
             'image'=>$file,
             'superficie'=>$request->superficie,
             'ville'=>$request->ville,
-            'quartier'=>$request->quartier
+            'quartier'=>$request->quartier,
+            'date'=>now(),
              
              ]
              
@@ -60,7 +99,8 @@ class BienController extends Controller
             'image'=>"internis.png",
             'superficie'=>$request->superficie,
             'ville'=>$request->ville,
-            'quartier'=>$request->quartier
+            'quartier'=>$request->quartier,
+            'date'=>now()
              
              ]
              
@@ -80,6 +120,17 @@ class BienController extends Controller
                 return back();
                 
             }
+
+        }
+
+        else{
+
+            Toastr::error('Désolé, votre plan ne vous permet plus d\'ajouter de bien, veuillez l\'upgrader','erreur',["iconClass"=>"customer-r","positionClass"=>"toast-top-center"]);
+                return back();
+
+        }
+
+    }
 
        
     }

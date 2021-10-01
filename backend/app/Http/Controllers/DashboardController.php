@@ -13,6 +13,7 @@ use App\Models\Facture;
 use App\Models\Bailleur;
 use App\Models\Location;
 use App\Models\TypeBien;
+use App\Models\Validite;
 use App\Charts\UserChart;
 use App\Models\EtatLieux;
 use App\Models\Locataire;
@@ -26,7 +27,6 @@ use App\Models\TypeLocation;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Package as ModelsPackage;
-use Facade\Ignition\Support\Packagist\Package;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class DashboardController extends Controller
@@ -155,6 +155,8 @@ class DashboardController extends Controller
 
         $locations = Location::where('idlocataire', $locataire->idlocataire)->get();
 
+        $invitations = Invitation::where('idlocataire', $locataire->idlocataire)->get();
+
         $locationsID = [];
 
         foreach ($locations as $b) {
@@ -169,14 +171,16 @@ class DashboardController extends Controller
         $factures = Facture::whereIn('idlocation', $locationsID)->where('etat',0)->get();
 
 
-        return view('admin.dashboard', compact('data','locations','factures','renovations'));
+        return view('admin.dashboard', compact('data','locations','factures','renovations','invitations'));
 
     }
 
     else{
+        
         $biens=Bien::all();
         $users=Utilisateur::all();
-        $transactions=Transaction::all();
+        $transactions=Transaction::where('motif','Souscription')->get();
+        
         return view('admin.dashboard', compact('data','biens','users','transactions'));
     }
 
@@ -255,7 +259,26 @@ class DashboardController extends Controller
 
             $l = Bailleur::where('idu', $data->idu)->first();
 
-            return view('admin.moncomptebailleur', compact('l', 'data'));
+            $plan=Validite::where('idu',$l->idu)->whereDate('dateexp','>=',date("Y-m-d"))->orderBy('datesous','desc')->get();
+
+            $plansID = [];
+
+            foreach ($plan as $p) {
+
+                    array_push($plansID, $p->idpackage);
+
+            }
+
+            $package=ModelsPackage::whereIn('idpackage',$plansID )->get();
+
+            $plan=Validite::where('idu',$l->idu)->whereDate('dateexp','>=',date("Y-m-d"))->orderBy('datesous','desc')->first();
+
+            $plans=Validite::where('idu',$l->idu)->get();
+
+            $packages=ModelsPackage::all();
+
+            return view('admin.moncomptebailleur', compact('l', 'data','plan','package','plans','packages'));
+
         } else {
 
             $l = Locataire::where('idu', $data->idu)->first();
@@ -738,7 +761,7 @@ class DashboardController extends Controller
 
             $bailleur = Bailleur::where('idu', $data->idu)->first();
 
-            $biens = Bien::where('idbailleur', $bailleur->idbailleur)->get();
+            $biens = Bien::where('idbailleur', $bailleur->idbailleur)->where('etat',1)->get();
 
             $biensID = [];
 
@@ -777,9 +800,9 @@ class DashboardController extends Controller
 
             foreach ($locations as $b) {
 
-                if (!array_search($b->idlocation, $locationsID)) {
+                if (!array_search($b->idbien, $locationsID)) {
 
-                    array_push($locationsID, $b->idlocation);
+                    array_push($locationsID, $b->idbien);
                 }
             }
 
@@ -840,7 +863,7 @@ class DashboardController extends Controller
 
             $bailleur = Bailleur::where('idu', $data->idu)->first();
 
-            $biens = Bien::where('idbailleur', $bailleur->idbailleur)->get();
+            $biens = Bien::where('idbailleur', $bailleur->idbailleur)->where('etat',1)->get();
 
             $biensID = [];
 
@@ -968,7 +991,7 @@ class DashboardController extends Controller
 
             $bailleur = Bailleur::where('idu', $data->idu)->first();
 
-            $biens = Bien::where('idbailleur', $bailleur->idbailleur)->get();
+            $biens = Bien::where('idbailleur', $bailleur->idbailleur)->where('etat',1)->get();
 
             $biensID = [];
 

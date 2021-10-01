@@ -94,6 +94,7 @@ class LocationController extends Controller
          );
 
          if($test){
+             Bien::where('idbien',$request->idbien)->update(['etat'=>1]);
             Toastr::success('location créée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
@@ -152,6 +153,7 @@ class LocationController extends Controller
          );
 
          if($test){
+             
             Toastr::success('location modifiée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{
@@ -173,6 +175,7 @@ class LocationController extends Controller
         $test=$location->delete();
 
         if($test){
+            Bien::where('idbien',$location->idbien)->update(['etat'=>0]);
             Toastr::success('location supprimée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);
             return back();
         }else{

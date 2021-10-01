@@ -1,7 +1,7 @@
 .da-slider {
     width: 100%;
     min-width: 320px;
-    height: 520px;
+    height: 620px !important;
     position: relative;
     margin:0 auto;
     overflow: hidden;

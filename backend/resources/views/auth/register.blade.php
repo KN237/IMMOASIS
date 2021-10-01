@@ -137,12 +137,21 @@
                   />
                 </div>
 
+                <div class="form-group m-4">
+
+                  {!! NoCaptcha::renderJs() !!}
+
+                  {!! NoCaptcha::display() !!}
+                  
+
+                </div>
+
                 <div class="form-group">
                   <button
                     type="submit"
                     class="form-control btn btn-primary rounded submit px-3"
                   >
-                    Se connecter
+                    S'inscrire
                   </button>
                 </div>
                 <div class="form-group d-flex" style="justify-content: center">

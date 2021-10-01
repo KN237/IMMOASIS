@@ -156,7 +156,7 @@ class LocataireController extends Controller
 
     $invite=Invitation::where('idlocataire',$id)->where('idbailleur',$bailleur->idbailleur)->get();
 
-    if(!empty($location) or !empty($invite)){
+    if(count($location)!=0 or count($invite)!=0){
 
         Toastr::warning('Ce locataire est déja enregistré chez vous, ou vous lui avez déja envoyé une invitation','attention',["positionClass"=>"toast-top-center"]);
         return back();

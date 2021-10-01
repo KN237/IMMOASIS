@@ -97,9 +97,10 @@
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true"
                                             class="dropdown-menu dropdown-menu-right">
+                                            @if($data->role!="Administrateur")
                                             <a href="/dashboard/monprofile" type="button" tabindex="0"
                                                 class="dropdown-item">
-                                                <i class="fas fa-users-cog m-1"></i>Mon compte</a>
+                                                <i class="fas fa-users-cog m-1"></i>Mon compte</a> @endif
                                             <a type="button" tabindex="0" class="dropdown-item" data-toggle="modal"
                                                 data-target="#dec">
 

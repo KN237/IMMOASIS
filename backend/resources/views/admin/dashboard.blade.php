@@ -189,7 +189,7 @@
     
     <div class="d-flex m-5"><i class="bg-light p-3 rounded-circle metismenu-icon fas fa-location-arrow mr-3" style="font-size: 3rem;"></i> <div style="height: 50px; width:1px;background:black;"></div> <p style="font-size:1.6rem; font-weight:bold;" class="ml-5">
         
-        Invitations  {{ $factures->count() ?? '0' }}
+        Invitations  {{ $invitations->count() ?? '0' }}
     
     </p></div>
             
@@ -302,12 +302,12 @@
 <div class="col-4">
 
     <div class="card">
-        <div class="card-header">Transactions</div>
+        <div class="card-header">Souscriptions</div>
         <div class="card-body">
     
     <div class="d-flex m-5"><i class="bg-light p-3 rounded-circle metismenu-icon fas fa-cash-register mr-3" style="font-size: 3rem;"></i> <div style="height: 50px; width:1px;background:rgb(78, 77, 77);"></div> <p style="font-size:1.6rem; font-weight:bold;" class="ml-5">
         
-        Transactions {{ $transactions->count() ?? '0' }}
+        Souscriptions {{ $transactions->count() ?? '0' }}
     
     </p></div>
             
@@ -319,6 +319,9 @@
 </div>
 
 </div>
+
+
+
 
 @endsection
 

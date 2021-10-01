@@ -43,6 +43,18 @@
 </head>
 
 <body>
+        <!-- ***** Preloader Start ***** -->
+        <div id="js-preloader" class="js-preloader">
+            <div class="preloader-inner">
+                <span class="dot"></span>
+                <div class="dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Preloader End ***** -->
     <div class="navbar">
         <div class="navbar-inner">
             <div class="container">
@@ -60,8 +72,6 @@
                         <li class="active"><a href="/">Acceuil</a></li>
                         <li><a href="#service">Services</a></li>
                         <li><a href="#price">Tarifs</a></li>
-                        <li><a href="#locataire">Locataire</a></li>
-                        <li><a href="#bailleur">Bailleur</a></li>
                         @if (session('LoggedUser'))
 
                             <li><a class="text-dark" href="/dashboard">Mon compte</a></li>
@@ -90,12 +100,11 @@
             <div class="container">
                 <!-- Start first slide -->
                 <div class="da-slide">
-                    <h2 class="fittext2">Welcome sur Immo Oasis</h2>
-                    <h4>Clean & responsive</h4>
-                    <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline
-                        of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own
-                        road, the Line Lane.</p>
-                    <a href="#" class="da-link button">Read more</a>
+                    <h2 class="fittext2">Bienvenu(e) sur sur Immo Oasis</h2>
+                    <h4>Bailleurs, Locataires, Gérez vos locations sans Stresse</h4>
+                    <p>Comptabilité - Recouvrements - Gestion des interventions - Archivages 
+                        - Signature bail en ligne  - Génération des contrats en lignes - Inventaire des biens - Payement des factures en ligne .</p>
+                    <a href="/register" class="da-link button">Creer un compte</a>
                     <div class="da-img">
                         <img src="/welcome/images/Slider01.png" alt="image01" width="320">
                     </div>
@@ -104,11 +113,9 @@
                 <!-- Start second slide -->
                 <div class="da-slide">
                     <h2>Bailleurs</h2>
-                    <h4>Easy to use</h4>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                        live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
-                        a large language ocean.</p>
-                    <a href="#" class="da-link button">Read more</a>
+                    <p>Créer un compte afin de mieux gérer vos biens et de suivre le bail de tous vos biens et de tous
+                        vos locataires</p>
+                    <a href="/register" class="da-link button">Creer un compte</a>
                     <div class="da-img">
                         <img src="/bailleur2.png" width="320" alt="image02">
                     </div>
@@ -117,10 +124,8 @@
                 <!-- Start third slide -->
                 <div class="da-slide">
                     <h2>Locataires</h2>
-                    <h4>Customizable</h4>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It
-                        is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                    <a href="#" class="da-link button">Read more</a>
+                    <p>Créer un compte afin de mieux gérer vos locations et de faciliter le paiement de vos loyers.</p>
+                    <a href="/register" class="da-link button">Creer un compte</a>
                     <div class="da-img">
                         <img src="/locataire.png" width="320" alt="image03">
                     </div>
@@ -242,7 +247,7 @@
     <div class="section secondary-section">
         <div class="triangle"></div>
         <div class="container centered">
-            <p class="large-text">Elegance is not the abundance of simplicity. It is the absence of complexity.</p>
+            <p class="large-text">Concentrez-vous sur votre cœur de métier !</p>
         </div>
     </div>
     <!-- Client section start -->
@@ -253,7 +258,7 @@
             <div class="container">
                 <div class="title">
                     <h1>Avis des clients</h1>
-                    <p>Duis mollis placerat quam, eget laoreet tellus tempor eu. Quisque dapibus in purus in dignissim.
+                    <p>Ils nous font confiance.
                     </p>
                 </div>
                 <div class="row">
@@ -263,8 +268,8 @@
                                 not let my teammates down and I will not let myself down."</p>
                             <div class="whopic">
                                 <div class="arrow"></div>
-                                <img src="/welcome/images/Client1.png" class="centered" alt="client 1">
-                                <strong>John Doe
+                                <img src="client.png" class="centered" alt="client 1">
+                                <strong>Sylvain KANKO
                                     <small>Client</small>
                                 </strong>
                             </div>
@@ -277,8 +282,8 @@
                                 make others feel involved."</p>
                             <div class="whopic">
                                 <div class="arrow"></div>
-                                <img src="/welcome/images/Client2.png" class="centered" alt="client 2">
-                                <strong>John Doe
+                                <img src="client.png" class="centered" alt="client 2">
+                                <strong>Daniel TASSA
                                     <small>Client</small>
                                 </strong>
                             </div>
@@ -290,8 +295,8 @@
                                 who never loses any. It is wonderful how much may be done if we are always doing."</p>
                             <div class="whopic">
                                 <div class="arrow"></div>
-                                <img src="/welcome/images/Client3.png" class="centered" alt="client 3">
-                                <strong>John Doe
+                                <img src="client.png" class="rounded" alt="client 3">
+                                <strong>Marc Beaurel Talla
                                     <small>Client</small>
                                 </strong>
                             </div>
@@ -299,8 +304,7 @@
                     </div>
                 </div>
                 <p class="testimonial-text">
-                    "Perfection is Achieved Not When There Is Nothing More to Add, But When There Is Nothing Left to
-                    Take Away"
+                    " Ne craignez pas d'atteindre la perfection, vous n'y arriverez jamais." Salvador DALI
                 </p>
             </div>
         </div>
@@ -311,27 +315,34 @@
         <div class="container">
             <div class="title">
                 <h1>Tarifs</h1>
-                <p>Duis mollis placerat quam, eget laoreet tellus tempor eu. Quisque dapibus in purus in dignissim.</p>
+                <p>Nos forfaits et tarifs sont les suivants</p>
             </div>
             <div class="price-table row-fluid">
 
-                @foreach($packages as $p)
+                @foreach ($packages as $p)
 
-                <div class="span4 price-column">
-                    <h3>{{$p->nom}}</h3>
-                    <ul class="list">
-                        <li class="price">FCFA {{$p->montant}}</li>
-                        <li><strong>{{$p->nombrebienmax}}</strong> Bien</li>
-                        <li><strong>Support disponible</strong> 24/7</li> 
-                    </ul>
-                   @if(session('LoggedUser')) <a href="/souscription/{{$data->idu}}/package/{{$p->idpackage}}" class="button button-ps">Souscrire</a>
-                   @else
-                   <a href="/login" class="button button-ps">Souscrire</a>
-                   @endif
-                </div>
+
+                    @if ($p->nom != 'FREE')
+
+                        <div class="span4 price-column">
+                            <h3>{{ $p->nom }}</h3>
+                            <ul class="list">
+                                <li class="price">{{ $p->montant }} FCFA</li>
+                                <li><strong>{{ $p->nombrebienmax }}</strong> Biens</li>
+                                <li><strong>Support disponible</strong> 24h/7j</li>
+                            </ul>
+                            @if (session('LoggedUser')) <a
+                                    href="/souscription/{{ $data->idu }}/package/{{ $p->idpackage }}"
+                                    class="button button-ps">Souscrire</a>
+                            @else
+                                <a href="/login" class="button button-ps">Souscrire</a>
+                            @endif
+                        </div>
+
+                    @endif
 
                 @endforeach
-   
+
             </div>
         </div>
     </div>
@@ -342,28 +353,27 @@
     <footer>
         <div class="text-center" style="margin: 50px;">
 
-                    <p>
-                        tout droit réservé © 2020 Immo Oasis
-                    </p>
-               
-
-                    <div class="logos mb-5">
-                        <a target="_blank" href="https://itunes.apple.com/us/app/tenantcloud/id773281018?mt=8"
-                            rel="noopener noreferrer">
-                            <img width="107" height="31" class="img-responsive link-image"
-                                src="https://cdn.tenantcloud.com/builds/v37.0.9/promo/images/svg/app-store-badge.svg"
-                                alt="tenantcloud-app-store" />
-                        </a>
+            <p>
+                tout droit réservé © 2020 Immo Oasis
+            </p>
 
 
-                        <a target="_blank"
-                            href="https://play.google.com/store/apps/details?id=com.sav.tenantcloud&hl=en"
-                            rel="noopener noreferrer">
-                            <img width="107" height="31" class="img-responsive link-image"
-                                src="https://cdn.tenantcloud.com/builds/v37.0.9/promo/images/svg/google-play-badge.svg"
-                                alt="tenantcloud-google-play" />
-                        </a>
-     
+            <div class="logos mb-5">
+                <a target="_blank" href="https://itunes.apple.com"
+                    rel="noopener noreferrer">
+                    <img width="107" height="31" class="img-responsive link-image"
+                        src="https://cdn.tenantcloud.com/builds/v37.0.9/promo/images/svg/app-store-badge.svg"
+                        alt="tenantcloud-app-store" />
+                </a>
+
+
+                <a target="_blank" href="https://play.google.com/"
+                    rel="noopener noreferrer">
+                    <img width="107" height="31" class="img-responsive link-image"
+                        src="https://cdn.tenantcloud.com/builds/v37.0.9/promo/images/svg/google-play-badge.svg"
+                        alt="tenantcloud-google-play" />
+                </a>
+
             </div>
         </div>
     </footer>
@@ -372,7 +382,9 @@
 
     <!-- ScrollUp button end -->
     <!-- Include javascript -->
+    
     <script src="/welcome/js/jquery.js"></script>
+    <script  src="/js/main.js"></script>
     <script src="/welcome/js/jquery.mixitup.js"></script>
     <script src="/welcome/js/bootstrap.js"></script>
     <script src="/welcome/js/modernizr.custom.js"></script>
@@ -388,6 +400,7 @@
             <script src="js/respond.min.js"></script>
         <![endif]-->
     <script type="text/javascript" src="/welcome/js/app.js"></script>
+
 </body>
 
 </html>

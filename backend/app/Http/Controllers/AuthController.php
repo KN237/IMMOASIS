@@ -6,6 +6,7 @@ use App\Models\Package;
 use App\Models\Bailleur;
 use App\Models\Locataire;
 use App\Models\Utilisateur;
+use App\Models\Validite;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Hash;
@@ -29,6 +30,7 @@ class AuthController extends Controller
             'mdpc'=>'in:'.$request->mdp,
             'compte'=>'required',
             'telephone'=>'required',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
 
          //Insert data into database  
@@ -48,6 +50,11 @@ class AuthController extends Controller
             $bailleur = new Bailleur();
             $bailleur->idu=$utlisateur->idu;
             $bailleur->save();
+
+            Validite::create([
+                'idu'=>$utlisateur->idu,
+                'idpackage'=>5,
+            ]);
          }
          else{
 

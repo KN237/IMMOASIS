@@ -23,6 +23,8 @@ class Bien extends Model
         'image',
         'superficie',
         'ville',
-        'quartier'
+        'quartier',
+        'date',
+        'etat'
     ];
 }

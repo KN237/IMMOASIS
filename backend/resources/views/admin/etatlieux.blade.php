@@ -32,6 +32,8 @@
 
 @endpush
 
+@if($data->role=="Bailleur")
+
 @section('bouton')
 
     <div class="page-title-actions">
@@ -50,6 +52,8 @@
 
 
 @endsection
+
+@endif
 
 @section('content')
 

@@ -114,7 +114,7 @@
 <center class="mt-2"><h4> Voulez-vous vraiment  rejeter cette invitation ?</h4></center>
 
 <center class="mt-5 mb-4"><a onclick="event.preventDefault; var form=document.getElementById('form{{ $l->idinvitation}}'); form.submit();"
-    class="btn-success mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn-danger p-2 rounded "><i class="fas fa-times"></i> Annuler</a></center>
+    class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</a> <a type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-times"></i> Annuler</a></center>
     <form id="form{{ $l->idinvitation }}" action="/invitation/{{ $l->idinvitation }}/rejeter" method="post"
         style="display: none;">
         @csrf
@@ -149,7 +149,7 @@
 <center class="mt-2"><h4> Voulez-vous vraiment vous accepter cette invitation ?</h4></center>
 
 <center class="mt-5 mb-4"><button onclick="event.preventDefault; var form=document.getElementById('form2{{ $l->idinvitation}}'); form.submit();"
-    class="btn-success mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close" class="btn-danger p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
+    class="btn bg-success-light mr-3 p-2 rounded text-white" ><i class="fas fa-check mr-1"></i> Confirmer</button> <button type="button" data-dismiss="modal" aria-label="Close" class="btn bg-danger-light p-2 rounded "><i class="fas fa-trash mr-1"></i> Annuler</button></center>
     <form id="form2{{ $l->idinvitation }}" action="/invitation/{{ $l->idinvitation }}/accepter" method="post"
         style="display: none;">
         @csrf
