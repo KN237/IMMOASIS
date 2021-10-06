@@ -273,12 +273,16 @@
 
                                         <div class="carousel-inner">
 
-                                            @forelse($photos as $p)
+                                            @if(count($photos)!=0)
 
-                                                <div class="carousel-item active">
-                                                    <img src="/storage/photosbiens/{{ $p->nom }}"
-                                                        class="d-block w-100" alt="photo">
-                                                </div>
+                                            <div class="carousel-item active">
+                                                <img src="/storage/photosbiens/{{ $photos[0]->nom }}"
+                                                    class="d-block w-100" alt="photo">
+                                            </div>
+
+                                            @endif
+
+                                            @forelse($photos as $p)
 
                                                 <div class="carousel-item">
                                                     <img src="/storage/photosbiens/{{ $p->nom }}"
@@ -556,11 +560,13 @@
 
 
 @push('page-js')
+  
+<script src="/main/assets/js/jquery-2.1.0.min.js"></script>
 
     <!-- Select2 JS -->
     <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="/main/assets/js/jquery-2.1.0.min.js"></script>
+
 
 @endpush

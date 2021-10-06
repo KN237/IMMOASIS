@@ -11,6 +11,8 @@ class Validite extends Model
 
     public $table='validitepackage';
 
+    public $timestamps=FAlSE;
+
     public $primaryKey='idvp';
 
     protected $fillable = [

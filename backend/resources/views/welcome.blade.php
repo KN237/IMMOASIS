@@ -351,6 +351,7 @@
 
     <!-- Footer section start -->
     <footer>
+
         <div class="text-center" style="margin: 50px;">
 
             <p>
@@ -358,24 +359,28 @@
             </p>
 
 
-            <div class="logos mb-5">
-                <a target="_blank" href="https://itunes.apple.com"
-                    rel="noopener noreferrer">
-                    <img width="107" height="31" class="img-responsive link-image"
-                        src="https://cdn.tenantcloud.com/builds/v37.0.9/promo/images/svg/app-store-badge.svg"
-                        alt="tenantcloud-app-store" />
-                </a>
+            <div class="logos mb-2">
+
+                <p style="font-size: 12px;">
+                    Les modes de paiement suivants sonts acceptés :
+                </p>
 
 
-                <a target="_blank" href="https://play.google.com/"
-                    rel="noopener noreferrer">
-                    <img width="107" height="31" class="img-responsive link-image"
-                        src="https://cdn.tenantcloud.com/builds/v37.0.9/promo/images/svg/google-play-badge.svg"
-                        alt="tenantcloud-google-play" />
-                </a>
+                <a href="#"><img src="/orange.png" alt="logo" width="100" height="31"></a>
+
+                <a href="#"><img src="/mtn.png" alt="logo" width="100" height="31"></a>
+                
+
+                
 
             </div>
+
+           
+
         </div>
+
+
+
     </footer>
     <!-- Footer section end -->
     <!-- ScrollUp button start -->

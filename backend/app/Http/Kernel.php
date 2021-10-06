@@ -59,6 +59,7 @@ class Kernel extends HttpKernel
         'Bailleur' => \App\Http\Middleware\Bailleur::class,
         'Locataire' => \App\Http\Middleware\Locataire::class,
         'Administrateur' => \App\Http\Middleware\Administrateur::class,
+        'NonAdmin' => \App\Http\Middleware\NonAdmin::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

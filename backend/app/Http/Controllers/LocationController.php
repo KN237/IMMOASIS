@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bien;
+use App\Models\Article;
 use App\Models\Contrat;
 use App\Models\Bailleur;
 use App\Models\Location;
@@ -243,15 +244,30 @@ class LocationController extends Controller
 
         $bailleur=Bailleur::where('idbailleur',$bien->idbailleur)->first();
 
+        $articles=Article::where('idbailleur',$bailleur->idbailleur)->get();
+
         $locataire=Locataire::where('idlocataire',$location->idlocataire)->first();
          
         $pdf = app('dompdf.wrapper');
 
-        $pdf->loadView('pdf/contrat', ['location' => $location,'bailleur'=>$bailleur,'bien'=>$bien,'users'=>$users,'locataire'=>$locataire]);
+        if(count($articles)==0){
 
-        return $pdf->stream('contrat' . $location->idbien . now() . 'pdf');
+            $articles=[];
 
-  
+            $pdf->loadView('pdf/contrat', ['location' => $location,'bailleur'=>$bailleur,'bien'=>$bien,'users'=>$users,'locataire'=>$locataire,'articles'=>$articles]);
+
+            return $pdf->stream('contrat' . $location->idbien . now() . 'pdf');
+        }
+
+
+        else{
+
+            $pdf->loadView('pdf/contrat', ['location' => $location,'bailleur'=>$bailleur,'bien'=>$bien,'users'=>$users,'locataire'=>$locataire,'articles'=>$articles]);
+
+            return $pdf->stream('contrat' . $location->idbien . now() . 'pdf');
+        }
+
+      
         
     }
 

@@ -180,7 +180,8 @@
 
             <tr class="item">
                 <td>Le propriétaire du logement M./Mme @foreach ($users as $u) @if ($u->idu == $bailleur->idu) {{ $u->nomcomplet }} @endif @endforeach, met à titre de location, à la disposition de M./Mme @foreach ($users as $u) @if ($u->idu == $locataire->idu) {{ $u->nomcomplet }} @endif @endforeach un local au quartier
-                    {{ $bien->quartier }} à {{ $bien->ville }}, d’une superficie de {{ $bien->superficie }} afin que
+                    {{ $bien->quartier }} à {{ $bien->ville }}, d’une superficie de {{ $bien->superficie }}
+                    afin que
                     ce dernier y effectue ses activités. </td>
             </tr>
 
@@ -210,17 +211,6 @@
             <tr class="heading">
                 <td>Article 4</td>
 
-                <td>DUREE DU CONTRAT</td>
-            </tr>
-
-            <tr class="item">
-                <td>Le présent contrat a une durée de ….. à compter du ……………… renouvelable par tacite reconduction </td>
-            </tr>
-
-
-            <tr class="heading">
-                <td>Article 5</td>
-
                 <td>DROIT DU PROPRIETAIRE</td>
             </tr>
 
@@ -230,7 +220,7 @@
             </tr>
 
             <tr class="heading">
-                <td>Article 6</td>
+                <td>Article 5</td>
 
                 <td>ENTRETIEN ET REPARATION</td>
             </tr>
@@ -240,6 +230,23 @@
 
                 </td>
             </tr>
+
+
+            @for($i=0;$i<count($articles);$i++)
+
+                <tr class="heading">
+                    <td>Article {{$i+6}}</td>
+
+                    <td>{{ $articles[$i]->titre }}</td>
+                </tr>
+
+                <tr class="item">
+                    <td>{{ $articles[$i]->description }}
+
+                    </td>
+                </tr>
+
+            @endfor
 
         </table>
 

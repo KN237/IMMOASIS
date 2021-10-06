@@ -17,14 +17,13 @@ use App\Models\Utilisateur;
 */
 
 Route::get('/', function () {
-if(session('LoggedUser')){
-    $packages=Package::all();
-    $data = Utilisateur::where('idu', session('LoggedUser'))->first();
-    return view('welcome',compact('packages','data'));}
-
-    else{
-        $packages=Package::all();
-    return view('welcome',compact('packages'));
+    if (session('LoggedUser')) {
+        $packages = Package::all();
+        $data = Utilisateur::where('idu', session('LoggedUser'))->first();
+        return view('welcome', compact('packages', 'data'));
+    } else {
+        $packages = Package::all();
+        return view('welcome', compact('packages'));
     }
 });
 
@@ -40,7 +39,7 @@ Route::get('/test', function () {
 
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@dashboard')->middleware('AuthCheck');
 
-Route::get('/dashboard/meslocataires', 'App\Http\Controllers\DashboardController@meslocataires')->middleware('AuthCheck','Bailleur');
+Route::get('/dashboard/meslocataires', 'App\Http\Controllers\DashboardController@meslocataires')->middleware('AuthCheck', 'Bailleur');
 
 Route::post('/meslocataires/rechercher', 'App\Http\Controllers\DashboardController@recherchermeslocataires');
 
@@ -50,37 +49,37 @@ Route::post('/locataires/rechercher', 'App\Http\Controllers\DashboardController@
 
 Route::get('/dashboard/profilelocataire/{id}', 'App\Http\Controllers\DashboardController@showlocataire')->middleware('AuthCheck');
 
-Route::get('/dashboard/profilebailleur/{id}', 'App\Http\Controllers\DashboardController@showbailleur')->middleware('AuthCheck','Administrateur');
+Route::get('/dashboard/profilebailleur/{id}', 'App\Http\Controllers\DashboardController@showbailleur')->middleware('AuthCheck', 'Administrateur');
 
 Route::get('/dashboard/monprofile', 'App\Http\Controllers\DashboardController@showmoncompte')->middleware('AuthCheck');
 
-Route::get('/dashboard/invitationsrecues', 'App\Http\Controllers\DashboardController@invitationsrecues')->middleware('AuthCheck','Locataire');
+Route::get('/dashboard/invitationsrecues', 'App\Http\Controllers\DashboardController@invitationsrecues')->middleware('AuthCheck', 'Locataire');
 
-Route::get('/dashboard/invitationsenvoyees', 'App\Http\Controllers\DashboardController@invitationsenvoyees')->middleware('AuthCheck','Bailleur');
+Route::get('/dashboard/invitationsenvoyees', 'App\Http\Controllers\DashboardController@invitationsenvoyees')->middleware('AuthCheck', 'Bailleur');
 
-Route::get('/dashboard/utilisateurs', 'App\Http\Controllers\DashboardController@utilisateurs')->middleware('AuthCheck','Administrateur');
+Route::get('/dashboard/utilisateurs', 'App\Http\Controllers\DashboardController@utilisateurs')->middleware('AuthCheck', 'Administrateur');
 
 Route::post('/utilisateurs/rechercher', 'App\Http\Controllers\DashboardController@rechercherutilisateurs');
 
-Route::get('/dashboard/utilisateurs/{role}', 'App\Http\Controllers\DashboardController@filtrerutilisateurs')->middleware('AuthCheck','Administrateur');
+Route::get('/dashboard/utilisateurs/{role}', 'App\Http\Controllers\DashboardController@filtrerutilisateurs')->middleware('AuthCheck', 'Administrateur');
 
-Route::get('/dashboard/biens', 'App\Http\Controllers\DashboardController@biens')->middleware('AuthCheck','Bailleur');
+Route::get('/dashboard/biens', 'App\Http\Controllers\DashboardController@biens')->middleware('AuthCheck', 'Bailleur');
 
 Route::post('/biens/rechercher', 'App\Http\Controllers\DashboardController@rechercherbiens');
 
-Route::get('/dashboard/infosbien/{id}', 'App\Http\Controllers\DashboardController@infosbien')->middleware('AuthCheck','Bailleur');
+Route::get('/dashboard/infosbien/{id}', 'App\Http\Controllers\DashboardController@infosbien')->middleware('AuthCheck', 'Bailleur');
 
-Route::get('/dashboard/typebiens', 'App\Http\Controllers\DashboardController@typebiens')->middleware('AuthCheck','Administrateur');
+Route::get('/dashboard/typebiens', 'App\Http\Controllers\DashboardController@typebiens')->middleware('AuthCheck', 'Administrateur');
 
-Route::get('/dashboard/locations', 'App\Http\Controllers\DashboardController@locationsbailleur')->middleware('AuthCheck');
+Route::get('/dashboard/locations', 'App\Http\Controllers\DashboardController@locationsbailleur')->middleware('AuthCheck', 'NonAdmin');
 
-Route::get('/dashboard/typelocations', 'App\Http\Controllers\DashboardController@typelocations')->middleware('AuthCheck','Administrateur');
+Route::get('/dashboard/typelocations', 'App\Http\Controllers\DashboardController@typelocations')->middleware('AuthCheck', 'Administrateur');
 
-Route::get('/dashboard/photosbiens', 'App\Http\Controllers\DashboardController@photosbiens')->middleware('AuthCheck','Bailleur');
+Route::get('/dashboard/photosbiens', 'App\Http\Controllers\DashboardController@photosbiens')->middleware('AuthCheck', 'Bailleur');
 
-Route::get('/dashboard/photosbien/{id}', 'App\Http\Controllers\DashboardController@photosbien')->middleware('AuthCheck','Bailleur');
+Route::get('/dashboard/photosbien/{id}', 'App\Http\Controllers\DashboardController@photosbien')->middleware('AuthCheck', 'Bailleur');
 
-Route::get('/dashboard/packages', 'App\Http\Controllers\DashboardController@packages')->middleware('AuthCheck','Administrateur');
+Route::get('/dashboard/packages', 'App\Http\Controllers\DashboardController@packages')->middleware('AuthCheck', 'Administrateur');
 
 Route::get('/dashboard/artisans', 'App\Http\Controllers\DashboardController@consulterartisans')->middleware('AuthCheck');
 
@@ -88,21 +87,21 @@ Route::get('/dashboard/artisan/{id}', 'App\Http\Controllers\DashboardController@
 
 Route::get('/dashboard/artisans/{profession}', 'App\Http\Controllers\DashboardController@filtrerartisans')->middleware('AuthCheck');
 
-Route::get('/dashboard/interventions', 'App\Http\Controllers\DashboardController@interventions')->middleware('AuthCheck');
+Route::get('/dashboard/interventions', 'App\Http\Controllers\DashboardController@interventions')->middleware('AuthCheck', 'NonAdmin');
 
-Route::get('/dashboard/articles', 'App\Http\Controllers\DashboardController@articles')->middleware('AuthCheck','Bailleur');
+Route::get('/dashboard/articles', 'App\Http\Controllers\DashboardController@articles')->middleware('AuthCheck', 'Bailleur');
 
-Route::get('/dashboard/inventaires', 'App\Http\Controllers\DashboardController@inventaires')->middleware('AuthCheck');
+Route::get('/dashboard/inventaires', 'App\Http\Controllers\DashboardController@inventaires')->middleware('AuthCheck', 'NonAdmin');
 
-Route::get('/dashboard/configinventaire/{id}', 'App\Http\Controllers\DashboardController@configinventaire')->middleware('AuthCheck');
+Route::get('/dashboard/configinventaire/{id}', 'App\Http\Controllers\DashboardController@configinventaire')->middleware('AuthCheck', 'NonAdmin');
 
-Route::get('/dashboard/etatlieux', 'App\Http\Controllers\DashboardController@etatlieux')->middleware('AuthCheck');
+Route::get('/dashboard/etatlieux', 'App\Http\Controllers\DashboardController@etatlieux')->middleware('AuthCheck', 'NonAdmin');
 
-Route::get('/dashboard/configetatlieux/{id}', 'App\Http\Controllers\DashboardController@configetatlieux')->middleware('AuthCheck');
+Route::get('/dashboard/configetatlieux/{id}', 'App\Http\Controllers\DashboardController@configetatlieux')->middleware('AuthCheck', 'NonAdmin');
 
-Route::get('/dashboard/factures', 'App\Http\Controllers\DashboardController@factures')->middleware('AuthCheck');
+Route::get('/dashboard/factures', 'App\Http\Controllers\DashboardController@factures')->middleware('AuthCheck', 'NonAdmin');
 
-Route::get('/dashboard/transactions', 'App\Http\Controllers\DashboardController@transactions')->middleware('AuthCheck');
+Route::get('/dashboard/transactions', 'App\Http\Controllers\DashboardController@transactions')->middleware('AuthCheck', 'NonAdmin');
 
 
 /***********************************  Fin Dashboard  **********************************/
