@@ -117,12 +117,15 @@ Mon profile
 
 								</div>
 
-                                <div class="row">
-									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Sexe</p>
 
-									<p class="col-sm-10">{{ $l->sexe }}</p>
+
+								<div class="row">
+									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Numéro CNI</p>
+
+									<p class="col-sm-10">{{ $l->numcni }}</p>
 
 								</div>
+
 
                                 <div class="row">
 									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Profession</p>
@@ -172,6 +175,7 @@ Mon profile
 						
 						<form method="POST" action="/utilisateur/{{ $data->idu }}">
 							@csrf
+							@method('put')
 							<div class="row form-row">
 
 								<div class="col-12">
@@ -221,12 +225,27 @@ Mon profile
 							
 							<form method="POST" enctype="multipart/form-data" action="/locataire/{{ $l->idlocataire }}">
 								@csrf
+								@method('put')
 								<div class="row form-row">
+
+								<div class="col-12">
+										<div class="form-group">
+											<label>Date de naissance</label>
+											<input class="form-control" name="datenaiss" type="date" value="{{ $l->datenaiss }}">
+										</div>
+									</div>
+
+									<div class="col-12">
+										<div class="form-group">
+											<label>Numèro de CNI</label>
+											<input class="form-control" name="numcni" type="text" value="{{ $l->numcni }}">
+										</div>
+									</div>
 	
 									<div class="col-12">
 										<div class="form-group">
 											<label>Ville</label>
-											<input class="form-control" name="ville " type="text" value="{{ $l->ville }}">
+											<input class="form-control" name="ville" type="text" value="{{ $l->ville }}">
 										</div>
 									</div>
 	

@@ -203,7 +203,7 @@
 
             <h3 style="z-index: 2;"> Le bailleur </h3>
 
-            <img src="storage/signatures/{{$bailleur->signature}}" style="transform: translateX(10%);" alt="image" width="450">
+            <img src="storage/signatures/{{$bailleur->signature}}" style="transform: translateX(20%);" alt="image" width="450">
 
 
         </div>

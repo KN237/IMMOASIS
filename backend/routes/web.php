@@ -191,7 +191,9 @@ Route::Resource('locataire', 'App\Http\Controllers\LocataireController');
 Route::post('locataire/{id}/inviter', 'App\Http\Controllers\LocataireController@inviter');
 
 
+// bailleur //
 
+Route::Resource('bailleur', 'App\Http\Controllers\BailleurController');
 
 // location //
 

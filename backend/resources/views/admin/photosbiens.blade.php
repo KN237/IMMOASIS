@@ -75,7 +75,7 @@
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
 
                 <!-- Card-->
-                <div class="card rounded shadow-sm border-0 " style="height: 381px;">
+                <div class="card rounded shadow-sm border-0 ">
 
                     <img src="/storage/photosbiens/{{ $b->nom }}" alt="photo" class="card-img-top" style="height: 240px;">
 

@@ -204,16 +204,16 @@
 
                                     @if ($data->role == 'Bailleur')
                                         <a title="modifier" data-toggle="modal" data-target="#mod2{{ $l->idlocation }}"
-                                            class="btn bg-primary-light"><i class="far fa-eye"></i> Modifier</a>
+                                            class="btn bg-primary-light m-2"><i class="far fa-eye"></i> Modifier</a>
                                     @endif        
 
 
                                         <a title="supprimer" data-toggle="modal" data-target="#supp{{ $l->idlocation }}"
-                                            class="btn bg-danger-light deletebtn"><i class="fas fa-trash">
+                                            class="btn bg-danger-light deletebtn m-2"><i class="fas fa-trash">
                                                 Supprimer</i></a>
 
                                     <a title="exporter" href="/contrat/pdf/{{ $l->idlocation }}"
-                                        class="btn bg-info-light "><i class="fas fa-file-pdf"></i>
+                                        class="btn bg-info-light m-2"><i class="fas fa-file-pdf"></i>
                                         Exporter le contrat </a>
 
                                     @if ($data->role == 'Bailleur')

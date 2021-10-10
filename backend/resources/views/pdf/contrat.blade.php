@@ -262,7 +262,7 @@
                 @if ($location->signbailleur == 1)
 
                     <center><img src="storage/signatures/{{ $bailleur->signature }}" alt="signature" width="500"
-                            style="transform: translateX(10%);"></center>
+                            style="transform: translateX(20%);"></center>
 
                 @else
 
@@ -279,7 +279,7 @@
                 @if ($location->signlocataire == 1)
 
                     <center><img src="storage/signatures/{{ $locataire->signature }}" alt="signature" width="500"
-                            style="transform: translateX(10%);"></center>
+                            style="transform: translateX(20%);"></center>
 
                 @else
 

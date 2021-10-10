@@ -104,7 +104,7 @@
                     <h4>Bailleurs, Locataires, Gérez vos locations sans Stresse</h4>
                     <p>Comptabilité - Recouvrements - Gestion des interventions - Archivages 
                         - Signature bail en ligne  - Génération des contrats en lignes - Inventaire des biens - Payement des factures en ligne .</p>
-                    <a href="/register" class="da-link button">Creer un compte</a>
+                        @if(!session('LoggedUser')) <a href="/register" class="da-link button">Creer un compte</a> @endif
                     <div class="da-img">
                         <img src="/welcome/images/Slider01.png" alt="image01" width="320">
                     </div>
@@ -115,7 +115,7 @@
                     <h2>Bailleurs</h2>
                     <p>Créer un compte afin de mieux gérer vos biens et de suivre le bail de tous vos biens et de tous
                         vos locataires</p>
-                    <a href="/register" class="da-link button">Creer un compte</a>
+                   @if(!session('LoggedUser')) <a href="/register" class="da-link button">Creer un compte</a> @endif
                     <div class="da-img">
                         <img src="/bailleur2.png" width="320" alt="image02">
                     </div>
@@ -125,7 +125,7 @@
                 <div class="da-slide">
                     <h2>Locataires</h2>
                     <p>Créer un compte afin de mieux gérer vos locations et de faciliter le paiement de vos loyers.</p>
-                    <a href="/register" class="da-link button">Creer un compte</a>
+                    @if(!session('LoggedUser')) <a href="/register" class="da-link button">Creer un compte</a> @endif
                     <div class="da-img">
                         <img src="/locataire.png" width="320" alt="image03">
                     </div>

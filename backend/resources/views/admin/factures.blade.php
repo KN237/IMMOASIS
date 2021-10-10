@@ -197,13 +197,13 @@
                             @if ($l->etat == 1)
 
                                 <td>
-                                    <p class="bg-success-light">Payée</p>
+                                    <p class="text-success">Payée</p>
                                 </td>
 
                             @else
 
                                 <td>
-                                    <p class="bg-danger-light">Non payée</p>
+                                    <p class="text-danger">Non payée</p>
                                 </td>
 
                             @endif
@@ -213,13 +213,13 @@
                                 <center>
 
                                     <a title="exporter" href="/facture/{{ $l->idfacture }}/pdf"
-                                        class="btn bg-info-light "><i class="fas fa-file-pdf"></i>
+                                        class="btn bg-info-light m-2"><i class="fas fa-file-pdf"></i>
                                         Exporter</a>
 
                                     @if ($l->etat == 1)
 
                                         <a title="exporter quittance" href="/facture/{{ $l->idfacture }}/quittance/pdf"
-                                            class="btn bg-warning-light "><i class="fas fa-file-pdf"></i>
+                                            class="btn bg-warning-light m-2 "><i class="fas fa-file-pdf"></i>
                                             Exporter Quittance</a>
 
                                     @endif
@@ -227,7 +227,7 @@
                                     @if ($data->role != 'Bailleur' and $l->etat != 1)
 
                                         <a title="payer cette facture" data-toggle="modal"
-                                            data-target="#pay{{ $l->idfacture }}" class="btn bg-primary-light "><i
+                                            data-target="#pay{{ $l->idfacture }}" class="btn bg-primary-light m-2"><i
                                                 class="fas fa-money"></i>
                                             Payer </a>
 
@@ -236,13 +236,13 @@
                                     @if ($data->role == 'Bailleur')
 
                                         <a title="supprimer" data-toggle="modal" data-target="#supp{{ $l->idfacture }}"
-                                            class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i>
+                                            class="btn bg-danger-light deletebtn m-2"><i class="fas fa-trash"></i>
                                             Supprimer</a>
 
                                             @if ($l->etat != 1)
 
                                         <a title="marquer comme payé" onclick="event.preventDefault; var form=document.getElementById('marquer{{ $l->idfacture }}'); form.submit();"
-                                            class="btn bg-primary-light deletebtn"><i class="fas fa-pen"></i>
+                                            class="btn bg-primary-light deletebtn m-2"><i class="fas fa-pen"></i>
                                             Marquer comme payé</a>
 
                                             <form id="marquer{{ $l->idfacture }}" action="/facture/{{ $l->idfacture }}" method="post"

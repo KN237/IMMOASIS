@@ -137,23 +137,23 @@
                                 <center>
                                     @if($data->role=="Bailleur")
                                     <a href="/dashboard/configetatlieux/{{ $l->idetatlieu }}" title="configurer"
-                                        class="btn bg-primary-light "><i class="fas fa-edit"></i> Configurer </a>
+                                        class="btn bg-primary-light m-2"><i class="fas fa-edit"></i> Configurer </a>
 
                                      @endif   
 
 
 
-                                    <a title="exporter" href="/etat_des_lieux/pdf/{{ $l->idetatlieu }}" class="btn bg-info-light "><i class="fas fa-file-pdf"></i>
+                                    <a title="exporter" href="/etat_des_lieux/pdf/{{ $l->idetatlieu }}" class="btn bg-info-light m-2"><i class="fas fa-file-pdf"></i>
                                         Exporter</a>
 
                                         @if($data->role=="Bailleur")
 
-                                    <a title="signer" href="/etat_des_lieux/bailleur/sign/{{ $l->idetatlieu }}" class="btn bg-warning-light "><i class="fas fa-signature"></i>
+                                    <a title="signer" href="/etat_des_lieux/bailleur/sign/{{ $l->idetatlieu }}" class="btn bg-warning-light m-2 "><i class="fas fa-signature"></i>
                                         Signer</a>
    
                                         @else
 
-                                        <a title="signer" href="/etat_des_lieux/locataire/sign/{{ $l->idetatlieu }}" class="btn bg-warning-light "><i class="fas fa-signature"></i>
+                                        <a title="signer" href="/etat_des_lieux/locataire/sign/{{ $l->idetatlieu }}" class="btn bg-warning-light m-2 "><i class="fas fa-signature"></i>
                                             Signer</a>
                                             
                                         @endif
@@ -163,10 +163,10 @@
 
 
                                     <a title="modifier" data-toggle="modal" data-target="#mod{{ $l->idetatlieu }}"
-                                        class="btn bg-primary-light "><i class="fas fa-eye"></i> modifier </a>
+                                        class="btn bg-primary-light m-2 "><i class="fas fa-eye"></i> modifier </a>
 
                                     <a title="supprimer" data-toggle="modal"
-                                        data-target="#supp{{ $l->idetatlieu }}" class="btn bg-danger-light deletebtn"><i
+                                        data-target="#supp{{ $l->idetatlieu }}" class="btn bg-danger-light deletebtn m-2"><i
                                             class="fas fa-trash"></i>
                                         Supprimer</a>
 

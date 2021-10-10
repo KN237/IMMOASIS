@@ -30,7 +30,6 @@ class AuthController extends Controller
             'mdpc'=>'in:'.$request->mdp,
             'compte'=>'required',
             'telephone'=>'required',
-            'g-recaptcha-response' => 'required|captcha'
         ]);
 
          //Insert data into database  
@@ -54,6 +53,8 @@ class AuthController extends Controller
             Validite::create([
                 'idu'=>$utlisateur->idu,
                 'idpackage'=>5,
+                'datesous'=>now(),
+                'dateexp'=>now()->addDays(30)
             ]);
          }
          else{

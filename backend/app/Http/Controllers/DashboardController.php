@@ -155,7 +155,7 @@ class DashboardController extends Controller
 
         $locations = Location::where('idlocataire', $locataire->idlocataire)->get();
 
-        $invitations = Invitation::where('idlocataire', $locataire->idlocataire)->get();
+        $invitations = Invitation::where('idlocataire', $locataire->idlocataire)->where('etat',0)->get();
 
         $locationsID = [];
 
@@ -269,7 +269,7 @@ class DashboardController extends Controller
 
             }
 
-            $package=ModelsPackage::whereIn('idpackage',$plansID )->get();
+            $package=ModelsPackage::where('idpackage',$plansID)->get();
 
             $plan=Validite::where('idu',$l->idu)->whereDate('dateexp','>=',date("Y-m-d"))->orderBy('datesous','desc')->first();
 
@@ -320,7 +320,7 @@ class DashboardController extends Controller
             }
         }
 
-        $locataires = Locataire::whereIn('idu', $idUserArray)->get();
+        $locataires = Locataire::whereIn('idu', $idUserArray)->paginate(8);
 
         $data = Utilisateur::where('idu', session('LoggedUser'))->first();
 
@@ -372,11 +372,11 @@ class DashboardController extends Controller
             }
         }
 
-        $locataires = Locataire::where('idlocataire', $idLocationArray)->where('idu', $idUserArray)->get();
+        $locataires = Locataire::where('idlocataire', $idLocationArray)->where('idu', $idUserArray)->paginate(8);
 
         $data = Utilisateur::where('idu', session('LoggedUser'))->first();
 
-        return view('admin.meslocataires', compact('locataires', 'users', 'data'));
+        return view('admin.recherchemeslocataires', compact('locataires', 'users', 'data'));
     }
 
 
@@ -474,7 +474,7 @@ class DashboardController extends Controller
     function rechercherutilisateurs(Request $request)
     {
 
-        $users = Utilisateur::where('role', $request->role)->where('nomcomplet', 'like', '%' . $request->nom . '%')->get();
+        $users = Utilisateur::where('role', $request->role)->where('nomcomplet', 'like', '%' . $request->nom . '%')->paginate(8);
         $locataires = Locataire::all();
         $bailleurs = Bailleur::all();
         $data = Utilisateur::where('idu', session('LoggedUser'))->first();
@@ -488,7 +488,7 @@ class DashboardController extends Controller
         $data = Utilisateur::where('idu', session('LoggedUser'))->first();
         $locataires = Locataire::all();
         $bailleurs = Bailleur::all();
-        $users = Utilisateur::where('role', $role)->get();
+        $users = Utilisateur::where('role', $role)->paginate(8);
         return view('admin.utilisateurs', compact('data', 'locataires', 'bailleurs', 'users'));
     }
 
@@ -510,9 +510,9 @@ class DashboardController extends Controller
 
         $data = Utilisateur::where('idu', session('LoggedUser'))->first();
         $bailleurs = Bailleur::where('idu', $data->idu)->first();
-        $biens = Bien::where('nom', 'like', '%' . $request->nom . '%')->where('idbailleur', $bailleurs->idbailleur)->get();
+        $biens = Bien::where('nom', 'like', '%' . $request->nom . '%')->where('idbailleur', $bailleurs->idbailleur)->paginate(8);
         $tb = TypeBien::all();
-        return view('admin.biens', compact('data', 'tb', 'biens'));
+        return view('admin.recherchebiens', compact('data', 'tb', 'biens'));
     }
 
 
@@ -572,7 +572,7 @@ class DashboardController extends Controller
 
         $biens = Bien::where('idbailleur', $bailleurs->idbailleur)->get();
 
-        $photos = Photo::where('idbien', $id)->get();
+        $photos = Photo::where('idbien', $id)->paginate(8);
 
         return view('admin.photosbiens', compact('data', 'photos', 'biens'));
     }

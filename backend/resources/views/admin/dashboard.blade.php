@@ -169,7 +169,7 @@
     
     <div class="d-flex m-5"><i class="bg-light p-3 rounded-circle metismenu-icon fas fa-key mr-3" style="font-size: 3rem;"></i> <div style="height: 50px; width:1px;background:black;"></div> <p style="font-size:1.6rem; font-weight:bold;" class="ml-5">
         
-        Locations {{ $locations->count() ?? '0' }}
+         {{ $locations->count() ?? '0' }}
     
     </p></div>
             
@@ -189,11 +189,12 @@
     
     <div class="d-flex m-5"><i class="bg-light p-3 rounded-circle metismenu-icon fas fa-location-arrow mr-3" style="font-size: 3rem;"></i> <div style="height: 50px; width:1px;background:black;"></div> <p style="font-size:1.6rem; font-weight:bold;" class="ml-5">
         
-        Invitations  {{ $invitations->count() ?? '0' }}
+        
+  {{ $invitations->count() ?? '0' }}
     
     </p></div>
             
-          <a href="/dashboard/factures" class="btn btn-secondary btn-block">Voir plus</a>
+          <a href="/dashboard/invitationsrecues" class="btn btn-secondary btn-block">Voir plus</a>
     
         </div>
       </div>
@@ -210,7 +211,7 @@
     
     <div class="d-flex m-5"><i class="bg-light p-3 rounded-circle metismenu-icon fas fa-exclamation-triangle mr-3" style="font-size: 3rem;"></i> <div style="height: 50px; width:1px;background:black;"></div> <p style="font-size:1.6rem; font-weight:bold;" class="ml-5">
         
-        Loyers impayés  {{ $factures->count() ?? '0' }}
+          {{ $factures->count() ?? '0' }}
     
     </p></div>
             
@@ -222,26 +223,6 @@
 
 </div>
 
-
-<div class="col-4">
-
-    <div class="card">
-        <div class="card-header">Interventions</div>
-        <div class="card-body">
-    
-    <div class="d-flex m-5"><i class="bg-light p-3 rounded-circle metismenu-icon fas fa-tools mr-3" style="font-size: 3rem;"></i> <div style="height: 50px; width:1px;background:rgb(78, 77, 77);"></div> <p style="font-size:1.6rem; font-weight:bold;" class="ml-5">
-        
-        Interventions {{ $renovations->count() ?? '0' }}
-    
-    </p></div>
-            
-          <a href="/dashboard/interventions" class="btn btn-secondary btn-block">Voir plus</a>
-    
-        </div>
-      </div>
-    
-
-</div>
 
 </div>
 
@@ -265,7 +246,7 @@
     
     <div class="d-flex m-5"><i class="bg-light p-3 rounded-circle metismenu-icon fas fa-home mr-3" style="font-size: 3rem;"></i> <div style="height: 50px; width:1px;background:black;"></div> <p style="font-size:1.6rem; font-weight:bold;" class="ml-5">
         
-        Biens {{ $biens->count() ?? '0' }}
+         {{ $biens->count() ?? '0' }}
     
     </p></div>
             
@@ -286,7 +267,7 @@
     
     <div class="d-flex m-5"><i class="bg-light p-3 rounded-circle metismenu-icon fas fa-users mr-3" style="font-size: 3rem;"></i> <div style="height: 50px; width:1px;background:black;"></div> <p style="font-size:1.6rem; font-weight:bold;" class="ml-5">
         
-        Utilisateurs  {{ $users->count() ?? '0' }}
+          {{ $users->count() ?? '0' }}
     
     </p></div>
             
@@ -307,7 +288,7 @@
     
     <div class="d-flex m-5"><i class="bg-light p-3 rounded-circle metismenu-icon fas fa-cash-register mr-3" style="font-size: 3rem;"></i> <div style="height: 50px; width:1px;background:rgb(78, 77, 77);"></div> <p style="font-size:1.6rem; font-weight:bold;" class="ml-5">
         
-        Souscriptions {{ $transactions->count() ?? '0' }}
+        {{ $transactions->count() ?? '0' }}
     
     </p></div>
             

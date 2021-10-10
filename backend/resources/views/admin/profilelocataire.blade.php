@@ -151,7 +151,7 @@
 						<div class="row">
 							<div class="col-md-10 col-lg-6">
 
-								<img src="/storage/signatures/{{$l->signature}}" alt="{{ $l->signature || "Pas encore de signature "}}" width="400">
+								<img src="/storage/signatures/{{$l->signature}}" alt="{{ $l->signature ?? 'Pas encore de signature'}}" width="400">
 						
 							</div>
 						</div>

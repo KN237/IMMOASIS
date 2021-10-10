@@ -234,9 +234,9 @@
 
                             @endforeach
 
-							<td>{{$p->dateexp}} </td>
-
 							<td>{{$p->datesous}} </td>
+
+							<td>{{$p->dateexp}} </td>
 
                             @foreach($packages as $b)
 
@@ -277,6 +277,7 @@
 
                                     <form method="POST" action="/utilisateur/{{ $data->idu }}">
                                         @csrf
+                                        @method('put')
                                         <div class="row form-row">
 
                                             <div class="col-12">
@@ -328,14 +329,25 @@
                                 <div class="col-md-10 col-lg-6">
 
                                     <form method="POST" enctype="multipart/form-data"
-                                        action="/locataire/{{ $l->idlocataire }}">
+                                        action="/bailleur/{{ $l->idbailleur }}">
                                         @csrf
+                                        @method('put')
                                         <div class="row form-row">
+
+
+                                        <div class="col-12">
+                                                <div class="form-group">
+                                                    <label>Date de naissance</label>
+                                                    <input class="form-control" name="datenaiss" type="date"
+                                                        value="{{ $l->datenaiss }}">
+                                                </div>
+                                            </div>
+
 
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label>Ville</label>
-                                                    <input class="form-control" name="ville " type="text"
+                                                    <input class="form-control" name="ville" type="text"
                                                         value="{{ $l->ville }}">
                                                 </div>
                                             </div>
@@ -426,7 +438,7 @@
 
                                         <img style="transform: translateX(10%)"
                                             src="/storage/signatures/{{ $l->signature }}"
-                                            alt="{{ $l->signature || 'Pas encore de signature ' }}" width="800"
+                                            alt="{{ $l->signature ?? 'Pas encore de signature ' }}" width="800"
                                             class="ml-5">
 
 

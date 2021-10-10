@@ -7,24 +7,19 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap"
-      rel="stylesheet"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <link rel="stylesheet" href="css/auth.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
-	<link rel="stylesheet" href="css/radio.css" />
+    <link rel="stylesheet" href="/css/auth.css">
+
+    <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="icon" href="/favicon.ico">
+
+	<link rel="stylesheet" href="/css/radio.css" />
 
 	<style> #toast-container > .toast-error { background-color: #e61721; } 
 	
@@ -113,9 +108,9 @@
                   />
                 </div>
 
-                <div class="form-group d-flex">
+                <div class="form-group d-flex" style="position: relative;">
                   <span class="btn-show-pass">
-                    <i class="zmdi zmdi-eye"></i>
+                    <i class="fas fa-eye-slash"></i>
                   </span>
                   <input
                     type="password"
@@ -125,9 +120,9 @@
                   />
                 </div>
 
-                <div class="form-group d-flex">
+                <div class="form-group d-flex" style="position: relative;">
                   <span class="btn-show-pass">
-                    <i class="zmdi zmdi-eye"></i>
+                    <i class="fas fa-eye-slash"></i>
                   </span>
                   <input
                     type="password"
@@ -135,15 +130,6 @@
                     name="mdpc"
                     placeholder="Confirmez votre mot de passe"
                   />
-                </div>
-
-                <div class="form-group m-4">
-
-                  {!! NoCaptcha::renderJs() !!}
-
-                  {!! NoCaptcha::display() !!}
-                  
-
                 </div>
 
                 <div class="form-group">

@@ -187,9 +187,10 @@
 @push('page-js')
 
     <!-- Select2 JS -->
+    <script src="/main/assets/js/jquery-2.1.0.min.js"></script>
     <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="/main/assets/js/jquery-2.1.0.min.js"></script>
+
 
 @endpush

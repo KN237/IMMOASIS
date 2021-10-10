@@ -94,6 +94,12 @@ class LocationController extends Controller
          
          );
 
+
+        $bien=Bien::where('idbien',$request->idbien)->first();
+
+        $bien->etat=1;
+
+
          if($test){
              Bien::where('idbien',$request->idbien)->update(['etat'=>1]);
             Toastr::success('location créée avec succes','succes',["iconClass"=>"customer-g","positionClass"=>"toast-top-center"]);

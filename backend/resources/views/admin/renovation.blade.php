@@ -101,6 +101,13 @@
 
                             <td>{{ $l->montant }}</td>
 
+                            @if(!$l->idartisan)
+
+                            <td> Indeterminé </td>
+
+
+                            @else
+
                             @foreach ($artisans as $a)
 
                                 @if ($a->idartisan == $l->idartisan)
@@ -111,14 +118,16 @@
 
                             @endforeach
 
+                            @endif
+
 
                             @if ($l->statut == "EFFECTUé")
 
-                            <td class="bg-success-light">{{ $l->statut }}</td>
+                            <td class="text-success">{{ $l->statut }}</td>
    
                             @else
 
-                            <td class="bg-danger-light">{{ $l->statut }}</td>
+                            <td class="text-danger">{{ $l->statut }}</td>
                                 
                             @endif
 
@@ -128,14 +137,14 @@
                                 <center>
 
                                     <a title="modifier" data-toggle="modal"
-                                        data-target="#mod2{{ $l->idrenovation }}" class="btn bg-primary-light"><i
+                                        data-target="#mod2{{ $l->idrenovation }}" class="btn bg-primary-light m-2"><i
                                             class="fas fa-eye"></i> Modifier</a>
 
                                            
 
                                     <a title="supprimer" data-toggle="modal"
                                         data-target="#supp{{ $l->idrenovation }}"
-                                        class="btn bg-danger-light deletebtn"><i class="fas fa-trash"></i>
+                                        class="btn bg-danger-light deletebtn m-2"><i class="fas fa-trash"></i>
                                         Supprimer</a>
                                 </center>
                             </td>
@@ -229,6 +238,8 @@
                         <select name="idartisan"
                             title="Veuillez remplir ce champs si vous avez fait appel à un de nos artisans pour cette intervention"
                             class="form-control">
+
+                            <option></option>
 
                             @foreach ($artisans as $a)
 
@@ -331,6 +342,8 @@
                             <select name="idartisan"
                                 title="Veuillez remplir ce champs si vous avez fait appel à un de nos artisans pour cette intervention"
                                 class="form-control">
+
+                                <option></option>
 
                                 @foreach ($artisans as $a)
 

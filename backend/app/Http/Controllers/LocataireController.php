@@ -38,20 +38,17 @@ class LocataireController extends Controller
         $locataire=Locataire::create(
             
             [ 
-                'numCniLoc'=>$request->numcniloc,
-                'idu'=>session('loggedUser')->idU,
-                'telephoneSecLoc'=>$request->telephonesecloc,
-                'villeLoc'=>$request->villeloc,
-                'quartierLoc'=>$request->quartierloc,
-                'paysLoc'=>$request->paysloc,
-                'dateNaissLoc'=>$request->datenaissloc,
-                'sexeLoc'=>$request->sexeloc,
-                'lieuNaissLoc'=>$request->lieunaissloc,
-                'nomCompletEmployeurLoc'=>$request->nomcompletemployeurloc,
-                'telEmployeurLoc'=>$request->telemployeurloc,
-                'signatureLoc'=>'',
-                'professionLoc'=>$request->professionloc,
-                'revenuMensuelLoc'=>$request->revenumensuelloc,
+                'numcni'=>$request->numcni,
+                'idu'=>session('LoggedUser'),
+                'telephone'=>$request->telephone,
+                'ville'=>$request->ville,
+                'quartier'=>$request->quartier,
+                'datenaiss'=>$request->datenaiss,
+                'sexe'=>$request->sexe,
+                'nomemployeur'=>$request->nomemployeur,
+                'telemployeur'=>$request->telemployeur,
+                'signature'=>'',
+                'profession'=>$request->profession,
          
          ]
          
@@ -94,10 +91,11 @@ class LocataireController extends Controller
         $test=$locataire->update(
             
             [ 
-                'numCni'=>$request->numcni,
+                'numcni'=>$request->numcni,
                 'ville'=>$request->ville,
+                'datenaiss'=>$request->datenaiss,
                 'quartier'=>$request->quartier,
-                'nomemployeur'=>$request->nomcompletemployeur,
+                'nomemployeur'=>$request->nomemployeur,
                 'telemployeur'=>$request->telemployeur,
                 'profession'=>$request->profession 
          ]

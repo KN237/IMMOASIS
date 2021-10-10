@@ -410,7 +410,7 @@ text-align: center;
     <h4>Le bailleur</h4>
 @if($inventaire->signbailleur==1)
 
- <center><img src="storage/signatures/{{$bailleur->signature}}" alt="signature" width="500" style="transform: translateX(10%);"></center>   
+ <center><img src="storage/signatures/{{$bailleur->signature}}" alt="signature" width="500" style="transform: translateX(20%);"></center>   
    
 @else
 
@@ -426,7 +426,7 @@ text-align: center;
 
     @if($inventaire->signlocataire==1)
 
-   <center><img src="storage/signatures/{{$locataire->signature}}" alt="signature" width="500" style="transform: translateX(10%);"></center> 
+   <center><img src="storage/signatures/{{$locataire->signature}}" alt="signature" width="500" style="transform: translateX(20%);"></center> 
 
     @else
 

@@ -69,8 +69,8 @@ class EtatLieuxController extends Controller
             [ 
                 'idbien'=>$request->idbien,
                 'description'=>$request->description,
-                'datedebut'=>$request->date,
-                'datefin'=>$request->date,
+                'datedebut'=>$request->datedebut,
+                'datefin'=>$request->datefin,
                 
          
          ]
@@ -97,8 +97,8 @@ class EtatLieuxController extends Controller
             
             [ 
                 'description'=>$request->description,
-                'datedebut'=>$request->date,
-                'datefin'=>$request->date,
+                'datedebut'=>$request->datedebut,
+                'datefin'=>$request->datefin,
                 
          
          ]

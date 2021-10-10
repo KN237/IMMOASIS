@@ -19,8 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <style>
-        .img-thumbnail:hover,
-        .equipement:hover {
+.equipement:hover {
 
             transform: scale(1.2);
         }
@@ -107,7 +106,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">Numéro du permis de
+                                            <p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3 ">Numéro du permis de
                                                 construire</p>
 
                                             <p class="col-sm-10">{{ $bien->numpermisconst }}</p>
@@ -277,7 +276,7 @@
 
                                             <div class="carousel-item active">
                                                 <img src="/storage/photosbiens/{{ $photos[0]->nom }}"
-                                                    class="d-block w-100" alt="photo">
+                                                    class="d-block" alt="photo" >
                                             </div>
 
                                             @endif

@@ -6,6 +6,7 @@ use App\Models\Bien;
 use App\Models\Bailleur;
 use App\Models\Location;
 use App\Models\Locataire;
+use App\Models\TypeLocation;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
@@ -18,13 +19,13 @@ class InvitationController extends Controller
 
         $invitation=Invitation::where('idinvitation',$id)->first();
 
-        $bien=Bien::where('idbailleur',$invitation->idbailleur)->first();
+        $tl=TypeLocation::first();
 
         $test= new Location();
 
         $test->idlocataire=$locataire->idlocataire;
 
-        $test->idbien=$bien->idbien;
+        $test->idtl=$tl->idtl;
 
         $test->save();
 

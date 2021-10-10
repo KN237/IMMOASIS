@@ -29,24 +29,6 @@
 	
 @endpush
 
-@section('bouton')
-
-    <div class="page-title-actions">
-
-        <div class="d-inline-block dropdown">
-
-            <button type="button" class="btn-shadow btn btn-dark" data-toggle="modal" data-target="#form">
-                <span class="btn-icon-wrapper pr-2 opacity-7">
-                    <i class="metismenu-icon fas fa-plus"></i>
-                </span>
-                Créer un bien
-            </button>
-
-        </div>
-    </div>
-
-
-@endsection
 
 @section('content')
 
@@ -125,90 +107,7 @@
 
 @endsection
 
-<!-- Ajout -->
 
-<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-aria-hidden="true">
-
-<div class="modal-dialog">
-
-    <div class="modal-content">
-
-        <div class="modal-body">
-
-            <center>
-                <h5><img src="/internis.png" alt="logo" width="100"></h5>
-            </center>
-
-            <form id="1" enctype="multipart/form-data" class="m-5" action="/bien" method="post">
-                @csrf
-                @method('post')
-
-                <input type="hidden" name="compte">
-
-                <div class="position-relative form-group"><label for="examplePassword11"
-                        class="___class_+?24___">Nom</label><input name="nom" type="text" class="form-control">
-                </div>
-
-
-
-                <div class="position-relative form-group"><label for="exampleAddress"
-                        class="___class_+?27___">Numéro du permis de construire</label><input name="numpermisconst"
-                        type="text" class="form-control"></div>
-
-
-                <div class="   position-relative form-group"><label for="exampleAddress"
-                        class="___class_+?27___">Numéro du titre foncier</label><input name="numtitrefoncier"
-                        type="text" class="form-control"></div>
-
-                <div class="position-relative form-group"><label for="exampleAddress" class="___class_+?27___">Type
-                        de bien</label>
-
-                    <input type="text">
-
-                    <select name="idtb" class="form-control">
-                        @foreach ($tb as $u)
-                            <option value="{{ $u->idtb }}">{{ $u->nom }}</option>
-
-                        @endforeach
-
-                    </select>
-
-                </div>
-
-
-                <div class="position-relative form-group"><label for="exampleAddress"
-                        class="___class_+?27___">Description</label><input name="description" type="text"
-                        class="form-control"></div>
-
-
-                <div class="position-relative form-group"><label for="exampleAddress"
-                        class="___class_+?27___">Superficie</label><input name="superficie" type="text"
-                        class="form-control"></div>
-
-                <div class="position-relative form-group"><label for="exampleAddress"
-                        class="___class_+?27___">Ville</label><input name="ville" type="text"
-                        class="form-control"></div>
-
-                <div class="position-relative form-group"><label for="exampleAddress"
-                        class="___class_+?27___">Quartier</label><input name="quartier" type="text"
-                        class="form-control"></div>
-
-
-                <div class="position-relative form-group"><label for="exampleAddress"
-                        class="___class_+?27___">Image</label><input name="image" type="file"
-                        class="form-control"></div>
-
-
-                <button class="mt-2 btn btn-dark btn-block">Enregistrer</button>
-
-            </form>
-
-        </div>
-
-    </div>
-</div>
-</div>
 
 @foreach ($biens as $l)
 

@@ -134,23 +134,23 @@
                                     @if($data->role=="Bailleur")
 
                                     <a href="/dashboard/configinventaire/{{ $l->idinventaire }}" title="configurer"
-                                        class="btn bg-primary-light "><i class="fas fa-edit"></i> Configurer </a>
+                                        class="btn bg-primary-light m-2"><i class="fas fa-edit"></i> Configurer </a>
 
                                      @endif   
 
 
 
-                                    <a title="exporter" href="/inventaire/pdf/{{ $l->idinventaire }}" class="btn bg-info-light "><i class="fas fa-file-pdf"></i>
+                                    <a title="exporter" href="/inventaire/pdf/{{ $l->idinventaire }}" class="btn bg-info-light m-2"><i class="fas fa-file-pdf"></i>
                                         Exporter</a>
 
                                         @if($data->role=="Bailleur")
 
-                                    <a title="signer" href="/inventaire/bailleur/sign/{{ $l->idinventaire }}" class="btn bg-warning-light "><i class="fas fa-signature"></i>
+                                    <a title="signer" href="/inventaire/bailleur/sign/{{ $l->idinventaire }}" class="btn bg-warning-light m-2 "><i class="fas fa-signature"></i>
                                         Signer</a>
    
                                         @else
 
-                                        <a title="signer" href="/inventaire/locataire/sign/{{ $l->idinventaire }}" class="btn bg-warning-light "><i class="fas fa-signature"></i>
+                                        <a title="signer" href="/inventaire/locataire/sign/{{ $l->idinventaire }}" class="btn bg-warning-light m-2 "><i class="fas fa-signature"></i>
                                             Signer</a>
                                             
                                         @endif
@@ -158,10 +158,10 @@
                                         @if($data->role=="Bailleur")
 
                                     <a title="modifier" data-toggle="modal" data-target="#mod{{ $l->idinventaire }}"
-                                        class="btn bg-primary-light "><i class="fas fa-eye"></i> modifier </a>
+                                        class="btn bg-primary-light m-2"><i class="fas fa-eye"></i> modifier </a>
 
                                     <a title="supprimer" data-toggle="modal"
-                                        data-target="#supp{{ $l->idinventaire }}" class="btn bg-danger-light deletebtn"><i
+                                        data-target="#supp{{ $l->idinventaire }}" class="btn bg-danger-light deletebtn m-2"><i
                                             class="fas fa-trash"></i>
                                         Supprimer</a>
 
